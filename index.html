@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EpiSafe | Where Safety Meets Technology</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      background: linear-gradient(to right, #333, #C3751B);
+    }
+    header img {
+      max-width: 50px;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4rem 2rem;
+    }
+    .hero-text {
+      flex: 1;
+      padding-right: 2rem;
+    }
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .hero-text button {
+      background-color: #FFA500;
+      color: black;
+      padding: 1rem 2rem;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .hero-img {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-img img {
+      max-width: 90%;
+      border-radius: 20px;
+    }
+    section {
+      padding: 4rem 2rem;
+    }
+    .products, .tech, .contact {
+      display: grid;
+      gap: 2rem;
+    }
+    .products {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .product-card {
+      background: #111;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .cta-button {
+      background-color: #FFA500;
+      color: #000;
+      font-weight: bold;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .cta-button:hover {
+      background-color: #ffb733;
+    }
+    form input, form textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+    }
+    form button {
+      background-color: #FFA500;
+      color: black;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .footer {
+      background-color: #000;
+      color: #aaa;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>EpiSafe</strong></div>
+    <div><a href="#get-started">Get Started</a></div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>EpiSafe</h1>
+      <p>Where Safety Meets Technology.</p>
+      <a href="#get-started"><button>Get Started</button></a>
+    </div>
+    <div class="hero-img">
+      <img src="https://your-image-source.com/hero-image.jpg" alt="EpiSafe Product" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Discover Our Story</h2>
+    <p>At EpiSafe, we are passionate about creating a safer world for individuals with severe allergies. Our mission is to provide innovative, trustworthy, and cutting-edge solutions to enhance the quality of life for those who need it most.</p>
+    <a href="#tech"><button class="cta-button">Explore More</button></a>
+  </section>
+
+  <section id="tech" class="tech">
+    <h2>Technology</h2>
+    <p>Our slim, MagSafe-compatible phone case integrates an epinephrine auto-injector, ensuring rapid response in allergy emergencies. With our technology, we aim to offer seamless and reliable protection for allergy sufferers.</p>
+  </section>
+
+  <section class="products">
+    <div class="product-card">
+      <img src="https://your-image-source.com/mount.jpg" alt="Mount">
+      <h3>EpiSafe Phone Case Mount</h3>
+      <p>$20.00</p>
+    </div>
+    <div class="product-card">
+      <img src="https://your-image-source.com/pen.jpg" alt="Pen">
+      <h3>EpiSafe Epi Pen</h3>
+      <p>$550.00</p>
+    </div>
+    <div class="product-card">
+      <img src="https://your-image-source.com/magsafe.jpg" alt="MagSafe">
+      <h3>EpiSafe MagSafe Case</h3>
+      <p>$75.00</p>
+    </div>
+  </section>
+
+  <section id="get-started">
+    <h2>Get Started with EpiSafe</h2>
+    <p>
+      Welcome to the future of allergy safety. EpiSafe integrates a powerful, slim epinephrine auto-injector right into your phone case, so you're never caught without it. Whether you're a parent, student, or professional — this is peace of mind in your pocket.
+    </p>
+    <ul>
+      <li>✅ Learn how our MagSafe-compatible case works</li>
+      <li>✅ Pre-order or join our waitlist</li>
+      <li>✅ Contact us directly with feedback or questions</li>
+    </ul>
+    <br/>
+    <a href="#contact" class="cta-button">Join the Waitlist</a>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Preorder Now</h2>
+    <p>We’re designing a phone case with a built-in EpiPen so people with severe allergies are never without their life-saving medication. Your feedback helps us validate and improve the concept.</p>
+    <form name="contact" method="POST" data-netlify="true">
+      <input type="text" name="first" placeholder="First Name" />
+      <input type="text" name="last" placeholder="Last Name" />
+      <input type="email" name="email" placeholder="Email" />
+      <textarea name="message" placeholder="Message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <div class="footer">
+    <p>&copy; 2035 EpiSafe™ | 100 Institute Rd, Worcester, MA 01609 | info@episafe.co</p>
+    <p><a href="#">Privacy Policy</a> | <a href="#">Accessibility</a> | <a href="#">Terms & Conditions</a></p>
+  </div>
+</body>
+</html>
