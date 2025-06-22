@@ -4,15 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Accessibility | EpiSafe</title>
-  <link rel="icon" href="images/episafeavicon.ico" type="image/x-icon" />
+  <link rel="icon" href="episafeavicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       background-color: #000;
       color: #fff;
       font-family: 'Inter', sans-serif;
+      background-color: #000;
+      color: #fff;
       line-height: 1.6;
       padding: 2rem;
+      transition: background-color 0.3s, color 0.3s;
     }
     .back-button {
       text-align: left;
@@ -33,23 +44,81 @@
       text-align: center;
       font-size: 0.8rem;
       margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+    .back-button a {
+      color: #FFA500;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .footer {
+      margin-top: 4rem;
+      font-size: 0.85rem;
+      color: #aaa;
     }
     .footer a {
-      color: inherit;
+      color: #FFA500;
       text-decoration: none;
+      margin: 0 0.5rem;
+    }
+    html.dark-mode body {
+      background-color: #121212;
+      color: #fff;
+    }
+    html.dark-mode header {
+      background: linear-gradient(to right, #333, #555);
+    }
+    html.dark-mode .footer {
+      background-color: #333;
+    }
+    html.dark-mode a {
+      color: #FFA500;
+    }
+    #theme-toggle {
+      background-color: #FFA500;
+      color: #000;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
   <div class="back-button">
     <a href="index.html">← Back to Home</a>
+  <button id="theme-toggle">Toggle Theme</button>
+  <div class="back-button">
+    <a href="index.html"><img src="images/episafelogoog.png" alt="EpiSafe Icon"> Back to Home</a>
   </div>
   <h1>Accessibility Statement</h1>
   <p>We strive to make our website accessible to everyone. If you encounter an issue, please contact us so we can address it.</p>
-
   <div class="footer">
     <p>&copy; 2035 EpiSafe™ | 100 Institute Rd, Worcester, MA 01609 | info@episafe.co</p>
-    <p><a href="privacy.html">Privacy Policy</a> | <a href="accessibility.html">Accessibility</a> | <a href="terms.html">Terms &amp; Conditions</a></p>
+    <p>
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="accessibility.html">Accessibility</a> |
+      <a href="terms.html">Terms & Conditions</a>
+    </p>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+
+      const toggleBtn = document.getElementById('theme-toggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          document.documentElement.classList.toggle('dark-mode');
+          const isDark = document.documentElement.classList.contains('dark-mode');
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+      }
+    });
+  </script>
 </body>
 </html>

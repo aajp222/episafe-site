@@ -72,6 +72,31 @@
     nav a:active {
       transform: scale(0.95);
     }
+      #theme-toggle {
+        margin-left: 1rem;
+        background: none;
+        border: 2px solid currentColor;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      html.dark-mode body {
+        background-color: #121212;
+        color: #fff;
+      }
+      html.dark-mode header {
+        background: linear-gradient(to right, #333, #555);
+      }
+      html.dark-mode .product-card {
+        background: #1e1e1e;
+      }
+      html.dark-mode .footer {
+        background-color: #333;
+        color: #fff;
+      }
+      html.dark-mode a {
+        color: #FFA500;
+      }
     .hero {
       display: flex;
       flex-direction: column;
@@ -256,6 +281,18 @@
           });
         }
       });
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'dark') {
+      document.documentElement.classList.add('dark-mode');
+    }
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark-mode');
+        const isDark = document.documentElement.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+    }
     });
   </script>
 </head>
@@ -268,6 +305,7 @@
     <a href="team.html">Meet the Team</a>
     <a href="achievements.html">Achievements</a>
   </nav>
+  <button id="theme-toggle">Toggle Theme</button>
 </header>
 
   <section class="hero">
