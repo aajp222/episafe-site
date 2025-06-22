@@ -43,6 +43,16 @@
       align-items: center;
       gap: 1rem;
     }
+    header .logo a {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    header .logo a:hover {
+      transform: scale(1.05);
+    }
+    header .logo a:active {
+      transform: scale(0.95);
+    }
     header .logo img {
       width: 80px;
       height: auto;
@@ -56,6 +66,11 @@
       text-decoration: none;
       margin-left: 2rem;
       font-weight: 600;
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    nav a:active {
+      transform: scale(0.95);
     }
     .hero {
       display: flex;
@@ -87,6 +102,11 @@
       cursor: pointer;
       border-radius: 8px;
       text-decoration: none;
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    .hero-text .cta-button:active {
+      transform: scale(0.95);
     }
     .hero-img {
       margin-top: 2rem;
@@ -169,6 +189,11 @@
       border-radius: 8px;
       cursor: pointer;
       text-decoration: none;
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    .cta-button:active {
+      transform: scale(0.95);
     }
     .cta-button:hover {
       background-color: #ffb733;
@@ -188,6 +213,10 @@
       font-weight: bold;
       cursor: pointer;
       border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+    form button:active {
+      transform: scale(0.95);
     }
     .footer {
       background-color: #000;
@@ -227,13 +256,15 @@
   </script>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="images/episafelogoog.png" alt="EpiSafe Icon" />
-    </div>
-    <nav>
-      <a href="team.html">Meet the Team</a>
-      <a href="achievements.html">Achievements</a>
+<header>
+  <div class="logo">
+    <a href="index.html"><img src="images/episafelogogog.png" alt="EpiSafe Icon" /></a>
+  </div>
+  <nav>
+    <a href="team.html">Meet the Team</a>
+    <a href="achievements.html">Achievements</a>
+  </nav>
+</header>
     </nav>
   </header>
 
