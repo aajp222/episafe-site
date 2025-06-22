@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms &amp; Conditions | EpiSafe</title>
+  <title>Terms & Conditions | EpiSafe</title>
   <link rel="icon" href="images/episafeavicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -13,6 +13,23 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
       padding: 2rem;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .back-button {
+      text-align: left;
+      margin-bottom: 1rem;
+    }
+    .back-button a {
+      color: #FFA500;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+    }
+    .back-button img {
+      width: 30px;
+      height: auto;
+      margin-right: 0.5rem;
     }
     h1 {
       margin-bottom: 1rem;
@@ -28,42 +45,72 @@
     .footer a {
       color: inherit;
       text-decoration: none;
+      margin: 0 0.5rem;
     }
-      #theme-toggle {
-        margin-left: 1rem;
-        background: none;
-        border: 2px solid currentColor;
-        padding: 0.25rem 0.5rem;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      html.dark-mode body {
-        background-color: #121212;
-        color: #fff;
-      }
-      html.dark-mode header {
-        background: linear-gradient(to right, #333, #555);
-      }
-      html.dark-mode .product-card {
-        background: #1e1e1e;
-      }
-      html.dark-mode .footer {
-        background-color: #333;
-        color: #fff;
-      }
-      html.dark-mode a {
-        color: #FFA500;
-      }
+    #theme-toggle {
+      background-color: #FFA500;
+      color: #000;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+    html.dark-mode body {
+      background-color: #121212;
+      color: #fff;
+    }
+    html.dark-mode header {
+      background: linear-gradient(to right, #333, #555);
+    }
+    html.dark-mode .footer {
+      background-color: #333;
+      color: #fff;
+    }
+    html.dark-mode a {
+      color: #FFA500;
+    }
   </style>
 </head>
 <body>
   <button id="theme-toggle">Toggle Theme</button>
-  <h1>Terms &amp; Conditions</h1>
+  <div class="back-button">
+    <a href="index.html"><img src="images/episafelogoog.png" alt="EpiSafe Icon">Back to Home</a>
+  </div>
+
+  <h1>Terms & Conditions</h1>
   <p>This website is provided for demonstration purposes only. All content is fictitious and should not be considered legal advice.</p>
 
   <div class="footer">
     <p>&copy; 2035 EpiSafe™ | 100 Institute Rd, Worcester, MA 01609 | info@episafe.co</p>
-    <p><a href="privacy.html">Privacy Policy</a> | <a href="accessibility.html">Accessibility</a> | <a href="terms.html">Terms &amp; Conditions</a></p>
+    <p>
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="accessibility.html">Accessibility</a> |
+      <a href="terms.html">Terms & Conditions</a>
+    </p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+
+      const toggleBtn = document.getElementById('theme-toggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          document.documentElement.classList.toggle('dark-mode');
+          const isDark = document.documentElement.classList.contains('dark-mode');
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+
   </div>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
