@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Achievements | EpiSafe</title>
+  <link rel="icon" href="episafeavicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #000;
+      color: #fff;
+      line-height: 1.6;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    body.fade-out {
+      opacity: 0;
+    }
+    body img {
+      -webkit-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      background: linear-gradient(to right, #333, #C3751B);
+    }
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header .logo img {
+      width: 80px;
+      height: auto;
+    }
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      margin-left: 2rem;
+      font-weight: 600;
+    }
+    .achievements-container {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+      text-align: center;
+    }
+    .back-button {
+      text-align: left;
+      margin-bottom: 1rem;
+    }
+    .back-button a {
+      color: #FFA500;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .achievement {
+      background-color: #111;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+    .achievement:nth-child(2) { animation-delay: 0.2s; }
+    .achievement:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .achievement img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    .achievement h2 {
+      color: #FFA500;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    .achievement h2:hover {
+      transform: scale(1.1);
+    }
+    .achievement p {
+      font-size: 0.95rem;
+    }
+    @media (min-width: 768px) {
+      .achievement img {
+        width: 300px;
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && !href.startsWith('#') && !link.hasAttribute('target')) {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+              window.location.href = href;
+            }, 500);
+          });
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="episafelogoog.png" alt="EpiSafe Icon" />
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+    </nav>
+  </header>
+
+  <div class="achievements-container">
+    <div class="back-button">
+      <a href="index.html">← Back to Home</a>
+    </div>
+    <h1>Our Achievements</h1>
+
+    <div class="achievement">
+      <img src="episafeproductog.png" alt="Startup Showcase">
+      <h2>2023 Startup Showcase</h2>
+      <p>Awarded first place for our prototype focused on allergy safety.</p>
+    </div>
+    <div class="achievement">
+      <img src="episafeonlyautoinjector.png" alt="Innovation Award">
+      <h2>2024 Innovation Award</h2>
+      <p>Received recognition for advancing safe medication delivery.</p>
+    </div>
+    <div class="achievement">
+      <img src="episafemount.png" alt="Health Tech Accelerator">
+      <h2>2024 Health Tech Accelerator</h2>
+      <p>Selected for a program that helps bring lifesaving technology to market.</p>
+    </div>
+  </div>
+</body>
+</html>
