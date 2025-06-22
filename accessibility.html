@@ -16,6 +16,8 @@
       scroll-behavior: smooth;
     }
     body {
+      background-color: #000;
+      color: #fff;
       font-family: 'Inter', sans-serif;
       background-color: #000;
       color: #fff;
@@ -24,6 +26,24 @@
       transition: background-color 0.3s, color 0.3s;
     }
     .back-button {
+      text-align: left;
+      margin-bottom: 1rem;
+    }
+    .back-button a {
+      color: #FFA500;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    .footer {
+      background-color: #000;
+      color: #aaa;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      margin-top: 2rem;
       margin-bottom: 2rem;
     }
     .back-button a {
@@ -67,6 +87,8 @@
   </style>
 </head>
 <body>
+  <div class="back-button">
+    <a href="index.html">← Back to Home</a>
   <button id="theme-toggle">Toggle Theme</button>
   <div class="back-button">
     <a href="index.html"><img src="images/episafelogoog.png" alt="EpiSafe Icon"> Back to Home</a>

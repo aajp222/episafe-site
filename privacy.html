@@ -8,8 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #fff;
-      color: #000;
+      background-color: #000;
+      color: #fff;
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
       padding: 2rem;
@@ -31,12 +31,21 @@
       height: auto;
       margin-right: 0.5rem;
     }
+    .back-button {
+      text-align: left;
+      margin-bottom: 1rem;
+    }
+    .back-button a {
+      color: #FFA500;
+      text-decoration: none;
+      font-weight: bold;
+    }
     h1 {
       margin-bottom: 1rem;
     }
     .footer {
-      background-color: #FFA500;
-      color: #000;
+      background-color: #000;
+      color: #aaa;
       padding: 2rem;
       text-align: center;
       font-size: 0.8rem;
@@ -71,6 +80,9 @@
   </style>
 </head>
 <body>
+  <div class="back-button">
+    <a href="index.html">← Back to Home</a>
+  </div>
   <button id="theme-toggle">Toggle Theme</button>
   <div class="back-button">
     <a href="index.html"><img src="images/episafelogoog.png" alt="EpiSafe Icon">Back to Home</a>
