@@ -61,35 +61,12 @@
       text-decoration: none;
       margin: 0 0.5rem;
     }
-    html.dark-mode body {
-      background-color: #121212;
-      color: #fff;
-    }
-    html.dark-mode header {
-      background: linear-gradient(to right, #333, #555);
-    }
-    html.dark-mode .footer {
-      background-color: #333;
-    }
-    html.dark-mode a {
-      color: #FFA500;
-    }
-    #theme-toggle {
-      background-color: #FFA500;
-      color: #000;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-bottom: 1rem;
-    }
+
   </style>
 </head>
 <body>
   <div class="back-button">
     <a href="index.html">← Back to Home</a>
-  <button id="theme-toggle">Toggle Theme</button>
   <div class="back-button">
     <a href="index.html"><img src="images/episafelogoog.png" alt="EpiSafe Icon"> Back to Home</a>
   </div>
@@ -104,21 +81,7 @@
     </p>
   </div>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const storedTheme = localStorage.getItem('theme');
-      if (storedTheme === 'dark') {
-        document.documentElement.classList.add('dark-mode');
-      }
-
-      const toggleBtn = document.getElementById('theme-toggle');
-      if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-          document.documentElement.classList.toggle('dark-mode');
-          const isDark = document.documentElement.classList.contains('dark-mode');
-          localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
-      }
-    });
+    // Theme toggling removed
   </script>
 </body>
 </html>
