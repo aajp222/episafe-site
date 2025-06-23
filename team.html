@@ -184,6 +184,9 @@
       if (logo) {
         let count = 0;
         let timer;
+        logo.addEventListener('click', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
         logo.addEventListener('click', () => {
           count++;
           clearTimeout(timer);
