@@ -45,7 +45,6 @@
     }
     header .logo a {
       display: inline-block;
-      transition: transform 0.3s ease;
     }
     header .logo a:hover {
       transform: scale(1.05);
@@ -56,6 +55,9 @@
     header .logo img {
       width: 80px;
       height: auto;
+    }
+    #logo {
+      pointer-events: auto;
     }
     header .logo span {
       font-size: 2rem;
@@ -263,6 +265,29 @@
           });
         }
       });
+
+      const logo = document.getElementById('logo');
+      if (logo) {
+        let hold;
+
+        const startPress = (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          clearTimeout(hold);
+          hold = setTimeout(() => {
+            window.location.href = 'secret.html';
+          }, 3000);
+        };
+
+        const cancelPress = (e) => {
+          e.stopPropagation();
+          clearTimeout(hold);
+        };
+
+        ['mousedown', 'touchstart'].forEach(evt => logo.addEventListener(evt, startPress));
+        ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(evt => logo.addEventListener(evt, cancelPress));
+        logo.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
+      }
     // Theme toggling removed
     });
   </script>
@@ -270,7 +295,7 @@
 <body>
 <header>
   <div class="logo">
-    <a href="index.html"><img src="images/episafelogoog.png" alt="EpiSafe Icon" /></a>
+    <a href="index.html"><img id="logo" src="images/episafelogoog.png" alt="EpiSafe Icon" /></a>
   </div>
   <nav>
     <a href="team.html">Meet the Team</a>
