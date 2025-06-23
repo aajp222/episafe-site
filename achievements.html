@@ -47,6 +47,9 @@
       width: 80px;
       height: auto;
     }
+    #logo {
+      pointer-events: auto;
+    }
     nav a {
       color: inherit;
       text-decoration: none;
@@ -136,6 +139,21 @@
           });
         }
       });
+
+      const logo = document.getElementById('logo');
+      if (logo) {
+        let count = 0;
+        let timer;
+        logo.addEventListener('click', () => {
+          count++;
+          clearTimeout(timer);
+          if (count >= 7) {
+            window.location.href = 'secret.html';
+          } else {
+            timer = setTimeout(() => { count = 0; }, 1500);
+          }
+        });
+      }
     // Theme toggling removed
     });
   </script>
@@ -143,7 +161,7 @@
 <body>
   <header>
     <div class="logo">
-      <a href="index.html"><img src="images/episafelogoog.png" alt="EpiSafe Icon" /></a>
+      <a href="index.html"><img id="logo" src="images/episafelogoog.png" alt="EpiSafe Icon" /></a>
     </div>
     <nav>
       <a href="index.html">Home</a>
