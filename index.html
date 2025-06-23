@@ -62,16 +62,6 @@
     header .logo span {
       font-size: 2rem;
       font-weight: 700;
-    header .logo img {
-      width: 80px;
-      height: auto;
-    }
-    #logo {
-      pointer-events: auto;
-    }
-    header .logo span {
-      font-size: 2rem;
-      font-weight: 700;
     }
     nav a {
       color: inherit;
@@ -211,26 +201,12 @@
     .cta-button:hover {
       background-color: #ffb733;
     }
-    input, textarea {
-      background-color: #222;
-      color: #fff;
-      border: none;
-      outline: none;
-      border-radius: 6px;
-    }
-    input::placeholder,
-    textarea::placeholder {
-      color: #aaa;
-    }
-    input:focus,
-    textarea:focus {
-      outline: 2px solid #FFA500;
-      box-shadow: 0 0 5px #FFA500;
-    }
     form input, form textarea {
       width: 100%;
       margin-bottom: 1rem;
       padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
     }
     form button {
       background-color: #FFA500;
@@ -312,40 +288,6 @@
         ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(evt => logo.addEventListener(evt, cancelPress));
         logo.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
       }
-    });
-  </script>
-      document.querySelectorAll('a[href]').forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && !href.startsWith('#') && !link.hasAttribute('target')) {
-          link.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.body.classList.add('fade-out');
-            setTimeout(() => {
-              window.location.href = href;
-            }, 500);
-          });
-        }
-      });
-
-      const logo = document.getElementById('logo');
-      if (logo) {
-        let count = 0;
-        let timer;
-
-        logo.addEventListener('click', (e) => {
-          e.stopPropagation();
-          e.preventDefault();
-        logo.addEventListener('click', () => {
-
-          count++;
-          clearTimeout(timer);
-          if (count >= 7) {
-            window.location.href = 'secret.html';
-          } else {
-            timer = setTimeout(() => { count = 0; }, 1500);
-          }
-        });
-      }
     // Theme toggling removed
     });
   </script>
@@ -353,7 +295,6 @@
 <body>
 <header>
   <div class="logo">
-    <a href="index.html"><img id="logo" src="images/episafelogoog.png" alt="EpiSafe Icon" /></a>
     <a href="index.html"><img id="logo" src="images/episafelogoog.png" alt="EpiSafe Icon" /></a>
   </div>
   <nav>
