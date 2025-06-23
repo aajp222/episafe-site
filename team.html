@@ -71,34 +71,6 @@
     nav a:active {
       transform: scale(0.95);
     }
-    header .logo a {
-      display: inline-block;
-      transition: transform 0.3s ease;
-    }
-    header .logo a:hover {
-      transform: scale(1.05);
-    }
-    header .logo a:active {
-      transform: scale(0.95);
-    }
-    header .logo img {
-      width: 80px;
-      height: auto;
-    }
-    #logo {
-      pointer-events: auto;
-    }
-    nav a {
-      color: inherit;
-      text-decoration: none;
-      margin-left: 2rem;
-      font-weight: 600;
-      transition: transform 0.3s ease;
-      display: inline-block;
-    }
-    nav a:active {
-      transform: scale(0.95);
-    }
     .team-container {
       max-width: 900px;
       margin: auto;
@@ -155,22 +127,6 @@
     }
     .member p {
       font-size: 0.95rem;
-    }
-    input, textarea {
-      background-color: #222;
-      color: #fff;
-      border: none;
-      outline: none;
-      border-radius: 6px;
-    }
-    input::placeholder,
-    textarea::placeholder {
-      color: #aaa;
-    }
-    input:focus,
-    textarea:focus {
-      outline: 2px solid #FFA500;
-      box-shadow: 0 0 5px #FFA500;
     }
     .footer {
       background-color: #000;
@@ -229,50 +185,6 @@
         ['mousedown', 'touchstart'].forEach(evt => logo.addEventListener(evt, startPress));
         ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(evt => logo.addEventListener(evt, cancelPress));
         logo.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
-      }
-    // Theme toggling removed
-    });
-  </script>
-</head>
-<body>
-  <header>
-    <div class="logo">
-      <a href="index.html"><img id="logo" src="images/episafelogoog.png" alt="EpiSafe Icon" /></a>
-    </div>
-    <nav>
-      <a href="index.html">Home</a>
-    </nav>
-  </header>
-=======
-      document.querySelectorAll('a[href]').forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && !href.startsWith('#') && !link.hasAttribute('target')) {
-          link.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.body.classList.add('fade-out');
-            setTimeout(() => {
-              window.location.href = href;
-            }, 500);
-          });
-        }
-      });
-
-      const logo = document.getElementById('logo');
-      if (logo) {
-        let count = 0;
-        let timer;
-        logo.addEventListener('click', (e) => {
-          e.stopPropagation();
-          e.preventDefault();
-        logo.addEventListener('click', () => {
-          count++;
-          clearTimeout(timer);
-          if (count >= 7) {
-            window.location.href = 'secret.html';
-          } else {
-            timer = setTimeout(() => { count = 0; }, 1500);
-          }
-        });
       }
     // Theme toggling removed
     });
