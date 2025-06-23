@@ -104,6 +104,22 @@
     .achievement p {
       font-size: 0.95rem;
     }
+    input, textarea {
+      background-color: #222;
+      color: #fff;
+      border: none;
+      outline: none;
+      border-radius: 6px;
+    }
+    input::placeholder,
+    textarea::placeholder {
+      color: #aaa;
+    }
+    input:focus,
+    textarea:focus {
+      outline: 2px solid #FFA500;
+      box-shadow: 0 0 5px #FFA500;
+    }
     .footer {
       background-color: #000;
       color: #aaa;
@@ -147,6 +163,7 @@
         logo.addEventListener('click', (e) => {
           e.stopPropagation();
           e.preventDefault();
+        logo.addEventListener('click', () => {
           count++;
           clearTimeout(timer);
           if (count >= 7) {
