@@ -38,49 +38,85 @@
       user-drag: none;
       pointer-events: none;
     }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 2rem;
-      background: linear-gradient(to right, #333, #C3751B);
-    }
-    header .logo {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    header .logo a {
-      display: inline-block;
-    }
-    header .logo a:hover {
-      transform: scale(1.05);
-    }
-    header .logo a:active {
-      transform: scale(0.95);
-    }
-    header .logo img {
-      width: 80px;
-      height: auto;
-    }
-    #logo {
-      pointer-events: auto;
-    }
-    header .logo span {
-      font-size: 2rem;
-      font-weight: 700;
-    }
-    nav a {
-      color: inherit;
-      text-decoration: none;
-      margin-left: 2rem;
-      font-weight: 600;
-      transition: transform 0.3s ease;
-      display: inline-block;
-    }
-    nav a:active {
-      transform: scale(0.95);
-    }
+      header {
+        display: flex;
+        align-items: center;
+        padding: 2rem;
+        background: linear-gradient(to right, #333, #C3751B);
+      }
+      header .logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      header .logo button {
+        background: none;
+        border: none;
+        padding: 0;
+        display: inline-block;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      header .logo button:hover {
+        transform: scale(1.05);
+      }
+      header .logo button:active {
+        transform: scale(0.95);
+      }
+      header .logo img {
+        width: 80px;
+        height: auto;
+        pointer-events: none;
+      }
+      /* off-canvas menu */
+      .menu {
+        position: fixed;
+        top: 0;
+        left: -260px;
+        width: 250px;
+        height: 100%;
+        background-color: #000;
+        display: flex;
+        flex-direction: column;
+        padding-top: 4rem;
+        transition: left 0.3s ease;
+        z-index: 1000;
+      }
+      .menu a {
+        color: #fff;
+        text-decoration: none;
+        padding: 1rem 2rem;
+        font-weight: 600;
+      }
+      .menu a:hover {
+        color: #FFA500;
+        background-color: #111;
+      }
+      .menu.open {
+        left: 0;
+      }
+      #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+        z-index: 999;
+      }
+      #overlay.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      @media (max-width: 600px) {
+        .menu {
+          width: 100%;
+          left: -100%;
+        }
+      }
 
     .hero {
       display: flex;
@@ -300,42 +336,61 @@
         }
       });
 
-      const logo = document.getElementById('logo');
-      if (logo) {
-        let hold;
+        const logo = document.getElementById('logo');
+        const menu = document.getElementById('menu');
+        const overlay = document.getElementById('overlay');
 
-        const startPress = (e) => {
-          e.stopPropagation();
-          e.preventDefault();
-          clearTimeout(hold);
-          hold = setTimeout(() => {
-            window.location.href = 'secret.html';
-          }, 3000);
+        const closeMenu = () => {
+          menu.classList.remove('open');
+          overlay.classList.remove('show');
         };
 
-        const cancelPress = (e) => {
-          e.stopPropagation();
-          clearTimeout(hold);
-        };
+        if (logo) {
+          let hold;
+          logo.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.classList.toggle('open');
+            overlay.classList.toggle('show');
+          });
 
-        ['mousedown', 'touchstart'].forEach(evt => logo.addEventListener(evt, startPress));
-        ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(evt => logo.addEventListener(evt, cancelPress));
-        logo.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
-      }
-    // Theme toggling removed
-    });
-  </script>
+          const startPress = () => {
+            clearTimeout(hold);
+            hold = setTimeout(() => {
+              window.location.href = 'secret.html';
+            }, 5000);
+          };
+
+          const cancelPress = () => {
+            clearTimeout(hold);
+          };
+
+          ['mousedown', 'touchstart'].forEach(evt => logo.addEventListener(evt, startPress));
+          ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(evt => logo.addEventListener(evt, cancelPress));
+        }
+
+        overlay.addEventListener('click', closeMenu);
+        document.addEventListener('click', (e) => {
+          if (menu.classList.contains('open') && !menu.contains(e.target) && e.target !== logo) {
+            closeMenu();
+          }
+        });
+        menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+      });
+    </script>
 </head>
 <body>
 <header>
   <div class="logo">
-    <a href="index.html"><img id="logo" src="images/episafelogoog.png" alt="EpiSafe logo" loading="lazy" /></a>
+    <button id="logo"><img src="images/episafelogoog.png" alt="EpiSafe logo" loading="lazy" /></button>
   </div>
-  <nav>
-    <a href="team.html">Meet the Team</a>
-    <a href="achievements.html">Achievements</a>
-  </nav>
 </header>
+<nav id="menu" class="menu">
+  <a href="index.html">Home</a>
+  <a href="team.html">Meet the Team</a>
+  <a href="achievements.html">Achievements</a>
+  <a href="blog.html">Blog</a>
+</nav>
+<div id="overlay"></div>
 
   <section class="hero">
     <div class="hero-text">
