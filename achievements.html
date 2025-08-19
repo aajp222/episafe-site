@@ -12,190 +12,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="images/episafeavicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #000;
-      color: #fff;
-      line-height: 1.6;
-      opacity: 1;
-      transition: opacity 0.5s ease;
-    }
-    body.fade-out {
-      opacity: 0;
-    }
-    body img {
-      -webkit-user-drag: none;
-      user-drag: none;
-      pointer-events: none;
-    }
-      header {
-        display: flex;
-        align-items: center;
-        padding: 2rem;
-        background: linear-gradient(to right, #333, #C3751B);
-      }
-      header .logo {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-      header .logo button {
-        background: none;
-        border: none;
-        padding: 0;
-        display: inline-block;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-      }
-      header .logo button:hover {
-        transform: scale(1.05);
-      }
-      header .logo button:active {
-        transform: scale(0.95);
-      }
-      header .logo img {
-        width: 80px;
-        height: auto;
-        pointer-events: none;
-      }
-      .menu {
-        position: fixed;
-        top: 0;
-        left: -260px;
-        width: 250px;
-        height: 100%;
-        background-color: #000;
-        display: flex;
-        flex-direction: column;
-        padding-top: 4rem;
-        transition: left 0.3s ease;
-        z-index: 1000;
-      }
-      .menu a {
-        color: #fff;
-        text-decoration: none;
-        padding: 1rem 2rem;
-        font-weight: 600;
-      }
-      .menu a:hover {
-        color: #FFA500;
-        background-color: #111;
-      }
-      .menu.open {
-        left: 0;
-      }
-      #overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.7);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease;
-        z-index: 999;
-      }
-      #overlay.show {
-        opacity: 1;
-        visibility: visible;
-      }
-      @media (max-width: 600px) {
-        .menu {
-          width: 100%;
-          left: -100%;
-        }
-      }
-    .achievements-container {
-      max-width: 900px;
-      margin: auto;
-      padding: 2rem;
-      text-align: center;
-    }
-    .back-button {
-      text-align: left;
-      margin-bottom: 1rem;
-    }
-    .back-button a {
-      color: #FFA500;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .achievement {
-      background-color: #111;
-      padding: 2rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s forwards;
-    }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .achievement img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      box-shadow: 0 0 15px rgba(255, 165, 0, 0.5);
-    }
-    .achievement h2 {
-      color: #FFA500;
-      text-decoration: none;
-      transition: transform 0.3s ease;
-      display: inline-block;
-    }
-    .achievement h2:hover {
-      transform: scale(1.1);
-    }
-    .achievement p {
-      font-size: 0.95rem;
-    }
-    input, textarea {
-      background-color: #222;
-      color: #fff;
-      border: 1px solid transparent;
-      outline: none;
-      border-radius: 6px;
-    }
-    input::placeholder,
-    textarea::placeholder {
-      color: #aaa;
-    }
-    input:focus,
-    textarea:focus {
-      border-color: #FFA500;
-      box-shadow: 0 0 5px #FFA500;
-    }
-    .footer {
-      background-color: #000;
-      color: #aaa;
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.8rem;
-    }
-    .footer a {
-      color: #FFA500;
-      text-decoration: none;
-    }
-    @media (min-width: 768px) {
-      .achievement img {
-        width: 500px;
-      }
-    }
-  </style>
+  <style>*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background-color:#000;color:#fff;line-height:1.6;opacity:1;transition:opacity 0.5s ease}body.fade-out{opacity:0}body img{-webkit-user-drag:none;user-drag:none;pointer-events:none}header{display:flex;align-items:center;padding:2rem;background:linear-gradient(to right,#333,#C3751B)}header .logo{display:flex;align-items:center;gap:1rem}header .logo button{background:none;border:none;padding:0;display:inline-block;cursor:pointer;transition:transform 0.3s ease}header .logo button:hover{transform:scale(1.05)}header .logo button:active{transform:scale(0.95)}header .logo img{width:80px;height:auto;pointer-events:none}.menu{position:fixed;top:0;left:-260px;width:250px;height:100%;background-color:#000;display:flex;flex-direction:column;padding-top:4rem;transition:left 0.3s ease;z-index:1000}.menu a{color:#fff;text-decoration:none;padding:1rem 2rem;font-weight:600}.menu a:hover{color:#FFA500;background-color:#111}.menu.open{left:0}#overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);opacity:0;visibility:hidden;transition:opacity 0.3s ease;z-index:999}#overlay.show{opacity:1;visibility:visible}@media (max-width:600px){.menu{width:100%;left:-100%}}.achievements-container{max-width:900px;margin:auto;padding:2rem;text-align:center}.back-button{text-align:left;margin-bottom:1rem}.back-button a{color:#FFA500;text-decoration:none;font-weight:bold}.achievement{background-color:#111;padding:2rem;border-radius:12px;margin-bottom:2rem;opacity:0;transform:translateY(20px);animation:fadeInUp 1s forwards}@keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}.achievement img{width:100%;border-radius:12px;margin-bottom:1rem;box-shadow:0 0 15px rgba(255,165,0,0.5)}.achievement h2{color:#FFA500;text-decoration:none;transition:transform 0.3s ease;display:inline-block}.achievement h2:hover{transform:scale(1.1)}.achievement p{font-size:0.95rem}input,textarea{background-color:#222;color:#fff;border:1px solid transparent;outline:none;border-radius:6px}input::placeholder,textarea::placeholder{color:#aaa}input:focus,textarea:focus{border-color:#FFA500;box-shadow:0 0 5px #FFA500}.footer{background-color:#000;color:#aaa;padding:2rem;text-align:center;font-size:0.8rem}.footer a{color:#FFA500;text-decoration:none}@media (min-width:768px){.achievement img{width:500px}}</style>
   <script>
     document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
@@ -263,7 +80,7 @@
       <button id="logo">
         <picture>
           <source srcset="images/episafelogoog.webp" type="image/webp">
-          <img src="images/episafelogoog.png" alt="EpiSafe logo" loading="lazy" />
+          <img src="images/episafelogoog.webp" alt="EpiSafe logo" />
         </picture>
       </button>
     </div>
@@ -285,7 +102,7 @@
     <div class="achievement">
       <picture>
         <source srcset="images/episafeawardetr2025.webp" type="image/webp">
-        <img src="images/episafeawardetr2025.jpeg" alt="EpiSafe winning the ETR Goat Award 2025" loading="lazy">
+        <img src="images/episafeawardetr2025.webp" alt="EpiSafe winning the ETR Goat Award 2025" loading="lazy">
       </picture>
       <h2>ETR 1100 D Term GOAT Award (2025)</h2>
       <p>Honoring the student whose work in ETR 1100 stood out above the rest — this award recognizes the most innovative, presentation-ready, and real-world-applicable concept of the term. From bold ideas to polished products, this GOAT proves vision and execution can change the game.</p>

@@ -12,199 +12,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="images/episafeavicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #000;
-      color: #fff;
-      line-height: 1.6;
-      opacity: 1;
-      transition: opacity 0.5s ease;
-    }
-    body.fade-out {
-      opacity: 0;
-    }
-    body img {
-      -webkit-user-drag: none;
-      user-drag: none;
-      pointer-events: none;
-    }
-      header {
-        display: flex;
-        align-items: center;
-        padding: 2rem;
-        background: linear-gradient(to right, #333, #C3751B);
-      }
-      header .logo {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-      header .logo button {
-        background: none;
-        border: none;
-        padding: 0;
-        display: inline-block;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-      }
-      header .logo button:hover {
-        transform: scale(1.05);
-      }
-      header .logo button:active {
-        transform: scale(0.95);
-      }
-      header .logo img {
-        width: 80px;
-        height: auto;
-        pointer-events: none;
-      }
-      .menu {
-        position: fixed;
-        top: 0;
-        left: -260px;
-        width: 250px;
-        height: 100%;
-        background-color: #000;
-        display: flex;
-        flex-direction: column;
-        padding-top: 4rem;
-        transition: left 0.3s ease;
-        z-index: 1000;
-      }
-      .menu a {
-        color: #fff;
-        text-decoration: none;
-        padding: 1rem 2rem;
-        font-weight: 600;
-      }
-      .menu a:hover {
-        color: #FFA500;
-        background-color: #111;
-      }
-      .menu.open {
-        left: 0;
-      }
-      #overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease;
-        z-index: 999;
-      }
-      #overlay.show {
-        opacity: 1;
-        visibility: visible;
-      }
-      @media (max-width: 600px) {
-        .menu {
-          width: 100%;
-          left: -100%;
-        }
-      }
-    .team-container {
-      max-width: 900px;
-      margin: auto;
-      padding: 2rem;
-      text-align: center;
-    }
-    .back-button {
-      text-align: left;
-      margin-bottom: 1rem;
-    }
-    .back-button a {
-      color: #FFA500;
-      text-decoration: none;
-      font-weight: bold;
-      transition: transform 0.3s ease;
-      display: inline-block;
-    }
-    .back-button a:active {
-      transform: scale(0.95);
-    }
-    .member {
-      background-color: #111;
-      padding: 2rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s forwards;
-    }
-    .member:nth-child(2) { animation-delay: 0.2s; }
-    .member:nth-child(3) { animation-delay: 0.4s; }
-    .member:nth-child(4) { animation-delay: 0.6s; }
-    .member:nth-child(5) { animation-delay: 0.8s; }
-    .member:nth-child(6) { animation-delay: 1s; }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .member img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
-    .member h2 a {
-      color: #FFA500;
-      text-decoration: none;
-      transition: transform 0.3s ease;
-      display: inline-block;
-    }
-    .member h2 a:hover {
-      transform: scale(1.1);
-    }
-    .member p {
-      font-size: 0.95rem;
-    }
-    input, textarea {
-      background-color: #222;
-      color: #fff;
-      border: 1px solid transparent;
-      outline: none;
-      border-radius: 6px;
-    }
-    input::placeholder,
-    textarea::placeholder {
-      color: #aaa;
-    }
-    input:focus,
-    textarea:focus {
-      border-color: #FFA500;
-      box-shadow: 0 0 5px #FFA500;
-    }
-    .footer {
-      background-color: #000;
-      color: #aaa;
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.8rem;
-    }
-    .footer a {
-      color: #FFA500;
-      text-decoration: none;
-    }
-    @media (min-width: 768px) {
-      .member img {
-        width: 300px;
-      }
-    }
-  </style>
+  <style>*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background-color:#000;color:#fff;line-height:1.6;opacity:1;transition:opacity 0.5s ease}body.fade-out{opacity:0}body img{-webkit-user-drag:none;user-drag:none;pointer-events:none}header{display:flex;align-items:center;padding:2rem;background:linear-gradient(to right,#333,#C3751B)}header .logo{display:flex;align-items:center;gap:1rem}header .logo button{background:none;border:none;padding:0;display:inline-block;cursor:pointer;transition:transform 0.3s ease}header .logo button:hover{transform:scale(1.05)}header .logo button:active{transform:scale(0.95)}header .logo img{width:80px;height:auto;pointer-events:none}.menu{position:fixed;top:0;left:-260px;width:250px;height:100%;background-color:#000;display:flex;flex-direction:column;padding-top:4rem;transition:left 0.3s ease;z-index:1000}.menu a{color:#fff;text-decoration:none;padding:1rem 2rem;font-weight:600}.menu a:hover{color:#FFA500;background-color:#111}.menu.open{left:0}#overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);opacity:0;visibility:hidden;transition:opacity 0.3s ease;z-index:999}#overlay.show{opacity:1;visibility:visible}@media (max-width:600px){.menu{width:100%;left:-100%}}.team-container{max-width:900px;margin:auto;padding:2rem;text-align:center}.back-button{text-align:left;margin-bottom:1rem}.back-button a{color:#FFA500;text-decoration:none;font-weight:bold;transition:transform 0.3s ease;display:inline-block}.back-button a:active{transform:scale(0.95)}.member{background-color:#111;padding:2rem;border-radius:12px;margin-bottom:2rem;opacity:0;transform:translateY(20px);animation:fadeInUp 1s forwards}.member:nth-child(2){animation-delay:0.2s}.member:nth-child(3){animation-delay:0.4s}.member:nth-child(4){animation-delay:0.6s}.member:nth-child(5){animation-delay:0.8s}.member:nth-child(6){animation-delay:1s}@keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}.member img{width:100%;border-radius:12px;margin-bottom:1rem}.member h2 a{color:#FFA500;text-decoration:none;transition:transform 0.3s ease;display:inline-block}.member h2 a:hover{transform:scale(1.1)}.member p{font-size:0.95rem}input,textarea{background-color:#222;color:#fff;border:1px solid transparent;outline:none;border-radius:6px}input::placeholder,textarea::placeholder{color:#aaa}input:focus,textarea:focus{border-color:#FFA500;box-shadow:0 0 5px #FFA500}.footer{background-color:#000;color:#aaa;padding:2rem;text-align:center;font-size:0.8rem}.footer a{color:#FFA500;text-decoration:none}@media (min-width:768px){.member img{width:300px}}</style>
   <script>
     document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
@@ -272,7 +80,7 @@
       <button id="logo">
         <picture>
           <source srcset="images/episafelogoog.webp" type="image/webp">
-          <img src="images/episafelogoog.png" alt="EpiSafe logo" loading="lazy" />
+          <img src="images/episafelogoog.webp" alt="EpiSafe logo" />
         </picture>
       </button>
     </div>
@@ -294,7 +102,7 @@
     <div class="member">
       <picture>
         <source srcset="images/episafeaaryan.webp" type="image/webp">
-        <img src="images/episafeaaryan.png" alt="Aaryan Panchal" loading="lazy">
+        <img src="images/episafeaaryan.webp" alt="Aaryan Panchal" loading="lazy">
       </picture>
       <h2><a href="https://www.linkedin.com/in/aaryan-panchal-13308222b" target="_blank">Aaryan Panchal</a></h2>
       <p>Leads the development of EpiSafe’s visual identity, product design language, and user-centered marketing. With a background in engineering, content, and consumer behavior, Aaryan ensures the product balances safety, lifestyle, and emotional resonance. He also built this website!</p>
@@ -303,7 +111,7 @@
     <div class="member">
       <picture>
         <source srcset="images/episafeesra.webp" type="image/webp">
-        <img src="images/episafeesra.png" alt="Ezra Yohay" loading="lazy">
+        <img src="images/episafeesra.webp" alt="Ezra Yohay" loading="lazy">
       </picture>
       <h2><a href="https://www.linkedin.com/in/ezra-yohay-38a097265/" target="_blank">Ezra Yohay</a></h2>
       <p>Conceived EpiSafe after a severe allergic reaction. With a PhD in biophysics and industry experience at Genentech, Ezra brings expertise in microfabrication, leadership, and life-saving innovation to the product’s development and long-term vision.</p>
@@ -312,7 +120,7 @@
     <div class="member">
       <picture>
         <source srcset="images/episafeethan.webp" type="image/webp">
-        <img src="images/episafeethan.png" alt="Ethan Takvorian" loading="lazy">
+        <img src="images/episafeethan.webp" alt="Ethan Takvorian" loading="lazy">
       </picture>
     <h2><a href="https://www.linkedin.com/in/ethan-takvorian-016611364?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">Ethan Takvorian</a></h2>
       <p>Combines biomedical engineering and computer science to develop EpiSafe’s core technology systems. He has streamlined operations, enhanced product reliability, and improved outcomes through thoughtful systems architecture and cross-functional collaboration.</p>
@@ -321,7 +129,7 @@
     <div class="member">
       <picture>
         <source srcset="images/episafejoshua.webp" type="image/webp">
-        <img src="images/episafejoshua.png" alt="Joshua Kashambala" loading="lazy">
+        <img src="images/episafejoshua.webp" alt="Joshua Kashambala" loading="lazy">
       </picture>
       <h2><a href="https://www.linkedin.com/in/joshua-kashambala-23b423347/" target="_blank">Joshua Kashambala</a></h2>
       <p>Leverages his background in supply chain and operations from Purdue and Locus Robotics to lead logistics for EpiSafe. Manages product assembly, fulfillment, and shipping to bring EpiSafe from prototype to users efficiently and reliably.</p>
@@ -330,7 +138,7 @@
     <div class="member">
       <picture>
         <source srcset="images/episafekhusal.webp" type="image/webp">
-        <img src="images/episafekhusal.png" alt="Khushal Sharma" loading="lazy">
+        <img src="images/episafekhusal.webp" alt="Khushal Sharma" loading="lazy">
       </picture>
       <h2><a href="https://www.linkedin.com/in/khushal-sharma-6a2981229/" target="_blank">Khushal Sharma</a></h2>
       <p>With a B.S. in Electrical and Computer Engineering and hands-on prototyping experience, Khushal bridges engineering and user needs. He leads iteration cycles and product testing to ensure each design balances safety, comfort, and usability.</p>
