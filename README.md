@@ -4,7 +4,7 @@ This repository contains the static HTML files for the EpiSafe website.
 
 ## Repository Structure
 
-- `images/` - image assets such as logos and product photos
+- Static assets such as images and fonts are hosted externally and not tracked in this repo
 - `tests/`  - pytest tests validating the HTML files
 
 ## Running Tests
