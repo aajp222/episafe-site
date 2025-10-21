@@ -39,21 +39,23 @@
         const overlay = document.getElementById('overlay');
 
         const header = document.querySelector('header');
-        let lastScrollY = window.scrollY;
         let headerFrame = null;
+        let isCollapsed = false;
+        const collapseAt = 140;
+        const expandAt = 90;
 
         const applyHeaderState = () => {
           if (!header) {
             return;
           }
           const currentY = window.scrollY;
-          const collapseThreshold = 120;
-          if (currentY > collapseThreshold && currentY > lastScrollY) {
+          if (!isCollapsed && currentY > collapseAt) {
             header.classList.add('header-collapsed');
-          } else if (currentY < lastScrollY - 4 || currentY <= collapseThreshold) {
+            isCollapsed = true;
+          } else if (isCollapsed && currentY < expandAt) {
             header.classList.remove('header-collapsed');
+            isCollapsed = false;
           }
-          lastScrollY = currentY;
         };
 
         const handleScroll = () => {
