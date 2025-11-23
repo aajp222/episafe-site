@@ -18,7 +18,44 @@
     .hero-socials{margin-top:1rem;display:flex;gap:1rem;justify-content:center}.hero-socials a{color:#FFA500;font-size:1.8rem}
     .hero-socials a:hover{color:#fff}@media (min-width:768px){.hero-socials{justify-content:flex-start}}
   </style>
-  <style>*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background-color:#000;color:#fff;line-height:1.6;opacity:1;transition:opacity 0.5s ease}body.fade-out{opacity:0}body img{-webkit-user-drag:none;user-drag:none;pointer-events:none}header{--expanded-header-height:clamp(96px,12vw,128px);--collapsed-header-height:10px;display:flex;align-items:center;justify-content:center;height:var(--expanded-header-height);padding:0 2rem;background:linear-gradient(90deg,#ff8c00 0%,#ffad33 16%,#602a00 30%,#1a0900 40%,#000 50%,#1a0900 60%,#602a00 70%,#ffad33 84%,#ff8c00 100%);position:sticky;top:0;z-index:998;width:100%;overflow:hidden;transition:height .35s ease,box-shadow .35s ease,background .35s ease}header.header-collapsed{height:var(--collapsed-header-height);box-shadow:0 8px 24px rgba(0,0,0,.45);background:#ff8c00}header.header-collapsed .logo{opacity:0;pointer-events:none;transform:translateY(-24px)}header.header-collapsed .logo button{opacity:0}header .logo{display:flex;align-items:center;gap:1rem;transition:opacity .35s ease,transform .35s ease}header .logo button{background:none;border:none;padding:0;display:inline-block;cursor:pointer;transition:transform 0.3s ease,opacity 0.3s ease}header .logo button:hover{transform:scale(1.05)}header .logo button:active{transform:scale(0.95)}header .logo img{width:80px;height:auto;pointer-events:none}.menu{position:fixed;top:0;left:-260px;width:250px;height:100%;background-color:#000;display:flex;flex-direction:column;padding-top:4rem;transition:left 0.3s ease;z-index:1000}.menu a{color:#fff;text-decoration:none;padding:1rem 2rem;font-weight:600}.menu a:hover{color:#FFA500;background-color:#111}.menu.open{left:0}#overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);opacity:0;visibility:hidden;transition:opacity 0.3s ease;z-index:999}#overlay.show{opacity:1;visibility:visible}@media (max-width:600px){.menu{width:100%;left:-100%}}.hero{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6rem 2rem}.hero-text{max-width:600px;animation:fadeInUp 1.2s ease-in-out}.hero-text h1{font-size:3.5rem;font-weight:700;margin-bottom:1rem}.hero-text p{font-size:1.25rem;margin-bottom:2rem}.hero-text .cta-button{background-color:#FFA500;color:black;padding:1rem 2rem;border:none;font-weight:bold;cursor:pointer;border-radius:8px;text-decoration:none;transition:transform 0.3s ease;display:inline-block}.hero-text .cta-button:active{transform:scale(0.95)}.hero-img{margin-top:2rem;animation:fadeIn 1.8s ease-in-out}.hero-img img{max-width:90%;border-radius:20px}@media (min-width:768px){.hero{flex-direction:row;text-align:left;gap:4rem}.hero-text{max-width:50%}.hero-img{max-width:50%;margin-top:0}.hero-img img{max-width:100%}}section{padding:4rem 2rem;max-width:900px;margin:0 auto;text-align:center}section h2{font-size:2rem;font-weight:600;margin-bottom:1rem}section p{font-size:1.1rem;margin-bottom:2rem}.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(1.5rem,3vw,2.5rem);max-width:1100px;margin:0 auto 4rem;align-items:stretch;justify-items:center}.product-card{--stack-gap:clamp(1rem,2vw,1.75rem);width:100%;max-width:360px;display:grid;grid-template-rows:1fr auto;gap:var(--stack-gap);transition:transform 0.3s ease-in-out}.product-card:hover{transform:translateY(-10px);--stack-gap:clamp(1.35rem,2.8vw,2.25rem)}.product-visual,.product-info{width:100%;background:#111;border-radius:16px;display:flex;align-items:center;justify-content:center;padding:calc(1.5rem + var(--stack-gap)/2)}.product-visual{background:#111;min-height:clamp(240px,32vw,320px)}.product-info{background:#181818;padding:calc(1.25rem + var(--stack-gap)/2);min-height:120px}.product-visual picture,.product-visual img{width:100%;display:block}.product-visual img{height:auto;border-radius:12px}.product-info h3{margin:0;font-size:1.2rem;font-weight:600;text-align:center}.product-card p{font-size:1rem;margin-top:0.5rem}.cta-button{background-color:#FFA500;color:#000;font-weight:bold;padding:1rem 2rem;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:transform 0.3s ease;display:inline-block}.cta-button:active{transform:scale(0.95)}.cta-button:hover{background-color:#ffb733}input,textarea{background-color:#222;color:#fff;border:1px solid transparent;outline:none;border-radius:6px}input::placeholder,textarea::placeholder{color:#aaa}input:focus,textarea:focus{border-color:#FFA500;box-shadow:0 0 5px #FFA500}form input,form textarea{width:100%;margin-bottom:1rem;padding:0.75rem}form button{background-color:#FFA500;color:black;padding:0.75rem 1.5rem;border:none;font-weight:bold;cursor:pointer;border-radius:8px;transition:transform 0.3s ease}form button:active{transform:scale(0.95)}.footer{background-color:#000;color:#aaa;padding:2rem;text-align:center;font-size:0.8rem}.footer a{color:#FFA500;text-decoration:none}.socials{padding:2rem;text-align:center}.socials a{color:#FFA500;text-decoration:none;font-size:2rem;margin:0 0.5rem}.socials a:hover{color:#ffb733}.desc-box{background-color:#111;padding:1rem;border-radius:8px;display:inline-block}@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}</style>
+  <style>*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background-color:#000;color:#fff;line-height:1.6;opacity:1;transition:opacity 0.5s ease}body.fade-out{opacity:0}body img{-webkit-user-drag:none;user-drag:none;pointer-events:none}header{--expanded-header-height:clamp(96px,12vw,128px);--collapsed-header-height:10px;--liquid-x:52%;--liquid-y:46%;--liquid-strength:.7;--liquid-amber:#ffc978;--liquid-orange:#ff7a1f;--liquid-ember:#d54800;display:flex;align-items:center;justify-content:center;height:var(--expanded-header-height);padding:0 2rem;background:radial-gradient(165% 140% at 20% 60%,rgba(255,207,120,.95) 0%,rgba(255,153,51,.72) 33%,rgba(213,72,0,.58) 56%,rgba(12,5,0,.92) 70%,#000 90%),linear-gradient(115deg,#0c0500 0%,#110700 42%,#000 78%);position:sticky;top:0;z-index:998;width:100%;overflow:hidden;transition:height .35s ease,box-shadow .35s ease,background .35s ease;box-shadow:0 18px 48px rgba(0,0,0,.55)}.liquid-overlay{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}.liquid-glow{position:absolute;inset:-35% -10%;background:radial-gradient(140% 120% at var(--liquid-x) var(--liquid-y),rgba(255,215,160,.45),rgba(255,155,70,.55) 25%,rgba(255,110,20,.42) 40%,rgba(0,0,0,0) 70%);filter:blur(32px);opacity:var(--liquid-strength);transition:transform .35s ease,opacity .35s ease}.liquid-ridge{position:absolute;inset:-25% -5%;background:radial-gradient(120% 110% at calc(var(--liquid-x) + 8%) calc(var(--liquid-y) - 6%),rgba(255,255,255,.14),rgba(255,190,120,.12) 24%,rgba(255,140,60,.08) 38%,rgba(0,0,0,0) 60%);filter:blur(26px);mix-blend-mode:screen;opacity:calc(var(--liquid-strength) + .15);transition:opacity .35s ease}header::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.6) 100%);pointer-events:none;z-index:1}header>*{position:relative;z-index:2}header.header-collapsed{height:var(--collapsed-header-height);box-shadow:0 8px 24px rgba(0,0,0,.45);background:#ff8c00}header.header-collapsed .logo{opacity:0;pointer-events:none;transform:translateY(-24px)}header.header-collapsed .logo button{opacity:0}header .logo{display:flex;align-items:center;gap:1rem;transition:opacity .35s ease,transform .35s ease}header .logo button{background:none;border:none;padding:0;display:inline-block;cursor:pointer;transition:transform 0.3s ease,opacity 0.3s ease}header .logo button:hover{transform:scale(1.05)}header .logo button:active{transform:scale(0.95)}header .logo img{width:80px;height:auto;pointer-events:none}.menu{position:fixed;top:0;left:-260px;width:250px;height:100%;background-color:#000;display:flex;flex-direction:column;padding-top:4rem;transition:left 0.3s ease;z-index:1000}.menu a{color:#fff;text-decoration:none;padding:1rem 2rem;font-weight:600}.menu a:hover{color:#FFA500;background-color:#111}.menu.open{left:0}#overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);opacity:0;visibility:hidden;transition:opacity 0.3s ease;z-index:999}#overlay.show{opacity:1;visibility:visible}@media (max-width:600px){.menu{width:100%;left:-100%}}.hero{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6rem 2rem}.hero-text{max-width:600px;animation:fadeInUp 1.2s ease-in-out}.hero-text h1{font-size:3.5rem;font-weight:700;margin-bottom:1rem}.hero-text p{font-size:1.25rem;margin-bottom:2rem}.hero-text .cta-button{background-color:#FFA500;color:black;padding:1rem 2rem;border:none;font-weight:bold;cursor:pointer;border-radius:8px;text-decoration:none;transition:transform 0.3s ease;display:inline-block}.hero-text .cta-button:active{transform:scale(0.95)}.hero-img{margin-top:2rem;animation:fadeIn 1.8s ease-in-out}.hero-img img{max-width:90%;border-radius:20px}@media (min-width:768px){.hero{flex-direction:row;text-align:left;gap:4rem}.hero-text{max-width:50%}.hero-img{max-width:50%;margin-top:0}.hero-img img{max-width:100%}}section{padding:4rem 2rem;max-width:900px;margin:0 auto;text-align:center}section h2{font-size:2rem;font-weight:600;margin-bottom:1rem}section p{font-size:1.1rem;margin-bottom:2rem}.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(1.5rem,3vw,2.5rem);max-width:1100px;margin:0 auto 4rem;align-items:stretch;justify-items:center}.product-card{--stack-gap:clamp(1rem,2vw,1.75rem);width:100%;max-width:360px;display:grid;grid-template-rows:1fr auto;gap:var(--stack-gap);transition:transform 0.3s ease-in-out}.product-card:hover{transform:translateY(-10px);--stack-gap:clamp(1.35rem,2.8vw,2.25rem)}.product-visual,.product-info{width:100%;background:#111;border-radius:16px;display:flex;align-items:center;justify-content:center;padding:calc(1.5rem + var(--stack-gap)/2)}.product-visual{background:#111;min-height:clamp(240px,32vw,320px)}.product-info{background:#181818;padding:calc(1.25rem + var(--stack-gap)/2);min-height:120px}.product-visual picture,.product-visual img{width:100%;display:block}.product-visual img{height:auto;border-radius:12px}.product-info h3{margin:0;font-size:1.2rem;font-weight:600;text-align:center}.product-card p{font-size:1rem;margin-top:0.5rem}.cta-button{background-color:#FFA500;color:#000;font-weight:bold;padding:1rem 2rem;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:transform 0.3s ease;display:inline-block}.cta-button:active{transform:scale(0.95)}.cta-button:hover{background-color:#ffb733}input,textarea{background-color:#222;color:#fff;border:1px solid transparent;outline:none;border-radius:6px}input::placeholder,textarea::placeholder{color:#aaa}input:focus,textarea:focus{border-color:#FFA500;box-shadow:0 0 5px #FFA500}form input,form textarea{width:100%;margin-bottom:1rem;padding:0.75rem}form button{background-color:#FFA500;color:black;padding:0.75rem 1.5rem;border:none;font-weight:bold;cursor:pointer;border-radius:8px;transition:transform 0.3s ease}form button:active{transform:scale(0.95)}.footer{background-color:#000;color:#aaa;padding:2rem;text-align:center;font-size:0.8rem}.footer a{color:#FFA500;text-decoration:none}.socials{padding:2rem;text-align:center}.socials a{color:#FFA500;text-decoration:none;font-size:2rem;margin:0 0.5rem}.socials a:hover{color:#ffb733}.desc-box{background-color:#111;padding:1rem;border-radius:8px;display:inline-block}@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}</style>
+  <style>
+    .liquid-specks {
+      position: absolute;
+      inset: -18% -8%;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      filter: blur(2px);
+      opacity: 1;
+      z-index: 0;
+    }
+
+    .liquid-specks span {
+      position: absolute;
+      width: var(--speck-size, 72px);
+      height: calc(var(--speck-size, 72px) * 0.8);
+      background: radial-gradient(ellipse at 36% 42%, rgba(0, 0, 0, 0.98), rgba(0, 0, 0, 0.92) 46%, rgba(0, 0, 0, 0.78) 62%, rgba(0, 0, 0, 0.12) 92%);
+      border-radius: 50%;
+      left: var(--speck-x, 50%);
+      top: var(--speck-y, 50%);
+      transform: translate(var(--speck-offset-x, 0%), var(--speck-offset-y, 0%)) scale(var(--speck-scale, 1));
+      opacity: var(--speck-opacity, 0.6);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      box-shadow: 0 0 22px rgba(0, 0, 0, 0.28), 0 0 6px rgba(0, 0, 0, 0.36) inset;
+      animation: speck-bob var(--speck-speed, 12s) ease-in-out infinite;
+      animation-delay: calc(-1s * var(--speck-delay, 0));
+    }
+
+    @keyframes speck-bob {
+      0%,
+      100% {
+        transform: translate(var(--speck-offset-x, 0%), var(--speck-offset-y, 0%)) scale(var(--speck-scale, 1));
+      }
+      50% {
+        transform: translate(calc(var(--speck-offset-x, 0%) + 1.5%), calc(var(--speck-offset-y, 0%) - 1.5%)) scale(calc(var(--speck-scale, 1) * 1.04));
+      }
+    }
+  </style>
   <script>
     document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
@@ -43,6 +80,9 @@
         const overlay = document.getElementById('overlay');
 
         const header = document.querySelector('header');
+        const specks = Array.from(document.querySelectorAll('.liquid-specks span'));
+        let liquidState = { x: 52, y: 46, intensity: 0.7 };
+        let lastLiquidMove = performance.now();
         let lastScrollY = window.scrollY;
         let headerFrame = null;
 
@@ -110,11 +150,159 @@
           }
         });
         menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+        const setupSpecks = () => {
+          if (!specks.length) {
+            return;
+          }
+          specks.forEach((speck, index) => {
+            const baseX = 6 + Math.random() * 88;
+            const baseY = 6 + Math.random() * 82;
+            const size = 56 + Math.random() * 92;
+            const delay = Math.random() * 10;
+            const drift = 0.85 + Math.random() * 1.4;
+            const wobble = 1 + Math.random() * 2.6;
+            const speed = 9 + Math.random() * 8;
+            speck.style.setProperty('--speck-x', `${baseX}%`);
+            speck.style.setProperty('--speck-y', `${baseY}%`);
+            speck.style.setProperty('--speck-size', `${size}px`);
+            speck.style.setProperty('--speck-delay', delay.toFixed(2));
+            speck.style.setProperty('--speck-speed', `${speed.toFixed(2)}s`);
+            speck.dataset.baseX = baseX.toFixed(2);
+            speck.dataset.baseY = baseY.toFixed(2);
+            speck.dataset.drift = drift.toFixed(2);
+            speck.dataset.wobble = wobble.toFixed(2);
+            speck.dataset.index = index;
+          });
+        };
+
+        const updateSpecks = (xPercent, yPercent, intensity) => {
+          if (!specks.length) {
+            return;
+          }
+          const t = performance.now() * 0.0016;
+          specks.forEach((speck) => {
+            const baseX = parseFloat(speck.dataset.baseX || '50');
+            const baseY = parseFloat(speck.dataset.baseY || '50');
+            const drift = parseFloat(speck.dataset.drift || '0.8');
+            const wobble = parseFloat(speck.dataset.wobble || '1');
+            const wobblePhase = t * (0.85 + wobble * 0.15);
+            const offsetX = (xPercent - 50) * 0.18 * drift + Math.sin(wobblePhase + baseX * 0.05) * (4 + wobble * 2.4);
+            const offsetY = (yPercent - 50) * 0.14 * drift + Math.cos(wobblePhase * 1.2 + baseY * 0.04) * (3 + wobble * 1.6);
+            const scale = 0.95 + intensity * 0.35 + Math.sin(wobblePhase * 0.8 + baseX * 0.02) * 0.12 + wobble * 0.02;
+            const opacity = Math.min(1, 0.5 + intensity * 0.45 + wobble * 0.03);
+            speck.style.setProperty('--speck-x', `${baseX}%`);
+            speck.style.setProperty('--speck-y', `${baseY}%`);
+            speck.style.setProperty('--speck-offset-x', `${offsetX}%`);
+            speck.style.setProperty('--speck-offset-y', `${offsetY}%`);
+            speck.style.setProperty('--speck-scale', scale.toFixed(3));
+            speck.style.setProperty('--speck-opacity', opacity.toFixed(3));
+          });
+        };
+
+        const applyLiquidState = (xPercent, yPercent, intensity = 0.9) => {
+          if (!header) {
+            return;
+          }
+          liquidState = { x: xPercent, y: yPercent, intensity };
+          header.style.setProperty('--liquid-x', `${xPercent}%`);
+          header.style.setProperty('--liquid-y', `${yPercent}%`);
+          header.style.setProperty('--liquid-strength', intensity);
+          updateSpecks(xPercent, yPercent, intensity);
+          lastLiquidMove = performance.now();
+        };
+
+        setupSpecks();
+        applyLiquidState(liquidState.x, liquidState.y, liquidState.intensity);
+
+        let liquidFrame;
+        let isLiquidInteracting = false;
+
+        const moveLiquid = (clientX, clientY, intensity = 0.9) => {
+          if (!header) {
+            return;
+          }
+          const rect = header.getBoundingClientRect();
+          const x = Math.max(0, Math.min(rect.width, clientX - rect.left));
+          const y = Math.max(0, Math.min(rect.height, clientY - rect.top));
+          applyLiquidState((x / rect.width) * 100, (y / rect.height) * 100, intensity);
+        };
+
+        const handleLiquidPointer = (x, y) => {
+          isLiquidInteracting = true;
+          moveLiquid(x, y, 1);
+        };
+
+        if (header) {
+          header.addEventListener('pointermove', (e) => handleLiquidPointer(e.clientX, e.clientY));
+          header.addEventListener('pointerenter', (e) => handleLiquidPointer(e.clientX, e.clientY));
+          header.addEventListener('pointerleave', () => {
+            isLiquidInteracting = false;
+            applyLiquidState(liquidState.x, liquidState.y, 0.6);
+          });
+          header.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            if (touch) {
+              handleLiquidPointer(touch.clientX, touch.clientY);
+            }
+          }, { passive: true });
+        }
+
+        const handleLiquidScroll = () => {
+          if (!header || liquidFrame) {
+            return;
+          }
+          liquidFrame = requestAnimationFrame(() => {
+            const rect = header.getBoundingClientRect();
+            const scrollSpan = Math.max(1, window.innerHeight);
+            const scrollShift = (window.scrollY % scrollSpan) / scrollSpan;
+            const x = rect.left + rect.width * (0.25 + scrollShift * 0.5);
+            const y = rect.top + rect.height * 0.35 + (window.scrollY % rect.height) * 0.15;
+            applyLiquidState(((x - rect.left) / rect.width) * 100, ((y - rect.top) / rect.height) * 100, 0.75);
+            isLiquidInteracting = false;
+            liquidFrame = null;
+          });
+        };
+
+        window.addEventListener('scroll', handleLiquidScroll, { passive: true });
+
+        const idleLiquid = () => {
+          const now = performance.now();
+          if (!isLiquidInteracting && (!header || now - lastLiquidMove > 650)) {
+            const wobble = now * 0.00045;
+            const x = 50 + Math.sin(wobble) * 14 + Math.sin(wobble * 0.5) * 6;
+            const y = 48 + Math.cos(wobble * 1.35) * 8;
+            applyLiquidState(x, y, 0.65);
+          }
+          requestAnimationFrame(idleLiquid);
+        };
+
+        idleLiquid();
       });
     </script>
 </head>
 <body>
-<header>
+  <header>
+    <div class="liquid-overlay" aria-hidden="true">
+      <div class="liquid-glow"></div>
+      <div class="liquid-specks">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="liquid-ridge"></div>
+    </div>
   <div class="logo">
     <button id="logo">
       <picture>
