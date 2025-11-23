@@ -25,23 +25,24 @@
       inset: -18% -8%;
       pointer-events: none;
       mix-blend-mode: multiply;
-      filter: blur(4px);
-      opacity: 0.95;
+      filter: blur(2px);
+      opacity: 1;
       z-index: 0;
     }
 
     .liquid-specks span {
       position: absolute;
       width: var(--speck-size, 72px);
-      height: calc(var(--speck-size, 72px) * 0.72);
-      background: radial-gradient(ellipse at 35% 40%, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.92) 45%, rgba(0, 0, 0, 0.1) 90%);
+      height: calc(var(--speck-size, 72px) * 0.8);
+      background: radial-gradient(ellipse at 36% 42%, rgba(0, 0, 0, 0.98), rgba(0, 0, 0, 0.92) 46%, rgba(0, 0, 0, 0.78) 62%, rgba(0, 0, 0, 0.12) 92%);
       border-radius: 50%;
       left: var(--speck-x, 50%);
       top: var(--speck-y, 50%);
       transform: translate(var(--speck-offset-x, 0%), var(--speck-offset-y, 0%)) scale(var(--speck-scale, 1));
-      opacity: var(--speck-opacity, 0.4);
-      transition: opacity 0.35s ease;
-      animation: speck-bob 12s ease-in-out infinite;
+      opacity: var(--speck-opacity, 0.6);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      box-shadow: 0 0 22px rgba(0, 0, 0, 0.28), 0 0 6px rgba(0, 0, 0, 0.36) inset;
+      animation: speck-bob var(--speck-speed, 12s) ease-in-out infinite;
       animation-delay: calc(-1s * var(--speck-delay, 0));
     }
 
@@ -157,16 +158,20 @@
           specks.forEach((speck, index) => {
             const baseX = 6 + Math.random() * 88;
             const baseY = 6 + Math.random() * 82;
-            const size = 52 + Math.random() * 64;
-            const delay = Math.random() * 8;
-            const drift = 0.55 + Math.random() * 0.9;
+            const size = 56 + Math.random() * 92;
+            const delay = Math.random() * 10;
+            const drift = 0.85 + Math.random() * 1.4;
+            const wobble = 1 + Math.random() * 2.6;
+            const speed = 9 + Math.random() * 8;
             speck.style.setProperty('--speck-x', `${baseX}%`);
             speck.style.setProperty('--speck-y', `${baseY}%`);
             speck.style.setProperty('--speck-size', `${size}px`);
             speck.style.setProperty('--speck-delay', delay.toFixed(2));
+            speck.style.setProperty('--speck-speed', `${speed.toFixed(2)}s`);
             speck.dataset.baseX = baseX.toFixed(2);
             speck.dataset.baseY = baseY.toFixed(2);
             speck.dataset.drift = drift.toFixed(2);
+            speck.dataset.wobble = wobble.toFixed(2);
             speck.dataset.index = index;
           });
         };
@@ -175,15 +180,17 @@
           if (!specks.length) {
             return;
           }
-          const t = performance.now() * 0.0012;
+          const t = performance.now() * 0.0016;
           specks.forEach((speck) => {
             const baseX = parseFloat(speck.dataset.baseX || '50');
             const baseY = parseFloat(speck.dataset.baseY || '50');
             const drift = parseFloat(speck.dataset.drift || '0.8');
-            const offsetX = (xPercent - 50) * 0.12 * drift + Math.sin(t + baseX * 0.05) * 2.2;
-            const offsetY = (yPercent - 50) * 0.08 * drift + Math.cos(t * 1.4 + baseY * 0.04) * 1.8;
-            const scale = 0.9 + intensity * 0.3 + Math.sin(t * 0.8 + baseX * 0.02) * 0.08;
-            const opacity = 0.28 + intensity * 0.42;
+            const wobble = parseFloat(speck.dataset.wobble || '1');
+            const wobblePhase = t * (0.85 + wobble * 0.15);
+            const offsetX = (xPercent - 50) * 0.18 * drift + Math.sin(wobblePhase + baseX * 0.05) * (4 + wobble * 2.4);
+            const offsetY = (yPercent - 50) * 0.14 * drift + Math.cos(wobblePhase * 1.2 + baseY * 0.04) * (3 + wobble * 1.6);
+            const scale = 0.95 + intensity * 0.35 + Math.sin(wobblePhase * 0.8 + baseX * 0.02) * 0.12 + wobble * 0.02;
+            const opacity = Math.min(1, 0.5 + intensity * 0.45 + wobble * 0.03);
             speck.style.setProperty('--speck-x', `${baseX}%`);
             speck.style.setProperty('--speck-y', `${baseY}%`);
             speck.style.setProperty('--speck-offset-x', `${offsetX}%`);
@@ -279,6 +286,10 @@
     <div class="liquid-overlay" aria-hidden="true">
       <div class="liquid-glow"></div>
       <div class="liquid-specks">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
         <span></span>
         <span></span>
         <span></span>
