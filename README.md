@@ -1,19 +1,26 @@
 # EpiSafe Static Site
 
-This repository contains the static HTML files for the EpiSafe website.
+Static HTML for the EpiSafe website, a liquid-glass design system in black, orange, and white.
 
-## Repository Structure
+## Pages
 
-- `images/` - image assets such as logos and product photos
-- `tests/`  - pytest tests validating the HTML files
+- `index.html` — Home: hero, problem, how it works, app, market, team, CTA
+- `product.html` — Product detail: callouts, three-step usage, specs, old vs new
+- `story.html` — Narrative: question, chapters, manifesto, team bios, moments
+- `traction.html` — Investor: metrics, roadmap, IP, market, use of funds, ask
+- `privacy.html`, `terms.html`, `accessibility.html` — Legal pages
+
+## Structure
+
+- `assets/` — images, fonts (Paul Grotesk), and favicon used by the new design
+- `styles.css` — shared design system (glass primitives, tokens, nav, footer, mobile)
+- `site.js` — shared behavior (reveal-on-scroll, count-up, mobile menu, tilt)
+- `images/` — legacy assets still referenced by the legal pages
+- `tests/` — pytest tests validating the HTML files
 
 ## Running Tests
-
-Python tests are located in the `tests/` directory and require `pytest` and
-`beautifulsoup4` to be installed. Install the dependencies and run `pytest`:
 
 ```bash
 pip install pytest beautifulsoup4
 pytest
 ```
-

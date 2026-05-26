@@ -1,221 +1,1056 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="no-fouc">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EpiSafe™ </title>
-  <meta name="description" content="EpiSafe is a sleek MagSafe-compatible phone case with a built-in auto-injector for people with severe allergies. Never forget your EpiPen again.">
-  <meta property="og:title" content="EpiSafe™ – The EpiPen-Integrated Phone Case" />
-  <meta property="og:description" content="Your EpiPen, always with you. MagSafe compatible. Seamless. Smart." />
-  <meta property="og:image" content="https://episafe.co/images/social-thumbnail.png" />
-  <meta property="og:url" content="https://episafe.co" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" href="images/episafeavicon.ico" type="image/x-icon" />
-  <link rel="preload" as="image" href="images/episafeproductog.webp" type="image/webp">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    .hero-socials{margin-top:1rem;display:flex;gap:1rem;justify-content:center}.hero-socials a{color:#FFA500;font-size:1.8rem}
-    .hero-socials a:hover{color:#fff}@media (min-width:768px){.hero-socials{justify-content:flex-start}}
-  </style>
-  <style>*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background-color:#000;color:#fff;line-height:1.6;opacity:1;transition:opacity 0.5s ease}body.fade-out{opacity:0}body img{-webkit-user-drag:none;user-drag:none;pointer-events:none}header{--expanded-header-height:clamp(96px,12vw,128px);--collapsed-header-height:10px;display:flex;align-items:center;justify-content:center;height:var(--expanded-header-height);padding:0 2rem;background:linear-gradient(90deg,#ff8c00 0%,#ffad33 16%,#602a00 30%,#1a0900 40%,#000 50%,#1a0900 60%,#602a00 70%,#ffad33 84%,#ff8c00 100%);position:sticky;top:0;z-index:998;width:100%;overflow:hidden;transition:height .35s ease,box-shadow .35s ease,background .35s ease}header.header-collapsed{height:var(--collapsed-header-height);box-shadow:0 8px 24px rgba(0,0,0,.45);background:#ff8c00}header.header-collapsed .logo{opacity:0;pointer-events:none;transform:translateY(-24px)}header.header-collapsed .logo button{opacity:0}header .logo{display:flex;align-items:center;gap:1rem;transition:opacity .35s ease,transform .35s ease}header .logo button{background:none;border:none;padding:0;display:inline-block;cursor:pointer;transition:transform 0.3s ease,opacity 0.3s ease}header .logo button:hover{transform:scale(1.05)}header .logo button:active{transform:scale(0.95)}header .logo img{width:80px;height:auto;pointer-events:none}.menu{position:fixed;top:0;left:-260px;width:250px;height:100%;background-color:#000;display:flex;flex-direction:column;padding-top:4rem;transition:left 0.3s ease;z-index:1000}.menu a{color:#fff;text-decoration:none;padding:1rem 2rem;font-weight:600}.menu a:hover{color:#FFA500;background-color:#111}.menu.open{left:0}#overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);opacity:0;visibility:hidden;transition:opacity 0.3s ease;z-index:999}#overlay.show{opacity:1;visibility:visible}@media (max-width:600px){.menu{width:100%;left:-100%}}.hero{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6rem 2rem}.hero-text{max-width:600px;animation:fadeInUp 1.2s ease-in-out}.hero-text h1{font-size:3.5rem;font-weight:700;margin-bottom:1rem}.hero-text p{font-size:1.25rem;margin-bottom:2rem}.hero-text .cta-button{background-color:#FFA500;color:black;padding:1rem 2rem;border:none;font-weight:bold;cursor:pointer;border-radius:8px;text-decoration:none;transition:transform 0.3s ease;display:inline-block}.hero-text .cta-button:active{transform:scale(0.95)}.hero-img{margin-top:2rem;animation:fadeIn 1.8s ease-in-out}.hero-img img{max-width:90%;border-radius:20px}@media (min-width:768px){.hero{flex-direction:row;text-align:left;gap:4rem}.hero-text{max-width:50%}.hero-img{max-width:50%;margin-top:0}.hero-img img{max-width:100%}}section{padding:4rem 2rem;max-width:900px;margin:0 auto;text-align:center}section h2{font-size:2rem;font-weight:600;margin-bottom:1rem}section p{font-size:1.1rem;margin-bottom:2rem}.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(1.5rem,3vw,2.5rem);max-width:1100px;margin:0 auto 4rem;align-items:stretch;justify-items:center}.product-card{--stack-gap:clamp(1rem,2vw,1.75rem);width:100%;max-width:360px;display:grid;grid-template-rows:1fr auto;gap:var(--stack-gap);transition:transform 0.3s ease-in-out}.product-card:hover{transform:translateY(-10px);--stack-gap:clamp(1.35rem,2.8vw,2.25rem)}.product-visual,.product-info{width:100%;background:#111;border-radius:16px;display:flex;align-items:center;justify-content:center;padding:calc(1.5rem + var(--stack-gap)/2)}.product-visual{background:#111;min-height:clamp(240px,32vw,320px)}.product-info{background:#181818;padding:calc(1.25rem + var(--stack-gap)/2);min-height:120px}.product-visual picture,.product-visual img{width:100%;display:block}.product-visual img{height:auto;border-radius:12px}.product-info h3{margin:0;font-size:1.2rem;font-weight:600;text-align:center}.product-card p{font-size:1rem;margin-top:0.5rem}.cta-button{background-color:#FFA500;color:#000;font-weight:bold;padding:1rem 2rem;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:transform 0.3s ease;display:inline-block}.cta-button:active{transform:scale(0.95)}.cta-button:hover{background-color:#ffb733}input,textarea{background-color:#222;color:#fff;border:1px solid transparent;outline:none;border-radius:6px}input::placeholder,textarea::placeholder{color:#aaa}input:focus,textarea:focus{border-color:#FFA500;box-shadow:0 0 5px #FFA500}form input,form textarea{width:100%;margin-bottom:1rem;padding:0.75rem}form button{background-color:#FFA500;color:black;padding:0.75rem 1.5rem;border:none;font-weight:bold;cursor:pointer;border-radius:8px;transition:transform 0.3s ease}form button:active{transform:scale(0.95)}.footer{background-color:#000;color:#aaa;padding:2rem;text-align:center;font-size:0.8rem}.footer a{color:#FFA500;text-decoration:none}.socials{padding:2rem;text-align:center}.socials a{color:#FFA500;text-decoration:none;font-size:2rem;margin:0 0.5rem}.socials a:hover{color:#ffb733}.desc-box{background-color:#111;padding:1rem;border-radius:8px;display:inline-block}@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}</style>
-  <script>
-    document.addEventListener('contextmenu', function (e) {
-      e.preventDefault();
-    });
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EpiSafe, Epinephrine that lives in your phone case.</title>
+<meta name="description" content="EpiSafe is the first epinephrine auto-injector built into the phone case you already carry. Patent pending. Coming 2027.">
+<meta property="og:title" content="EpiSafe, Epinephrine that lives in your phone case.">
+<meta property="og:description" content="The first epinephrine auto-injector built into the device you already carry.">
+<meta property="og:url" content="https://episafe.co">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 140px;
+    padding-bottom: 120px;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero__copy { position: relative; z-index: 2; }
+  .hero__title { margin-block: 32px 32px; }
+  .hero__title .italic-serif { color: var(--o); }
+  .hero__lede { margin-bottom: 48px; max-width: 48ch; }
+  .hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('a[href]').forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && !href.startsWith('#') && !link.hasAttribute('target')) {
-          link.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.body.classList.add('fade-out');
-            setTimeout(() => {
-              window.location.href = href;
-            }, 500);
-          });
-        }
-      });
+  .hero__stage {
+    position: relative;
+    aspect-ratio: 3/4;
+    perspective: 1400px;
+  }
+  .hero__stage-glow {
+    position: absolute;
+    inset: 12% 18% 12% 18%;
+    background: radial-gradient(ellipse at 50% 45%, oklch(0.65 0.18 50 / 0.5), transparent 65%);
+    filter: blur(70px);
+    z-index: -1;
+  }
+  .hero__product {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform:
+      rotateX(var(--tilt-x, 0deg))
+      rotateY(var(--tilt-y, 0deg))
+      translateY(var(--float, 0px));
+    transition: transform .4s cubic-bezier(.2,.7,.2,1);
+    animation: float 7s ease-in-out infinite;
+    filter: drop-shadow(0 60px 80px rgba(0,0,0,0.7))
+            drop-shadow(0 0 60px oklch(0.55 0.18 45 / 0.35));
+  }
+  @keyframes float {
+    0%, 100% { --float: 0px; }
+    50%      { --float: -14px; }
+  }
 
-        const logo = document.getElementById('logo');
-        const menu = document.getElementById('menu');
-        const overlay = document.getElementById('overlay');
+  /* ===== THE FACT IS ===== */
+  .fact {
+    padding-block: clamp(80px, 12vw, 160px);
+    text-align: center;
+  }
+  .fact__text {
+    font-size: clamp(40px, 6.4vw, 96px);
+    line-height: 1.0;
+    letter-spacing: var(--tracking-tighter);
+    font-weight: 400;
+    text-wrap: balance;
+    max-width: 14ch;
+    margin: 32px auto 0;
+  }
+  .fact__text .strike {
+    color: var(--fg-faint);
+    text-decoration: line-through;
+    text-decoration-color: rgba(255,255,255,0.2);
+  }
 
-        const header = document.querySelector('header');
-        let lastScrollY = window.scrollY;
-        let headerFrame = null;
+  /* ===== STATS — two breathing cards ===== */
+  .stats {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 24px;
+  }
+  .stat {
+    padding: 48px 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-height: 360px;
+    position: relative;
+  }
+  .stat__num {
+    font-size: clamp(64px, 9vw, 140px);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    font-weight: 400;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    color: var(--fg);
+  }
+  .stat__num .sym {
+    font-size: 0.42em;
+    color: var(--fg-mute);
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+  }
+  .stat__num .unit {
+    font-size: 0.32em;
+    color: var(--fg-mute);
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+    margin-left: 2px;
+  }
+  .stat--hero .stat__num { color: var(--o); }
+  .stat__caption {
+    font-size: 15px;
+    color: var(--fg-soft);
+    line-height: 1.45;
+    max-width: 32ch;
+  }
+  .stat__caption strong { color: var(--fg); font-weight: 500; }
+  .stat__tag {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--fg-mute);
+  }
+  .stat__bigword {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--o-soft);
+  }
+  @media (max-width: 1000px) {
+    .stats { grid-template-columns: 1fr; }
+  }
 
-        const applyHeaderState = () => {
-          if (!header) {
-            return;
-          }
-          const currentY = window.scrollY;
-          const collapseThreshold = 120;
-          if (currentY > collapseThreshold && currentY > lastScrollY) {
-            header.classList.add('header-collapsed');
-          } else if (currentY < lastScrollY - 4 || currentY <= collapseThreshold) {
-            header.classList.remove('header-collapsed');
-          }
-          lastScrollY = currentY;
-        };
+  /* ===== STICKY HOW IT WORKS ===== */
+  .feature + .feature { margin-top: 4px; }
+  .sticky-block {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+  .sticky-block__media {
+    position: sticky;
+    top: 100px;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  .sticky-block__media img {
+    width: 70%;
+    object-fit: contain;
+    filter: drop-shadow(0 40px 60px rgba(0,0,0,0.7));
+    animation: float 8s ease-in-out infinite;
+  }
+  .sticky-block__media-bg {
+    position: absolute;
+    inset: 10%;
+    background: radial-gradient(ellipse, oklch(0.55 0.18 50 / 0.3), transparent 70%);
+    filter: blur(60px);
+  }
+  .sticky-block__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-block: 12vh;
+  }
+  .feature {
+    padding: 32px 34px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-radius: var(--r);
+  }
+  .feature__num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--o);
+  }
+  .feature__title {
+    font-size: 26px;
+    line-height: 1.1;
+    letter-spacing: var(--tracking-tight);
+    font-weight: 500;
+  }
+  .feature__body {
+    color: var(--fg-soft);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  @media (max-width: 900px) {
+    .sticky-block { grid-template-columns: 1fr; }
+    .sticky-block__media { position: relative; top: auto; height: 60vh; }
+  }
 
-        const handleScroll = () => {
-          if (headerFrame) {
-            return;
-          }
-          headerFrame = requestAnimationFrame(() => {
-            applyHeaderState();
-            headerFrame = null;
-          });
-        };
+  /* ===== THE APP ===== */
+  .app-block {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .app-screens {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    height: 600px;
+  }
+  .app-screen {
+    position: relative;
+    width: 240px;
+    border-radius: 36px;
+    overflow: hidden;
+    box-shadow:
+      0 30px 80px -20px rgba(0,0,0,0.8),
+      0 0 0 1px rgba(255,255,255,0.08),
+      0 0 80px -20px oklch(0.55 0.18 45 / 0.25);
+    transform: rotate(var(--rot, 0deg)) translateY(var(--ty, 0px));
+    transition: transform .4s ease;
+  }
+  .app-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .app-screen--a { --rot: -4deg; --ty: 30px; z-index: 2; }
+  .app-screen--b { --rot: 2deg;  --ty: -10px; z-index: 3; }
+  .app-screen--c { --rot: 5deg;  --ty: 40px; z-index: 1; }
+  .app-screens:hover .app-screen { transform: rotate(0deg) translateY(0); }
 
-        if (header) {
-          applyHeaderState();
-          window.addEventListener('scroll', handleScroll, { passive: true });
-        }
+  .app-screens__glow {
+    position: absolute;
+    inset: 10%;
+    background: radial-gradient(ellipse, oklch(0.55 0.18 50 / 0.4), transparent 65%);
+    filter: blur(60px);
+    z-index: 0;
+  }
 
-        const closeMenu = () => {
-          menu.classList.remove('open');
-          overlay.classList.remove('show');
-        };
+  .app-bullets { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+  .app-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 0;
+  }
+  .app-bullet__dot {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: oklch(0.55 0.18 45 / 0.18);
+    border: 1px solid oklch(0.65 0.18 50 / 0.4);
+    color: var(--o);
+    display: grid;
+    place-items: center;
+    margin-top: 2px;
+  }
+  .app-bullet__body strong {
+    font-weight: 500;
+    color: var(--fg);
+  }
+  .app-bullet__body {
+    color: var(--fg-soft);
+    font-size: 15px;
+    line-height: 1.5;
+  }
 
-        if (logo) {
-          let hold;
-          logo.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.classList.toggle('open');
-            overlay.classList.toggle('show');
-          });
+  @media (max-width: 900px) {
+    .app-block { grid-template-columns: 1fr; }
+    .app-screens { height: 520px; }
+    .app-screen { width: 200px; }
+  }
 
-          const startPress = () => {
-            clearTimeout(hold);
-            hold = setTimeout(() => {
-              window.location.href = 'secret.html';
-            }, 5000);
-          };
+  /* ===== MARKET — simple 3 cards ===== */
+  .market-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .market-card {
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-radius: var(--r);
+    min-height: 260px;
+  }
+  .market-card--som { grid-column: span 1; }
+  .market-card__k {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--fg-mute);
+  }
+  .market-card__v {
+    font-size: clamp(48px, 6vw, 72px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: var(--tracking-tighter);
+    margin-block: 4px;
+  }
+  .market-card__v .sm {
+    color: var(--fg-mute);
+    font-size: 0.45em;
+    margin-left: 4px;
+  }
+  .market-card__label {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+  }
+  .market-card__body {
+    color: var(--fg-soft);
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: auto;
+  }
+  .market-card--target .market-card__v { color: var(--o); }
+  @media (max-width: 900px) {
+    .market-grid { grid-template-columns: 1fr; }
+  }
 
-          const cancelPress = () => {
-            clearTimeout(hold);
-          };
+  /* ===== TEAM ===== */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .team-card {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    aspect-ratio: 0.78;
+    overflow: hidden;
+    border-radius: var(--r);
+  }
+  .team-card__photo {
+    flex: 1;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    overflow: hidden;
+    position: relative;
+  }
+  .team-card__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    filter: grayscale(0.2) contrast(1.05) brightness(0.95);
+    transition: filter .3s, transform .4s;
+  }
+  .team-card:hover .team-card__photo img {
+    filter: grayscale(0) contrast(1.05) brightness(1);
+    transform: scale(1.04);
+  }
+  .team-card__name {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+  }
+  .team-card__role {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--o);
+    margin-top: -10px;
+  }
+  @media (max-width: 1000px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 640px)  { .team-grid { grid-template-columns: repeat(2, 1fr); } }
 
-          ['mousedown', 'touchstart'].forEach(evt => logo.addEventListener(evt, startPress));
-          ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(evt => logo.addEventListener(evt, cancelPress));
-        }
+  /* ===== FINAL CTA ===== */
+  .cta-block {
+    padding: clamp(56px, 8vw, 96px);
+    border-radius: var(--r-xl);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-block::after {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(circle at 50% 0%, oklch(0.55 0.18 45 / 0.45), transparent 60%);
+    filter: blur(60px);
+    z-index: -1;
+  }
 
-        overlay.addEventListener('click', closeMenu);
-        document.addEventListener('click', (e) => {
-          if (menu.classList.contains('open') && !menu.contains(e.target) && e.target !== logo) {
-            closeMenu();
-          }
-        });
-        menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-      });
-    </script>
+  /* Mobile hero adjustments */
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding-top: 100px;
+      padding-bottom: 60px;
+      min-height: auto;
+      gap: 40px;
+    }
+    .hero__stage { aspect-ratio: 4/5; max-width: 420px; margin: 0 auto; }
+    .hero__title { margin-block: 24px 24px; }
+    .hero__lede { margin-bottom: 32px; }
+    .nav__links { display: none; }
+
+    /* Stats */
+    .stat { padding: 32px 26px; min-height: 0; gap: 14px; }
+    .stat__num { font-size: clamp(56px, 18vw, 92px); }
+    .stat__caption { font-size: 14px; }
+
+    /* Sticky how-it-works */
+    .sticky-block__media { height: 50vh; padding: 20px; }
+    .sticky-block__media img { width: 60%; }
+    .sticky-block__copy { padding-block: 0; gap: 20px; }
+    .feature { padding: 26px 24px 28px; gap: 10px; }
+    .feature__title { font-size: 22px; }
+    .feature__body { font-size: 14px; }
+
+    /* App block */
+    .app-block { gap: 40px; }
+    .app-screens { height: 420px; gap: 16px; }
+    .app-screen { width: 170px; border-radius: 28px; }
+    .app-bullets { margin-top: 12px; }
+    .app-bullet { padding: 8px 0; gap: 12px; }
+    .app-bullet__dot { width: 20px; height: 20px; }
+
+    /* Market */
+    .market-card { padding: 28px 24px; min-height: 0; }
+    .market-card__v { font-size: clamp(48px, 14vw, 64px); }
+
+    /* Team */
+    .team-card { padding: 14px; gap: 10px; }
+    .team-card__name { font-size: 14px; }
+    .team-card__role { font-size: 9px; }
+
+    /* Fact */
+    .fact__text { font-size: clamp(36px, 11vw, 56px); line-height: 1.05; max-width: 16ch; }
+  }
+
+  @media (max-width: 520px) {
+    .hero { padding-top: 88px; gap: 32px; }
+    .hero__title { margin-block: 20px 20px; }
+    .stats { gap: 16px; }
+    .stat { padding: 26px 22px; }
+    .market-grid { gap: 14px; }
+    .market-card { padding: 26px 22px; }
+    .market-card__body { font-size: 13px; }
+    .cta-block { padding: 40px 24px; gap: 22px; }
+    .sticky-block { gap: 32px; }
+    .sticky-block__media { height: 360px; }
+    .app-screens { height: 360px; gap: 10px; }
+    .app-screen { width: 140px; border-radius: 24px; }
+  }
+
+  /* ============================================================
+     TWEAKS — three expressive controls that reshape the feel
+     ============================================================ */
+
+  /* --- VIBE: quiet vs cinematic ---------------------------- */
+  html[data-tweak-vibe="quiet"] .bg-stage::before { opacity: 0.35; filter: blur(80px); animation-duration: 60s; }
+  html[data-tweak-vibe="quiet"] .bg-stage::after  { opacity: 0.03; }
+  html[data-tweak-vibe="quiet"] .hero__stage-glow { opacity: 0.4; }
+  html[data-tweak-vibe="quiet"] .hero__product   { animation-duration: 14s; filter: drop-shadow(0 40px 60px rgba(0,0,0,0.6)); }
+  html[data-tweak-vibe="quiet"] .eyebrow__dot    { animation: none; opacity: 0.7; }
+  html[data-tweak-vibe="quiet"] .scroll-cue__line { animation-duration: 4s; }
+  html[data-tweak-vibe="quiet"] .sticky-block__media-bg,
+  html[data-tweak-vibe="quiet"] .app-screens__glow,
+  html[data-tweak-vibe="quiet"] .specs__media-glow { opacity: 0.4; }
+  html[data-tweak-vibe="quiet"] .cta-block::after { opacity: 0.5; }
+
+  html[data-tweak-vibe="cinematic"] .bg-stage::before { opacity: 1.1; }
+  html[data-tweak-vibe="cinematic"] .hero__product {
+    filter: drop-shadow(0 80px 100px rgba(0,0,0,0.8))
+            drop-shadow(0 0 80px oklch(0.65 0.2 50 / 0.55))
+            drop-shadow(0 0 140px oklch(0.55 0.18 45 / 0.3));
+  }
+  html[data-tweak-vibe="cinematic"] .hero__stage-glow {
+    inset: 0%;
+    background: radial-gradient(ellipse at 50% 50%, oklch(0.7 0.2 50 / 0.55), transparent 65%);
+    filter: blur(80px);
+  }
+  html[data-tweak-vibe="cinematic"] .hero__product { animation-duration: 5s; }
+  html[data-tweak-vibe="cinematic"] .stat__num { letter-spacing: -0.055em; }
+  html[data-tweak-vibe="cinematic"] .h-display { letter-spacing: -0.05em; }
+  html[data-tweak-vibe="cinematic"] .cta-block::after { opacity: 1.4; }
+
+  /* --- ORANGE: whisper / statement / loud ----------------- */
+  /* WHISPER — orange recedes to almost nothing; monochrome story */
+  html[data-tweak-orange="whisper"] .eyebrow            { color: var(--fg-mute); }
+  html[data-tweak-orange="whisper"] .eyebrow__dot       { background: var(--fg-soft); box-shadow: none; }
+  html[data-tweak-orange="whisper"] .stat__bigword,
+  html[data-tweak-orange="whisper"] .feature__num,
+  html[data-tweak-orange="whisper"] .market-card__k,
+  html[data-tweak-orange="whisper"] .team-card__role    { color: var(--fg-mute); }
+  html[data-tweak-orange="whisper"] .stat--hero .stat__num,
+  html[data-tweak-orange="whisper"] .market-card--target .market-card__v,
+  html[data-tweak-orange="whisper"] .h-display .italic-serif,
+  html[data-tweak-orange="whisper"] .h-section .italic-serif,
+  html[data-tweak-orange="whisper"] .fact__text .accent  { color: var(--fg); }
+  html[data-tweak-orange="whisper"] .hero__stage-glow,
+  html[data-tweak-orange="whisper"] .bg-stage::before    { filter: blur(80px) saturate(0.2); }
+  html[data-tweak-orange="whisper"] .hero__product { filter: drop-shadow(0 60px 80px rgba(0,0,0,0.7)); }
+  html[data-tweak-orange="whisper"] .app-bullet__dot {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.15);
+    color: var(--fg-soft);
+  }
+
+  /* LOUD — orange takes territory, hero gets an orange-glass card like the app */
+  html[data-tweak-orange="loud"] .hero {
+    padding-top: 110px;
+  }
+  html[data-tweak-orange="loud"] .hero__stage {
+    padding: 8% 6%;
+    border-radius: 36px;
+    background:
+      radial-gradient(ellipse at 30% 0%, oklch(0.92 0.06 60 / 0.5), transparent 60%),
+      linear-gradient(160deg, oklch(0.78 0.16 55 / 0.95) 0%, oklch(0.6 0.19 42 / 0.95) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.3),
+      0 40px 100px -20px oklch(0.55 0.18 45 / 0.55),
+      0 0 0 1px oklch(0.85 0.10 55 / 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  html[data-tweak-orange="loud"] .hero__stage::before {
+    content: "EpiSafe™";
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: 16px;
+    color: rgba(17, 7, 0, 0.7);
+    letter-spacing: -0.02em;
+  }
+  html[data-tweak-orange="loud"] .hero__stage-glow { display: none; }
+  html[data-tweak-orange="loud"] .hero__product {
+    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.4));
+  }
+  html[data-tweak-orange="loud"] .h-display .italic-serif { color: var(--o); }
+  html[data-tweak-orange="loud"] .stat__num { color: var(--o); }
+  html[data-tweak-orange="loud"] .stat--hero { background: linear-gradient(160deg, oklch(0.74 0.18 52 / 0.18), rgba(255,255,255,0.02)); border-color: oklch(0.74 0.18 52 / 0.3); }
+  html[data-tweak-orange="loud"] .feature__title::first-letter { color: var(--o); }
+  html[data-tweak-orange="loud"] .cta-block::after { background: radial-gradient(circle at 50% 0%, oklch(0.65 0.2 50 / 0.7), transparent 60%); }
+
+  /* --- DENSITY: editorial vs spacious --------------------- */
+  html[data-tweak-density="spacious"] .section { padding-block: clamp(140px, 18vw, 260px); }
+  html[data-tweak-density="spacious"] .section--tight { padding-block: clamp(100px, 12vw, 180px); }
+  html[data-tweak-density="spacious"] .section-head { margin-bottom: clamp(80px, 11vw, 140px); gap: 26px; }
+  html[data-tweak-density="spacious"] .hero { padding-top: 160px; padding-bottom: 120px; }
+  html[data-tweak-density="spacious"] .fact { padding-block: clamp(160px, 22vw, 280px); }
+  html[data-tweak-density="spacious"] .stats { gap: 24px; }
+  html[data-tweak-density="spacious"] .stat { padding: 56px 48px; min-height: 380px; }
+  html[data-tweak-density="spacious"] .feature { padding: 40px 44px 44px; }
+  html[data-tweak-density="spacious"] .market-card { padding: 48px 40px; min-height: 320px; }
+  html[data-tweak-density="spacious"] .team-card { padding: 24px; }
+  html[data-tweak-density="spacious"] .h-display { font-size: clamp(56px, 9.5vw, 144px); }
+  html[data-tweak-density="spacious"] .h-section { font-size: clamp(44px, 6vw, 92px); }
+  html[data-tweak-density="spacious"] .lede { font-size: clamp(18px, 1.55vw, 22px); }
+
+  /* ============================================================
+     TWEAKS PANEL — floating bottom-right
+     ============================================================ */
+  .tweaks {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1000;
+    width: 296px;
+    padding: 16px 18px 18px;
+    border-radius: 22px;
+    background:
+      linear-gradient(180deg, rgba(28,28,28,0.92) 0%, rgba(10,10,10,0.92) 100%);
+    backdrop-filter: blur(40px) saturate(160%);
+    -webkit-backdrop-filter: blur(40px) saturate(160%);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.10),
+      0 30px 80px -20px rgba(0,0,0,0.9);
+    color: var(--fg);
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+    pointer-events: none;
+    transition: opacity .35s ease, transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .tweaks.is-open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .tweaks__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .tweaks__title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+  .tweaks__close {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: grid;
+    place-items: center;
+    color: var(--fg-soft);
+    transition: background .2s, color .2s;
+  }
+  .tweaks__close:hover { background: rgba(255,255,255,0.16); color: var(--fg); }
+  .tweaks__group { margin-bottom: 14px; }
+  .tweaks__group:last-child { margin-bottom: 0; }
+  .tweaks__label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-mute);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .tweaks__seg {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 2px;
+    padding: 3px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+  }
+  .tweaks__opt {
+    padding: 8px 6px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--fg-mute);
+    text-align: center;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+    user-select: none;
+  }
+  .tweaks__opt:hover { color: var(--fg); }
+  .tweaks__opt[aria-selected="true"] {
+    background: rgba(255,255,255,0.10);
+    color: var(--fg);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .tweaks__opt[data-key="orange"][aria-selected="true"][data-value="loud"] {
+    background: var(--o);
+    color: #110700;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+  }
+</style>
 </head>
 <body>
-<header>
-  <div class="logo">
-    <button id="logo">
-      <picture>
-        <source srcset="images/episafelogoog.webp" type="image/webp">
-        <img src="images/episafelogoog.webp" alt="EpiSafe logo" />
-      </picture>
-    </button>
+
+<div class="bg-stage" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav glass-quiet" data-screen-label="Nav">
+  <a href="index.html" class="nav__brand">
+    <span class="nav__logo" aria-hidden="true"><img src="assets/logo-glyph.png" alt="" style="object-fit: fill"></span>
+    <span class="wordmark">EpiSafe</span>
+  </a>
+  <div class="nav__links">
+    <a href="product.html" class="nav__link">Product</a>
+    <a href="#app" class="nav__link">App</a>
+    <a href="story.html" class="nav__link">Story</a>
+    <a href="traction.html" class="nav__link">Traction</a>
+  </div>
+  <a href="traction.html" class="nav__cta">Get in touch →</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero wrap" data-screen-label="01 Hero">
+  <div class="hero__copy">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> Patent pending · Coming 2027</span>
+    <h1 class="h-display hero__title">
+      Epinephrine.<br>
+      <span class="italic-serif" style="font-family: &quot;Paul Grotesk&quot;">Always</span> on you.
+    </h1>
+    <p class="lede hero__lede">
+      The first epinephrine auto-injector built into the device you already carry. Because anaphylaxis can be fatal in minutes , and most people don't carry their injector.
+    </p>
+    <div class="hero__ctas">
+      <a href="traction.html" class="btn btn--primary">
+        Talk to the team <span class="btn__arrow">→</span>
+      </a>
+      <a href="product.html" class="btn btn--ghost">
+        See how it works
+      </a>
+    </div>
+  </div>
+
+  <div class="hero__stage" data-tilt="3">
+    <div class="hero__stage-glow" aria-hidden="true"></div>
+    <img class="hero__product" src="assets/product-hero-web.png" alt="EpiSafe phone case with built-in epinephrine auto-injector">
   </div>
 </header>
-<nav id="menu" class="menu">
-  <a href="index.html">Home</a>
-  <a href="team.html">Meet the Team</a>
-  <a href="achievements.html">Achievements</a>
-  <a href="blog.html">Blog</a>
-</nav>
-<div id="overlay"></div>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>EpiSafe™</h1>
-      <p>Safety in your pocket.</p>
-      <a href="#get-started" class="cta-button">Get Started</a>
+<!-- ============ THE FACT IS ============ -->
+<section class="fact wrap" data-screen-label="02 The Fact">
+  <div class="reveal">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> The Fact Is</span>
+    <p class="fact__text">
+      Epinephrine is the <span class="strike">first</span> <span class="accent">only</span> treatment for anaphylaxis.
+    </p>
+  </div>
+</section>
+
+<!-- ============ STATS, pared down ============ -->
+<section class="section wrap" id="problem" data-screen-label="03 Problem">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> The Problem</span>
+    <h2 class="h-section" data-comment-anchor="3132e3f686-h2">A treatment<br>nobody&nbsp;carries.</h2>
+    <p class="lede">3.6&thinsp;M Americans are prescribed an auto-injector every year. It's bulky. It's easy to forget , until the moment it matters.</p>
+  </div>
+
+  <div class="stats">
+    <article class="stat stat--hero glass reveal">
+      <span class="stat__bigword">The carrying problem</span>
+      <div class="stat__num">
+        <span data-count="56" data-decimals="0">0</span><span class="sym">%</span>
+      </div>
+      <p class="stat__caption" style="font-size:17px; max-width:36ch">
+        <strong>of people prescribed an auto-injector don't carry it.</strong> The treatment exists. The device fails them.
+      </p>
+      <span class="stat__tag">Source · ACAAI</span>
+    </article>
+
+    <article class="stat glass reveal" style="--d: 100ms">
+      <span class="stat__bigword">Adults</span>
+      <div class="stat__num">
+        1<span class="sym">in</span><span data-count="20">0</span>
+      </div>
+      <p class="stat__caption"><strong>Americans</strong> has experienced anaphylaxis at least once in their life.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ STICKY HOW IT WORKS ============ -->
+<section class="section wrap" id="science" data-screen-label="04 How It Works">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> How it works</span>
+    <h2 class="h-section">Not a smaller EpiPen.<br><span class="italic-serif" style="font-family: &quot;Paul Grotesk&quot;">A rebuilt one.</span></h2>
+    <p class="lede">Every part inside was redesigned to fit a phone case , new geometry, simulated fluid dynamics, equivalent intramuscular dose.</p>
+  </div>
+
+  <div class="sticky-block">
+    <div class="sticky-block__media glass reveal">
+      <div class="sticky-block__media-bg"></div>
+      <img src="assets/product-hero-web.png" alt="EpiSafe product detail">
     </div>
-    <div class="hero-img">
-      <picture>
-        <source srcset="images/episafeproductog.webp" type="image/webp">
-        <img src="images/episafeproductog.webp" alt="EpiSafe phone case with built-in EpiPen auto-injector" />
-      </picture>
-      <div class="hero-socials">
-        <a href="https://www.instagram.com/episafe.llc/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/company/107233218/admin/dashboard/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://x.com/episafe_?s=21" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.facebook.com/share/1B1E8RLRg4/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    <div class="sticky-block__copy">
+      <article class="feature glass reveal">
+        <span class="feature__num">01 / Form</span>
+        <h3 class="feature__title">A case, not a pen.</h3>
+        <p class="feature__body">11.4&thinsp;mm thin, MagSafe-compatible. The thing you check 100 times a day now carries the thing that saves your life.</p>
+      </article>
+      <article class="feature glass reveal" style="--d: 120ms">
+        <span class="feature__num">02 / Mechanism</span>
+        <h3 class="feature__title">Pull. Press. Done.</h3>
+        <p class="feature__body">A single orange tab releases the injector. Press against the outer thigh to deliver 0.3&thinsp;mg of epinephrine , the same therapeutic dose as a standard auto-injector.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE APP ============ -->
+<section class="section wrap" id="app" data-screen-label="05 The App">
+  <div class="app-block">
+    <div class="app-screens reveal">
+      <div class="app-screens__glow" aria-hidden="true"></div>
+      <div class="app-screen app-screen--a">
+        <img src="assets/app-medical.png" alt="Health info screen">
+      </div>
+      <div class="app-screen app-screen--b">
+        <img src="assets/app-home.png" alt="Home screen">
+      </div>
+      <div class="app-screen app-screen--c">
+        <img src="assets/app-device.png" alt="Device status screen">
       </div>
     </div>
-  </section>
-  <section>
-    <h2>Discover Our Story</h2>
-    <p class="desc-box">
-      At EpiSafe™, we are passionate about creating a safer world for individuals with severe allergies.
-      Our mission is to provide innovative, trustworthy, and cutting-edge solutions to enhance the
-      quality of life for those who need it most.
-    </p>
-    <a href="#tech" class="cta-button">Explore More</a>
-  </section>
 
-
-  <section id="tech" class="tech">
-    <h2>Technology</h2>
-    <p class="desc-box">
-      Our slim, MagSafe-compatible phone case integrates an epinephrine auto-injector, ensuring
-      rapid response in allergy emergencies. With our technology, we aim to offer seamless and
-      reliable protection for allergy sufferers.
-    </p>
-  </section>
-
-
-  <section id="get-started">
-    <h2>Get Started with EpiSafe™</h2>
-    <p class="desc-box">
-      Welcome to the future of allergy safety. EpiSafe integrates a powerful, slim epinephrine
-      auto-injector right into your phone case, so you're never caught without it.
-      Whether you're a parent, student, or professional — this is peace of mind in your pocket.
-    </p>
-    <ul style="list-style: none; padding-left: 0;">
-      <li> Learn how our MagSafe-compatible case works</li>
-      <li> Pre-order or join our waitlist</li>
-      <li> Contact us directly with feedback or questions</li>
-    </ul>
-    <br/>
-    <a href="#contact" class="cta-button">Join the Waitlist</a>
-  </section>
-
-  <section id="contact" class="contact">
-    <h2>Feedback & Questions</h2>
-    <p class="desc-box">
-      We’re designing a phone case with a built-in EpiPen so people with severe allergies are never
-      without their life-saving medication. Share your questions, ideas, or thoughts with us — we’re listening.
-    </p>
-    <form name="contact" method="POST" data-netlify="true" netlify action="/thankyou.html">
-      <input type="hidden" name="form-name" value="contact" />
-      <input type="text" name="first" placeholder="First Name" required />
-      <input type="text" name="last" placeholder="Last Name" required />
-      <input type="email" name="email" placeholder="Email" required />
-      <textarea name="message" placeholder="Message"></textarea>
-      <button type="submit">Send</button>
-    </form>
-  </section>
-  <section class="socials">
-    <h2>Follow Us</h2>
-    <a href="https://www.instagram.com/episafe.llc/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.linkedin.com/company/107233218/admin/dashboard/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-    <a href="https://x.com/episafe_?s=21" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-    <a href="https://www.facebook.com/share/1B1E8RLRg4/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-  </section>
-
-  <div class="footer">
-    <p>&copy; 2025 EpiSafe™ | 100 Institute Rd, Worcester, MA 01609 | info@episafe.co</p>
-    <p><a href="privacy.html">Privacy Policy</a> | <a href="accessibility.html">Accessibility</a> | <a href="terms.html">Terms &amp; Conditions</a></p>
+    <div class="reveal">
+      <span class="eyebrow"><span class="eyebrow__dot"></span> The companion app</span>
+      <h2 class="h-section" style="margin-block: 18px 18px">
+        <span class="italic-serif" style="font-family: &quot;Paul Grotesk&quot;">Smart</span> by default.
+      </h2>
+      <p class="lede"><span class="wordmark">EpiSafe</span> pairs with your phone over Bluetooth LE. See your device status in real time, keep a health profile ready for first responders, and try everything in Demo Mode before your device ships.</p>
+      <div class="app-bullets">
+        <div class="app-bullet">
+          <span class="app-bullet__dot">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="2" fill="currentColor"/></svg>
+          </span>
+          <span class="app-bullet__body"><strong>Live device status.</strong> Battery, cartridge state, and expiration , always in reach.</span>
+        </div>
+        <div class="app-bullet">
+          <span class="app-bullet__dot">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="2" fill="currentColor"/></svg>
+          </span>
+          <span class="app-bullet__body"><strong>Health profile.</strong> Vitals, allergies, and emergency contacts ready when a first responder needs them.</span>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
+
+<!-- ============ MARKET ============ -->
+<section class="section wrap" id="market" data-screen-label="06 Market">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> Market</span>
+    <h2 class="h-section">The patent expired.<br><span class="italic-serif" data-comment-anchor="a51836eedc-span" style="font-family: &quot;Paul Grotesk&quot;">We're ready.</span></h2>
+    <p class="lede">The market has been waiting for a new form factor. CAGR ~10% through 2030.</p>
+  </div>
+
+  <div class="market-grid">
+    <article class="market-card glass reveal">
+      <span class="market-card__k">TAM</span>
+      <h3 class="market-card__v">$6.6<span class="sm">B</span></h3>
+      <span class="market-card__label">Total Addressable Market</span>
+      <p class="market-card__body">Every patient who carries or should be carrying epinephrine, globally.</p>
+    </article>
+    <article class="market-card glass reveal" style="--d: 100ms">
+      <span class="market-card__k">SAM</span>
+      <h3 class="market-card__v">$1.0<span class="sm">B</span></h3>
+      <span class="market-card__label">U.S. prescribed users</span>
+      <p class="market-card__body">3.6&thinsp;M Americans prescribed an auto-injector each year , our launch market.</p>
+    </article>
+    <article class="market-card market-card--target glass-strong reveal" style="--d: 200ms">
+      <span class="market-card__k">SOM &middot; 3-yr</span>
+      <h3 class="market-card__v">$100<span class="sm">M</span></h3>
+      <span class="market-card__label">Active-lifestyle segment</span>
+      <p class="market-card__body">The 56% who already forget , the people we're built for.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="section section--tight wrap" id="team" data-screen-label="07 Team">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> The team</span>
+    <h2 class="h-section">Built by four founders<br><span class="italic-serif" style="font-family: &quot;Paul Grotesk&quot;">who needed it themselves.</span></h2>
+  </div>
+
+  <div class="team-grid">
+    <article class="team-card glass reveal" style="--d: 0ms">
+      <div class="team-card__photo"><img src="assets/team-aaryan.png" alt="Aaryan Panchal"></div>
+      <h3 class="team-card__name">Aaryan Panchal</h3>
+      <span class="team-card__role">CEO · Founder</span>
+    </article>
+    <article class="team-card glass reveal" style="--d: 60ms">
+      <div class="team-card__photo"><img src="assets/team-joshua.png" alt="Joshua Kashambala"></div>
+      <h3 class="team-card__name">Joshua Kashambala</h3>
+      <span class="team-card__role">COO· FOUNDER</span>
+    </article>
+    <article class="team-card glass reveal" style="--d: 120ms">
+      <div class="team-card__photo"><img src="assets/team-ethan.png" alt="Ethan Takvorian"></div>
+      <h3 class="team-card__name">Ethan Takvorian</h3>
+      <span class="team-card__role">CTO· FOUNDER</span>
+    </article>
+    <article class="team-card glass reveal" style="--d: 180ms">
+      <div class="team-card__photo"><img src="assets/team-khushal.png" alt="Khushal Sharma"></div>
+      <h3 class="team-card__name">Khushal Sharma</h3>
+      <span class="team-card__role">CRO· FOUNDER</span>
+    </article>
+  </div>
+
+  <div class="reveal" style="margin-top: 48px; text-align: center;">
+    <a href="story.html" class="btn btn--ghost" style="font-family: &quot;Paul Grotesk&quot;">Read our story <span class="btn__arrow">→</span></a>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="section wrap" data-screen-label="08 CTA">
+  <div class="cta-block glass-strong reveal">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> Where we are</span>
+    <h2 class="h-section" style="font-size: clamp(40px, 5.5vw, 76px)">
+      Help us get<br><span class="wordmark">EpiSafe</span> to FDA submission.
+    </h2>
+    <p class="lede" style="text-align:center; font-family: -apple-system, &quot;Paul Grotesk&quot;">A 2-year path to FDA approval, 9 months of product development complete, patent pending, and a team that lives the problem every day.</p>
+    <div class="cluster" style="justify-content:center; margin-top: 4px">
+      <a href="traction.html" class="btn btn--primary">See the traction <span class="btn__arrow">→</span></a>
+      <a href="mailto:hello@episafe.co" class="btn btn--ghost">hello@episafe.co</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__inner glass">
+    <div class="footer__col">
+      <div class="footer__brand-row">
+        <span class="nav__logo" aria-hidden="true" style="width:36px;height:36px"><img src="assets/logo-glyph.png" alt=""></span>
+        <span class="wordmark" style="font-size:22px">EpiSafe</span>
+      </div>
+      <p class="footer__tag">Epinephrine that lives in your phone case. Because a treatment you don't carry is no treatment at all.</p>
+    </div>
+    <div class="footer__col">
+      <h4>Product</h4>
+      <a href="product.html">How it works</a>
+      <a href="product.html#specs">Specs</a>
+      <a href="#app">Companion app</a>
+    </div>
+    <div class="footer__col">
+      <h4>Company</h4>
+      <a href="story.html">Story</a>
+      <a href="story.html#team">Team</a>
+      <a href="traction.html">Traction</a>
+    </div>
+    <div class="footer__col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@episafe.co">hello@episafe.co</a>
+      <a href="traction.html">For investors</a>
+      <a href="#">Press</a>
+    </div>
+  </div>
+  <div class="footer__base" style="max-width:none; padding-inline: 0">
+    <span>© 2026 <span class="wordmark">EpiSafe</span> Inc. · Patent Pending · Pre-FDA submission.</span>
+    <span class="mono"><span class="wordmark">EpiSafe</span>&trade;</span>
+  </div>
+</footer>
+
+<!-- ============ TWEAKS PANEL ============ -->
+<aside class="tweaks" id="tweaks" aria-label="Tweaks">
+  <div class="tweaks__head">
+    <span class="tweaks__title">Tweaks</span>
+    <button type="button" class="tweaks__close" id="tweaks-close" aria-label="Close tweaks">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="tweaks__group">
+    <span class="tweaks__label">Vibe</span>
+    <div class="tweaks__seg" data-tweak-key="vibe">
+      <div class="tweaks__opt" data-key="vibe" data-value="quiet">Quiet</div>
+      <div class="tweaks__opt" data-key="vibe" data-value="cinematic">Cinematic</div>
+    </div>
+  </div>
+
+  <div class="tweaks__group">
+    <span class="tweaks__label">Orange</span>
+    <div class="tweaks__seg" data-tweak-key="orange">
+      <div class="tweaks__opt" data-key="orange" data-value="whisper">Whisper</div>
+      <div class="tweaks__opt" data-key="orange" data-value="statement">Statement</div>
+      <div class="tweaks__opt" data-key="orange" data-value="loud">Loud</div>
+    </div>
+  </div>
+
+  <div class="tweaks__group">
+    <span class="tweaks__label">Density</span>
+    <div class="tweaks__seg" data-tweak-key="density">
+      <div class="tweaks__opt" data-key="density" data-value="editorial">Editorial</div>
+      <div class="tweaks__opt" data-key="density" data-value="spacious">Spacious</div>
+    </div>
+  </div>
+</aside>
+
+<script>
+(function () {
+  'use strict';
+
+  // Defaults — the host can rewrite the JSON block on disk
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "vibe": "cinematic",
+    "orange": "statement",
+    "density": "editorial"
+  }/*EDITMODE-END*/;
+
+  const state = Object.assign({}, TWEAK_DEFAULTS);
+  const root = document.documentElement;
+  const panel = document.getElementById('tweaks');
+  const closeBtn = document.getElementById('tweaks-close');
+
+  function apply() {
+    root.setAttribute('data-tweak-vibe', state.vibe);
+    root.setAttribute('data-tweak-orange', state.orange);
+    root.setAttribute('data-tweak-density', state.density);
+    document.querySelectorAll('.tweaks__opt').forEach(el => {
+      const k = el.dataset.key, v = el.dataset.value;
+      el.setAttribute('aria-selected', state[k] === v ? 'true' : 'false');
+    });
+  }
+  apply();
+
+  // Wire segmented controls
+  document.querySelectorAll('.tweaks__opt').forEach(el => {
+    el.addEventListener('click', () => {
+      const k = el.dataset.key, v = el.dataset.value;
+      if (state[k] === v) return;
+      state[k] = v;
+      apply();
+      try {
+        window.parent.postMessage({type: '__edit_mode_set_keys', edits: { [k]: v }}, '*');
+      } catch (e) {}
+    });
+  });
+
+  // Edit mode protocol
+  function open()  { panel.classList.add('is-open'); }
+  function close() {
+    panel.classList.remove('is-open');
+    try { window.parent.postMessage({type: '__edit_mode_dismissed'}, '*'); } catch (e) {}
+  }
+  closeBtn.addEventListener('click', close);
+
+  window.addEventListener('message', (ev) => {
+    const d = ev.data;
+    if (!d || typeof d !== 'object') return;
+    if (d.type === '__activate_edit_mode')   open();
+    if (d.type === '__deactivate_edit_mode') panel.classList.remove('is-open');
+  });
+
+  // Announce availability
+  try { window.parent.postMessage({type: '__edit_mode_available'}, '*'); } catch (e) {}
+})();
+</script>
+
+<script src="site.js"></script>
 </body>
 </html>
-
-
