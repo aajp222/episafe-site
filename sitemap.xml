@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://episafe.co/</loc></url>
-  <url><loc>https://episafe.co/team.html</loc></url>
+  <url><loc>https://episafe.co/product.html</loc></url>
+  <url><loc>https://episafe.co/story.html</loc></url>
+  <url><loc>https://episafe.co/traction.html</loc></url>
   <url><loc>https://episafe.co/privacy.html</loc></url>
-  <url><loc>https://episafe.co/accessibility.html</loc></url>
   <url><loc>https://episafe.co/terms.html</loc></url>
+  <url><loc>https://episafe.co/accessibility.html</loc></url>
 </urlset>

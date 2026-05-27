@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en" class="no-fouc">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Story, EpiSafe</title>
+<meta name="description" content="A question became a company. The EpiSafe story, from realization to nine months in.">
+<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Story page */
+  .s-hero {
+    padding-top: 140px;
+    padding-bottom: 80px;
+    text-align: center;
+  }
+  .s-hero__eye { display: flex; justify-content: center; }
+  .s-hero__title { margin-block: 20px 24px; }
+  .s-hero__title .italic-serif { color: var(--o); }
+  .s-hero__lede { max-width: 60ch; margin: 0 auto; }
+
+  /* Quote / question block */
+  .question {
+    padding-block: clamp(80px, 12vw, 160px);
+  }
+  .question__inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: clamp(56px, 8vw, 100px);
+    border-radius: var(--r-xl);
+    position: relative;
+    overflow: hidden;
+  }
+  .question__inner::after {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(circle at 50% 50%, oklch(0.55 0.18 50 / 0.3), transparent 60%);
+    filter: blur(60px);
+    z-index: -1;
+  }
+  .question__mark {
+    position: absolute;
+    top: 8%;
+    left: 4%;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(180px, 24vw, 360px);
+    line-height: 0.7;
+    color: oklch(0.74 0.18 52 / 0.18);
+    pointer-events: none;
+  }
+  .question__text {
+    position: relative;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(32px, 4.6vw, 64px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    text-wrap: balance;
+    z-index: 1;
+  }
+  .question__attrib {
+    margin-top: 36px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--fg-mute);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Chapters — alternating sections with image + text */
+  .chapter {
+    padding-block: clamp(80px, 11vw, 160px);
+  }
+  .chapter__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .chapter--reverse .chapter__inner { direction: rtl; }
+  .chapter--reverse .chapter__inner > * { direction: ltr; }
+
+  .chapter__num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--o);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .chapter__num::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--o);
+  }
+  .chapter__title {
+    font-size: clamp(36px, 4.6vw, 58px);
+    line-height: 1.0;
+    letter-spacing: var(--tracking-tighter);
+    font-weight: 500;
+    margin-block: 20px 24px;
+    text-wrap: balance;
+  }
+  .chapter__title .italic-serif { color: var(--o); }
+  .chapter__body {
+    color: var(--fg-soft);
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 50ch;
+  }
+  .chapter__body p + p { margin-top: 16px; }
+  .chapter__media {
+    aspect-ratio: 4/5;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+  .chapter__media-glow {
+    position: absolute;
+    inset: 12%;
+    background: radial-gradient(ellipse, oklch(0.55 0.18 50 / 0.3), transparent 65%);
+    filter: blur(60px);
+  }
+  .chapter__media img {
+    width: 78%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.6));
+  }
+  .chapter__media--photo {
+    background: #0a0a0a;
+  }
+  .chapter__media--photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: none;
+  }
+  .chapter__media--photo .chapter__media-glow { display: none; }
+  .chapter__media-wide {
+    aspect-ratio: 5/4;
+  }
+  @media (max-width: 900px) {
+    .chapter__inner { grid-template-columns: 1fr; }
+    .chapter--reverse .chapter__inner { direction: ltr; }
+  }
+
+  /* Team detail */
+  .team-detail {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .td-card {
+    padding: 32px;
+    border-radius: var(--r-lg);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  .td-card__photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+  }
+  .td-card__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    filter: grayscale(0.15) contrast(1.05);
+    transition: filter .3s, transform .4s;
+  }
+  .td-card:hover .td-card__photo img { filter: grayscale(0) contrast(1.05); transform: scale(1.03); }
+  .td-card__name {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+  }
+  .td-card__role {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--o);
+    margin-top: 2px;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .td-card__bio {
+    color: var(--fg-soft);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  @media (max-width: 800px) {
+    .team-detail { grid-template-columns: 1fr; }
+    .td-card { grid-template-columns: 100px 1fr; gap: 20px; padding: 24px; }
+    .td-card__photo { width: 100px; height: 100px; }
+  }
+
+  /* In the wild — photo gallery */
+  .moments {
+    padding-block: clamp(60px, 9vw, 140px);
+  }
+  .moments__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 20px;
+  }
+  .moment {
+    position: relative;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background: #0a0a0a;
+    aspect-ratio: 4/3;
+  }
+  .moment--tall { aspect-ratio: 3/4; }
+  .moment img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s cubic-bezier(.2,.7,.2,1);
+  }
+  .moment:hover img { transform: scale(1.03); }
+  .moment__caption {
+    position: absolute;
+    left: 20px;
+    bottom: 18px;
+    right: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    z-index: 2;
+  }
+  .moment__caption::before {
+    content: "";
+    position: absolute;
+    inset: -20px -20px -20px -20px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+    z-index: -1;
+  }
+  .moment__k {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--o);
+    flex-shrink: 0;
+  }
+  .moment__t {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--fg);
+    letter-spacing: var(--tracking-tight);
+  }
+  @media (max-width: 800px) {
+    .moments__grid { grid-template-columns: 1fr; }
+    .moment, .moment--tall { aspect-ratio: 4/3; }
+  }
+
+  /* Manifesto strip */
+  .manifesto {
+    padding-block: clamp(80px, 12vw, 160px);
+  }
+  .manifesto__text {
+    font-size: clamp(38px, 5.2vw, 72px);
+    line-height: 1.05;
+    letter-spacing: var(--tracking-tighter);
+    font-weight: 500;
+    text-wrap: balance;
+    max-width: 18ch;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .manifesto__text .italic-serif { color: var(--o); }
+
+  @media (max-width: 900px) {
+    .s-hero { padding-top: 100px; padding-bottom: 40px; }
+    .s-hero__title { margin-block: 14px 18px; }
+    .question { padding-block: 60px; }
+    .question__inner { padding: 40px 28px; border-radius: 28px; }
+    .question__text { font-size: clamp(22px, 5.6vw, 32px); line-height: 1.2; }
+    .question__mark { font-size: clamp(120px, 30vw, 200px); top: 4%; left: 2%; }
+    .question__attrib { margin-top: 24px; }
+
+    .chapter { padding-block: 56px; }
+    .chapter__inner { gap: 32px; }
+    .chapter__title { font-size: clamp(28px, 7.5vw, 40px); margin-block: 14px 16px; }
+    .chapter__body { font-size: 15px; line-height: 1.6; }
+    .chapter__media { aspect-ratio: 4/5; max-height: 480px; }
+
+    .manifesto { padding-block: 60px; }
+    .manifesto__text { font-size: clamp(30px, 8vw, 44px); line-height: 1.1; }
+  }
+
+  @media (max-width: 520px) {
+    .question__inner { padding: 32px 22px; }
+    .question__text { font-size: 22px; line-height: 1.25; }
+    .chapter__media { aspect-ratio: 1/1; }
+    .moment, .moment--tall { aspect-ratio: 4/3; }
+    .moment__caption { left: 14px; right: 14px; bottom: 14px; gap: 8px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-stage" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="nav glass-quiet">
+  <a href="index.html" class="nav__brand">
+    <span class="nav__logo" aria-hidden="true"><img src="images/episafelogoog.webp" alt=""></span>
+    <span class="wordmark">EpiSafe</span>
+  </a>
+  <div class="nav__links">
+    <a href="product.html" class="nav__link">Product</a>
+    <a href="index.html#app" class="nav__link">App</a>
+    <a href="story.html" class="nav__link is-active">Story</a>
+    <a href="traction.html" class="nav__link">Traction</a>
+  </div>
+  <a href="traction.html" class="nav__cta">Get in touch →</a>
+</nav>
+
+<!-- HERO -->
+<header class="s-hero wrap" data-screen-label="01 Story Hero">
+  <div class="reveal">
+    <div class="s-hero__eye"><span class="eyebrow"><span class="eyebrow__dot"></span> Our story</span></div>
+    <h1 class="h-display s-hero__title">
+      A question<br>
+      <span class="italic-serif">became</span> a company.
+    </h1>
+    <p class="lede s-hero__lede">
+      Four founders, one stubborn question, and the realization that the most life-saving device in modern medicine fails the people it's meant to save , every single day.
+    </p>
+  </div>
+</header>
+
+<!-- QUESTION -->
+<section class="question wrap" data-screen-label="02 The Question">
+  <div class="question__inner glass-strong reveal">
+    <span class="question__mark" aria-hidden="true">"</span>
+    <p class="question__text" style="font-family: &quot;Paul Grotesk&quot;">
+      Why are EpiPens so inconvenient and easy to forget , when forgetting one is the difference between a normal afternoon and a hospital bed?
+    </p>
+    <p class="question__attrib">, The question that started <span class="wordmark">EpiSafe</span></p>
+  </div>
+</section>
+
+<!-- CHAPTER 1 -->
+<section class="chapter wrap" data-screen-label="03 Realization">
+  <div class="chapter__inner">
+    <div class="reveal">
+      <span class="chapter__num">Chapter 01 &middot; The realization</span>
+      <h2 class="chapter__title">The treatment exists.<br>The <span class="italic-serif" style="font-family: &quot;Paul Grotesk&quot;">device fails it.</span></h2>
+      <div class="chapter__body">
+        <p>The EpiPen has barely changed since 1987. Six inches long. Awkward to pocket. Designed to live in a backpack that you don't always grab.</p>
+        <p>So the data ends up where you'd expect: 56% of people prescribed an EpiPen don't carry one. 225 preventable deaths every year in the U.S. alone. A $1.2 billion annual cost from anaphylaxis-related care , most of it because someone, somewhere, left their device on a kitchen counter.</p>
+        <p>Anaphylaxis can kill in minutes. The device meant to stop it shouldn't have a "but I left it at home" failure mode.</p>
+      </div>
+    </div>
+    <div class="chapter__media glass reveal" style="--d: 150ms">
+      <div class="chapter__media-glow" aria-hidden="true"></div>
+      <img src="assets/epipen-reference.png" alt="The traditional EpiPen, six inches long" style="width:50%">
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section class="chapter chapter--reverse wrap" data-screen-label="04 Approach">
+  <div class="chapter__inner">
+    <div class="reveal">
+      <span class="chapter__num">Chapter 02 &middot; The approach</span>
+      <h2 class="chapter__title">Not a smaller EpiPen.<br><span class="italic-serif">A rebuilt one.</span></h2>
+      <div class="chapter__body">
+        <p>Every part inside an auto-injector was designed around a six-inch tube. We didn't try to shrink it , we redrew the geometry, simulated the fluid dynamics, and validated dose equivalence against a standard intramuscular injection.</p>
+        <p>Then we did the harder part: we put it in a phone case. The device people carry 100 times a day now carries the device that saves their life.</p>
+      </div>
+    </div>
+    <div class="chapter__media chapter__media--photo glass reveal" style="--d: 150ms">
+      <img src="assets/story-product.jpg" alt="EpiSafe phone case prototype held in hand at Demo Day">
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 3 -->
+<section class="chapter wrap" data-screen-label="05 Work">
+  <div class="chapter__inner">
+    <div class="reveal">
+      <span class="chapter__num">Chapter 03 &middot; The work</span>
+      <h2 class="chapter__title">Nine months in.<br><span class="italic-serif">Patent pending.</span></h2>
+      <div class="chapter__body">
+        <p>Computer-simulated fluid dynamics for the modified delivery path. Custom mechanical components designed to fit the case form factor without compromising spring force. Drop, temperature, and wear testing in the conditions phones already survive.</p>
+        <p>We've filed a provisional patent on both the utility and the design. Next: FDA pre-submission, formal trials, and manufacturing partnerships. We're not running a sprint , we're building something people will trust with their lives.</p>
+      </div>
+    </div>
+    <div class="chapter__media chapter__media--photo glass reveal" style="--d: 150ms">
+      <img src="assets/story-mechanism.jpg" alt="Internal mechanism prototype, redesigned cartridge, spring assembly, and orange release frame">
+    </div>
+  </div>
+</section>
+
+<!-- IN THE WILD -->
+<section class="moments wrap" data-screen-label="06 Moments">
+  <div class="section-head reveal" style="margin-bottom: 40px">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> In the wild</span>
+  </div>
+  <div class="moments__grid">
+    <figure class="moment reveal">
+      <img src="assets/story-demoday.jpg" alt="EpiSafe team accepting an award at WPI Demo Day 2025">
+      <figcaption class="moment__caption">
+        <span class="moment__k">Sep 2025</span>
+        <span class="moment__t">WPI Demo Day</span>
+      </figcaption>
+    </figure>
+    <figure class="moment moment--tall reveal" style="--d: 120ms">
+      <img src="assets/story-lab.jpg" alt="Founder iterating on a prototype in the lab">
+      <figcaption class="moment__caption">
+        <span class="moment__k">In the lab</span>
+        <span class="moment__t">Working through a prototype iteration</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto wrap" data-screen-label="07 Manifesto">
+  <div class="reveal">
+    <p class="manifesto__text">
+      A treatment you don't carry<br>
+      <span class="italic-serif">is no treatment at all.</span>
+    </p>
+  </div>
+</section>
+
+<!-- TEAM DETAIL -->
+<section class="section section--tight wrap" id="team" data-screen-label="08 Team">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> The team</span>
+    <h2 class="h-section">Four founders.<br><span class="italic-serif">One mission.</span></h2>
+    <p class="lede">A team built across operations, science, design, and revenue , meeting at the intersection of medical rigor and product obsession.</p>
+  </div>
+
+  <div class="team-detail">
+    <article class="td-card glass reveal">
+      <div class="td-card__photo"><img src="assets/team-aaryan.png" alt="Aaryan Panchal"></div>
+      <div>
+        <h3 class="td-card__name">Aaryan Panchal</h3>
+        <span class="td-card__role">CHIEF EXECUTIVE OFFICER</span>
+        <p class="td-card__bio">Leads strategy and operations. Owns the path from prototype to FDA submission and brings the team together around a single, uncompromising mission: get epinephrine into pockets.</p>
+      </div>
+    </article>
+    <article class="td-card glass reveal" style="--d: 80ms">
+      <div class="td-card__photo"><img src="assets/team-joshua.png" alt="Joshua Kashambala"></div>
+      <div>
+        <h3 class="td-card__name">Joshua Kashambala</h3>
+        <span class="td-card__role">CHIEF OPERATING OFFICER</span>
+        <p class="td-card__bio">Runs day-to-day operations and partnerships. Has spent the last nine months turning the engineering pipeline, regulatory roadmap, and supply chain from spreadsheets into a working plan.</p>
+      </div>
+    </article>
+    <article class="td-card glass reveal" style="--d: 160ms">
+      <div class="td-card__photo"><img src="assets/team-ethan.png" alt="Ethan Takvorian"></div>
+      <div>
+        <h3 class="td-card__name">Ethan Takvorian</h3>
+        <span class="td-card__role">CHIEF DESIGN OFFICER</span>
+        <p class="td-card__bio">Owns industrial design and the digital product. Responsible for every line, curve, and pixel that makes <span class="wordmark">EpiSafe</span> feel less like a medical device and more like something you actually want to carry.</p>
+      </div>
+    </article>
+    <article class="td-card glass reveal" style="--d: 240ms">
+      <div class="td-card__photo"><img src="assets/team-khushal.png" alt="Khushal Sharma"></div>
+      <div>
+        <h3 class="td-card__name">Khushal Sharma</h3>
+        <span class="td-card__role">CHIEF REVENUE OFFICER</span>
+        <p class="td-card__bio">Builds the go-to-market motion: pharmacy partnerships, prescriber relationships, and the direct-to-patient channel. Translates 56% who don't carry into 56% who will.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section wrap">
+  <div class="cta-block glass-strong reveal" style="padding: clamp(48px, 7vw, 80px)">
+    <h2 class="h-section" style="font-size: clamp(36px, 4.5vw, 60px)">
+      Want to be part of it?
+    </h2>
+    <p class="lede center-text">We're early. We're moving fast. And we'd love to hear from anyone who can help us get there.</p>
+    <div class="cluster" style="justify-content:center">
+      <a href="traction.html" class="btn btn--primary">See where we are <span class="btn__arrow">→</span></a>
+      <a href="mailto:hello@episafe.co" class="btn btn--ghost">hello@episafe.co</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner glass">
+    <div class="footer__col">
+      <div class="footer__brand-row">
+        <span class="nav__logo" aria-hidden="true" style="width:36px;height:36px"><img src="assets/logo-glyph.png" alt=""></span>
+        <span class="wordmark" style="font-size:22px">EpiSafe</span>
+      </div>
+      <p class="footer__tag">Epinephrine that lives in your phone case.</p>
+    </div>
+    <div class="footer__col">
+      <h4>Product</h4>
+      <a href="product.html">How it works</a>
+      <a href="product.html#specs">Specs</a>
+      <a href="index.html#app">Companion app</a>
+    </div>
+    <div class="footer__col">
+      <h4>Company</h4>
+      <a href="story.html">Story</a>
+      <a href="story.html#team">Team</a>
+      <a href="traction.html">Traction</a>
+    </div>
+    <div class="footer__col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@episafe.co">hello@episafe.co</a>
+      <a href="traction.html">For investors</a>
+      <a href="#">Press</a>
+    </div>
+  </div>
+  <div class="footer__base" style="padding-inline: 0">
+    <span>© 2026 <span class="wordmark">EpiSafe</span> LLC · Patent Pending · Pre-FDA submission.</span>
+    <span class="mono"><span class="wordmark">EpiSafe</span>&trade;</span>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en" class="no-fouc">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product, EpiSafe</title>
+<meta name="description" content="An EpiPen, redrawn. 11.4 mm thin, 0.3 mg epinephrine, in your phone case.">
+<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Product hero — full-bleed image */
+  .p-hero {
+    position: relative;
+    padding-top: 140px;
+    padding-bottom: 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .p-hero__title { margin-block: 20px 18px; }
+  .p-hero__title .italic-serif { color: var(--o); }
+  .p-hero__lede { margin: 0 auto; }
+
+  .p-stage {
+    margin-top: 60px;
+    position: relative;
+    min-height: 600px;
+    display: grid;
+    place-items: center;
+  }
+  .p-stage__glow {
+    position: absolute;
+    inset: 10% 25%;
+    background: radial-gradient(ellipse, oklch(0.55 0.18 50 / 0.35), transparent 65%);
+    filter: blur(80px);
+  }
+  .p-stage img {
+    width: 420px;
+    max-width: 100%;
+    filter: drop-shadow(0 50px 80px rgba(0,0,0,0.7))
+            drop-shadow(0 0 60px oklch(0.55 0.18 45 / 0.3));
+    animation: float 7s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+
+  .p-callouts {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .p-callout {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 18px;
+    border-radius: var(--r);
+    width: 220px;
+    pointer-events: auto;
+  }
+  .p-callout::after {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--o), transparent);
+    top: 50%;
+  }
+  .p-callout--left  { left: 4%; top: 32%; }
+  .p-callout--left::after  { right: -60px; }
+  .p-callout--right { right: 4%; top: 18%; }
+  .p-callout--right::after { left: -60px; background: linear-gradient(-90deg, var(--o), transparent); }
+  .p-callout--bottom { right: 6%; bottom: 12%; }
+  .p-callout--bottom::after { left: -60px; background: linear-gradient(-90deg, var(--o), transparent); }
+  .p-callout__k {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--o);
+  }
+  .p-callout__v {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+  }
+  .p-callout__body {
+    font-size: 13px;
+    color: var(--fg-soft);
+    line-height: 1.4;
+  }
+  @media (max-width: 1000px) {
+    .p-callouts { display: none; }
+    .p-stage { min-height: 540px; }
+  }
+
+  /* Steps — how to use */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .step {
+    padding: 36px 32px;
+    border-radius: var(--r);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-height: 280px;
+  }
+  .step__num {
+    font-size: 56px;
+    line-height: 1;
+    font-weight: 300;
+    letter-spacing: var(--tracking-tighter);
+    color: var(--o);
+  }
+  .step__title {
+    font-size: 22px;
+    line-height: 1.15;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+  }
+  .step__body {
+    color: var(--fg-soft);
+    font-size: 14px;
+    line-height: 1.55;
+    margin-top: auto;
+  }
+  @media (max-width: 900px) { .steps { grid-template-columns: 1fr; } }
+
+  /* Specs table */
+  .specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .specs__media {
+    border-radius: var(--r-lg);
+    padding: 60px;
+    display: grid;
+    place-items: center;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+  }
+  .specs__media-glow {
+    position: absolute;
+    inset: 10%;
+    background: radial-gradient(ellipse, oklch(0.55 0.18 50 / 0.3), transparent 65%);
+    filter: blur(60px);
+  }
+  .specs__media img {
+    width: 75%;
+    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.7));
+    position: relative;
+    z-index: 1;
+  }
+  .specs__table {
+    display: flex;
+    flex-direction: column;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    align-items: baseline;
+    gap: 24px;
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-row__k {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--fg-mute);
+  }
+  .spec-row__v {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+  }
+  .spec-row__v .muted { color: var(--fg-mute); font-size: 14px; }
+  @media (max-width: 900px) {
+    .specs { grid-template-columns: 1fr; }
+    .specs__media { min-height: 400px; padding: 40px; }
+  }
+
+  /* Compare row */
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .compare-card {
+    padding: 36px;
+    border-radius: var(--r);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 380px;
+  }
+  .compare-card__label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: var(--r-pill);
+    align-self: start;
+  }
+  .compare-card__label--old { color: var(--fg-mute); background: rgba(255,255,255,0.05); }
+  .compare-card__label--new { color: var(--o); background: oklch(0.65 0.18 50 / 0.12); }
+  .compare-card__title {
+    font-size: 28px;
+    letter-spacing: var(--tracking-tight);
+    font-weight: 500;
+  }
+  .compare-card__media {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    border-radius: var(--r);
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
+    overflow: hidden;
+    min-height: 200px;
+  }
+  .compare-card__media img { max-height: 240px; }
+  .compare-card__media--new img { filter: drop-shadow(0 20px 40px oklch(0.5 0.18 45 / 0.4)); }
+  @media (max-width: 800px) { .compare-row { grid-template-columns: 1fr; } }
+
+  @media (max-width: 900px) {
+    .p-hero { padding-top: 100px; padding-bottom: 30px; }
+    .p-hero__title { margin-block: 16px 14px; }
+    .p-stage { margin-top: 30px; min-height: 380px; }
+    .p-stage img { width: 320px; }
+    .step { padding: 26px 24px; min-height: 0; gap: 14px; }
+    .step__num { font-size: 44px; }
+    .step__title { font-size: 19px; }
+    .step__body { font-size: 14px; }
+    .specs { gap: 32px; }
+    .specs__media { min-height: 320px; padding: 32px; }
+    .specs__media img { width: 65%; }
+    .spec-row { grid-template-columns: 1fr; padding: 16px 0; gap: 6px; }
+    .spec-row__v { font-size: 16px; }
+    .compare-card { padding: 26px 24px; gap: 16px; min-height: 0; }
+    .compare-card__title { font-size: 22px; }
+    .compare-card__media { min-height: 160px; }
+    .compare-card__media img { max-height: 180px; }
+  }
+
+  @media (max-width: 520px) {
+    .p-stage { min-height: 320px; }
+    .p-stage img { width: 260px; }
+    .steps { gap: 14px; }
+    .specs__media { min-height: 260px; padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-stage" aria-hidden="true"></div>
+
+<!-- NAV (shared) -->
+<nav class="nav glass-quiet">
+  <a href="index.html" class="nav__brand">
+    <span class="nav__logo" aria-hidden="true"><img src="images/episafelogoog.webp" alt=""></span>
+    <span class="wordmark">EpiSafe</span>
+  </a>
+  <div class="nav__links">
+    <a href="product.html" class="nav__link is-active">Product</a>
+    <a href="index.html#app" class="nav__link">App</a>
+    <a href="story.html" class="nav__link">Story</a>
+    <a href="traction.html" class="nav__link">Traction</a>
+  </div>
+  <a href="traction.html" class="nav__cta">Get in touch →</a>
+</nav>
+
+<!-- HERO -->
+<header class="p-hero wrap" data-screen-label="01 Product Hero">
+  <div class="reveal">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> The Product</span>
+    <h1 class="h-display p-hero__title">
+      An EpiPen,<br>
+      <span class="italic-serif">redrawn.</span>
+    </h1>
+    <p class="lede p-hero__lede" style="max-width: 56ch; margin: 0 auto;">
+      We didn't shrink an EpiPen. We rebuilt every part inside , a new mechanism, new geometry, equivalent intramuscular dose , and integrated it into a phone case you'll actually carry.
+    </p>
+  </div>
+
+  <div class="p-stage reveal" style="--d: 200ms">
+    <div class="p-stage__glow" aria-hidden="true"></div>
+    <img src="assets/product-hero-web.png" alt="EpiSafe product hero">
+
+    <div class="p-callouts">
+      <div class="p-callout glass p-callout--left">
+        <span class="p-callout__k">Form</span>
+        <span class="p-callout__v">11.4 mm thin</span>
+        <span class="p-callout__body">Same profile as a premium phone case.</span>
+      </div>
+      <div class="p-callout glass p-callout--right">
+        <span class="p-callout__k">Cartridge</span>
+        <span class="p-callout__v">0.3 mg epinephrine</span>
+        <span class="p-callout__body">Therapeutically equivalent IM dose.</span>
+      </div>
+      <div class="p-callout glass p-callout--bottom">
+        <span class="p-callout__k">Release</span>
+        <span class="p-callout__v">Single pull-tab</span>
+        <span class="p-callout__body">Pull. Press. Done. No safety cap rituals.</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- STEPS -->
+<section class="section wrap" id="how" data-screen-label="02 Steps">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> In the moment</span>
+    <h2 class="h-section">Three steps.<br><span class="italic-serif">Under ten seconds.</span></h2>
+  </div>
+  <div class="steps">
+    <article class="step glass reveal">
+      <span class="step__num">01</span>
+      <h3 class="step__title">Pull the orange tab.</h3>
+      <p class="step__body">A single tug releases the auto-injector from the back of your case , no twisting, no safety cap to fumble with.</p>
+    </article>
+    <article class="step glass reveal" style="--d: 100ms">
+      <span class="step__num">02</span>
+      <h3 class="step__title">Press firmly into the outer thigh.</h3>
+      <p class="step__body">A spring-loaded mechanism deploys the needle and delivers the intramuscular dose. You'll hear a click.</p>
+    </article>
+    <article class="step glass reveal" style="--d: 200ms">
+      <span class="step__num">03</span>
+      <h3 class="step__title">Hold for three seconds. Call 911.</h3>
+      <p class="step__body">Massage the injection area for ten seconds and seek emergency medical care , even if symptoms improve.</p>
+    </article>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section class="section wrap" id="specs" data-screen-label="03 Specs">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> Specifications</span>
+    <h2 class="h-section">Built to disappear<br>until you need it.</h2>
+  </div>
+  <div class="specs">
+    <div class="specs__media glass reveal">
+      <div class="specs__media-glow" aria-hidden="true"></div>
+      <img src="assets/product-hero-web.png" alt="EpiSafe specs view">
+    </div>
+    <div class="specs__table reveal" style="--d: 100ms">
+      <div class="spec-row"><span class="spec-row__k">Thickness</span><span class="spec-row__v">11.4 mm <span class="muted">(0.45 in)</span></span></div>
+      <div class="spec-row"><span class="spec-row__k">Drug</span><span class="spec-row__v">Epinephrine 0.3 mg <span class="muted">/ adult dose</span></span></div>
+      <div class="spec-row"><span class="spec-row__k">Delivery</span><span class="spec-row__v">Intramuscular auto-injection</span></div>
+      <div class="spec-row"><span class="spec-row__k">Cartridge life</span><span class="spec-row__v">18 months <span class="muted">/ replaceable</span></span></div>
+      <div class="spec-row"><span class="spec-row__k">Compatibility</span><span class="spec-row__v">iPhone &middot; MagSafe</span></div>
+      <div class="spec-row"><span class="spec-row__k">Connectivity</span><span class="spec-row__v">Bluetooth LE 5.3 <span class="muted">/ planned</span></span></div>
+      <div class="spec-row"><span class="spec-row__k">Operating temp</span><span class="spec-row__v">15&deg;, 30&deg;C</span></div>
+      <div class="spec-row"><span class="spec-row__k">Regulatory</span><span class="spec-row__v">FDA 505(b)(2) pathway <span class="muted">/ pre-submission</span></span></div>
+      <div class="spec-row"><span class="spec-row__k">Patent</span><span class="spec-row__v">Provisional filed <span class="muted">/ utility + design</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="section wrap" id="comparison" data-screen-label="04 Old vs New">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> Old vs new</span>
+    <h2 class="h-section">From a tube you forget<br><span class="italic-serif">to a case you never leave.</span></h2>
+  </div>
+
+  <div class="compare-row">
+    <article class="compare-card glass reveal">
+      <span class="compare-card__label compare-card__label--old">The Status Quo &middot; est. 1987</span>
+      <h3 class="compare-card__title muted">The EpiPen</h3>
+      <div class="compare-card__media"><img src="assets/epipen-reference.png" alt="EpiPen reference"></div>
+      <div class="stack" style="--g: 8px; color: var(--fg-soft); font-size: 14px;">
+        <div>&times;&nbsp;&nbsp;6 inches long, awkward to pocket</div>
+        <div>&times;&nbsp;&nbsp;Lives in a backpack, drawer, or glovebox</div>
+        <div>&times;&nbsp;&nbsp;56% of patients forget it daily</div>
+      </div>
+    </article>
+
+    <article class="compare-card glass-strong reveal compare-card__media--new" style="--d: 120ms">
+      <span class="compare-card__label compare-card__label--new">EpiSafe &middot; patent pending</span>
+      <h3 class="compare-card__title">In your phone case</h3>
+      <div class="compare-card__media compare-card__media--new"><img src="assets/product-hero-web.png" alt="EpiSafe product"></div>
+      <div class="stack" style="--g: 8px; color: var(--fg-soft); font-size: 14px;">
+        <div><span style="color:var(--o)">✓</span>&nbsp;&nbsp;11.4 mm thin , integrated into a phone case</div>
+        <div><span style="color:var(--o)">✓</span>&nbsp;&nbsp;Lives where your phone lives</div>
+        <div><span style="color:var(--o)">✓</span>&nbsp;&nbsp;One pull-tab. Immediate intramuscular dose.</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section wrap">
+  <div class="cta-block glass-strong reveal" style="padding: clamp(48px, 7vw, 80px)">
+    <h2 class="h-section" style="font-size: clamp(36px, 4.5vw, 60px)">
+      Want a closer look?
+    </h2>
+    <p class="lede center-text">Request the technical brief, dose-equivalence simulations, and product timeline.</p>
+    <div class="cluster" style="justify-content:center">
+      <a href="traction.html" class="btn btn--primary">See the traction <span class="btn__arrow">→</span></a>
+      <a href="index.html#app" class="btn btn--ghost">See the app</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner glass">
+    <div class="footer__col">
+      <div class="footer__brand-row">
+        <span class="nav__logo" aria-hidden="true" style="width:36px;height:36px"><img src="assets/logo-glyph.png" alt=""></span>
+        <span class="wordmark" style="font-size:22px">EpiSafe</span>
+      </div>
+      <p class="footer__tag">Epinephrine that lives in your phone case.</p>
+    </div>
+    <div class="footer__col">
+      <h4>Product</h4>
+      <a href="product.html">How it works</a>
+      <a href="product.html#specs">Specs</a>
+      <a href="index.html#app">Companion app</a>
+    </div>
+    <div class="footer__col">
+      <h4>Company</h4>
+      <a href="story.html">Story</a>
+      <a href="story.html#team">Team</a>
+      <a href="traction.html">Traction</a>
+    </div>
+    <div class="footer__col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@episafe.co">hello@episafe.co</a>
+      <a href="traction.html">For investors</a>
+      <a href="#">Press</a>
+    </div>
+  </div>
+  <div class="footer__base" style="padding-inline: 0">
+    <span>© 2026 <span class="wordmark">EpiSafe</span> LLC · Patent Pending · Pre-FDA submission.</span>
+    <span class="mono"><span class="wordmark">EpiSafe</span>&trade;</span>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
