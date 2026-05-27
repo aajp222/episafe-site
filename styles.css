@@ -96,7 +96,10 @@
    Reset + base
    ============================================ */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
 body {
   margin: 0;
   font-family: var(--font-sans);
@@ -104,7 +107,8 @@ body {
   background: var(--bg-deep);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
   font-size: 17px;
   line-height: 1.5;
   letter-spacing: -0.005em;
@@ -255,8 +259,8 @@ h1, h2, h3, h4, p { margin: 0; }
   line-height: 1;
 }
 .nav__logo {
-  width: 26px;
-  height: 26px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   display: grid;
   place-items: center;
@@ -633,7 +637,7 @@ body.is-menu-open { overflow: hidden; }
     gap: 12px;
   }
   .nav__brand .wordmark { font-size: 17px; }
-  .nav__logo { width: 24px; height: 24px; }
+  .nav__logo { width: 36px; height: 36px; }
   .nav__links { display: none; }
   .nav__cta { display: none; }
   .nav__menu-btn { display: inline-flex; }

@@ -476,8 +476,10 @@
     .cta-block { padding: 40px 24px; gap: 22px; }
     .sticky-block { gap: 32px; }
     .sticky-block__media { height: 360px; }
-    .app-screens { height: 360px; gap: 10px; }
-    .app-screen { width: 140px; border-radius: 24px; }
+    .app-screens { height: 340px; gap: 0; max-width: 100%; overflow: hidden; padding-inline: 4px; }
+    .app-screen { width: 36%; max-width: 130px; border-radius: 22px; }
+    .app-screen--a { margin-right: -6%; }
+    .app-screen--c { margin-left: -6%; }
   }
 
   /* ============================================================
@@ -694,7 +696,7 @@
 <!-- ============ NAV ============ -->
 <nav class="nav glass-quiet" data-screen-label="Nav">
   <a href="index.html" class="nav__brand">
-    <span class="nav__logo" aria-hidden="true"><img src="assets/logo-glyph.png" alt="" style="object-fit: fill"></span>
+    <span class="nav__logo" aria-hidden="true"><img src="assets/logo-glyph-white.png" alt=""></span>
     <span class="wordmark">EpiSafe</span>
   </a>
   <div class="nav__links">
