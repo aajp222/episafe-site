@@ -692,6 +692,32 @@ body.is-menu-open { overflow: hidden; }
 }
 
 /* ============================================
+   CTA block (shared across all pages)
+   ============================================ */
+.cta-block {
+  padding: clamp(56px, 8vw, 96px);
+  border-radius: var(--r-xl);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-block::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at 50% 0%, oklch(0.55 0.18 45 / 0.45), transparent 60%);
+  filter: blur(60px);
+  z-index: -1;
+}
+@media (max-width: 900px) {
+  .cta-block { padding: 40px 24px; gap: 22px; }
+}
+
+/* ============================================
    Socials row (footer + standalone)
    ============================================ */
 .socials {

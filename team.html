@@ -122,6 +122,89 @@
     justify-content: center;
     margin-top: 24px;
   }
+
+  /* Ghost (coming-soon) card variant */
+  .tm-card--ghost {
+    border-style: dashed;
+    border-color: rgba(255,255,255,0.14);
+  }
+  .tm-card--ghost::before { opacity: 0.5; }
+  .tm-card__photo--ghost {
+    display: grid;
+    place-items: center;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    color: var(--fg-mute);
+  }
+  .tm-card__photo--ghost svg { width: 56px; height: 56px; opacity: 0.45; }
+  .tm-card__role--open {
+    color: var(--o);
+    background: oklch(0.65 0.18 50 / 0.12);
+    border: 1px solid oklch(0.65 0.18 50 / 0.28);
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+    display: inline-flex;
+    margin-bottom: 14px;
+  }
+
+  /* Apply to join */
+  .apply {
+    padding: clamp(48px, 7vw, 84px);
+    border-radius: var(--r-xl);
+    position: relative;
+    overflow: hidden;
+  }
+  .apply::after {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(circle at 80% 10%, oklch(0.55 0.18 50 / 0.35), transparent 60%);
+    filter: blur(60px);
+    z-index: -1;
+  }
+  .apply__copy { max-width: 64ch; position: relative; z-index: 1; }
+  .apply__title {
+    font-size: clamp(32px, 4.4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: var(--tracking-tighter);
+    font-weight: 500;
+    margin-block: 18px 22px;
+    text-wrap: balance;
+  }
+  .apply__title .italic-serif { color: var(--o); }
+  .apply__body {
+    color: var(--fg-soft);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  .apply__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--fg-soft);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .apply__list li {
+    padding-left: 22px;
+    position: relative;
+  }
+  .apply__list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--o);
+    font-weight: 500;
+  }
+  @media (max-width: 900px) {
+    .apply { padding: 36px 28px; border-radius: 28px; }
+    .apply__title { font-size: clamp(26px, 7vw, 36px); }
+    .apply__body { font-size: 15px; }
+  }
 </style>
 </head>
 <body>
@@ -170,7 +253,7 @@
         <p class="tm-card__bio">Leads strategy and operations. Owns the path from prototype to FDA submission and brings the team together around a single, uncompromising mission: get epinephrine into pockets.</p>
         <div class="tm-card__now">
           <span class="tm-card__now-k">Working on</span>
-          <span class="tm-card__now-v">FDA 505(b)(2) pathway prep, manufacturing partner outreach, and closing the pre-seed.</span>
+          <span class="tm-card__now-v">FDA 510(k) pathway prep, manufacturing partner outreach, and closing the pre-seed.</span>
         </div>
       </div>
     </article>
@@ -213,6 +296,99 @@
         </div>
       </div>
     </article>
+  </div>
+</section>
+
+<!-- COMING SOON ROLES -->
+<section class="section section--tight wrap" data-screen-label="03 Coming Soon">
+  <div class="section-head reveal" style="margin-bottom: 40px">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> Coming soon</span>
+    <h2 class="h-section" style="font-size: clamp(32px, 4vw, 52px)">
+      The next four<br><span class="italic-serif">we're bringing on.</span>
+    </h2>
+    <p class="lede">As we move from prototype to FDA pre-submission, we're hiring across mechanical, regulatory, software, and operations.</p>
+  </div>
+
+  <div class="tm-grid">
+    <article class="tm-card tm-card--ghost glass reveal">
+      <div class="tm-card__photo tm-card__photo--ghost" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="16" r="7"/><path d="M8 40c2-7 9-12 16-12s14 5 16 12"/></svg>
+      </div>
+      <div>
+        <h2 class="tm-card__name muted">Mechanical Engineer</h2>
+        <span class="tm-card__role tm-card__role--open">Hiring · Full-time</span>
+        <p class="tm-card__bio">Owns the next mechanism revision: spring force, fluid path, and the cartridge geometry that has to survive every drop and every degree.</p>
+        <div class="tm-card__now">
+          <span class="tm-card__now-k">Open role</span>
+          <span class="tm-card__now-v">Hands-on auto-injector or medical-device hardware experience preferred.</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="tm-card tm-card--ghost glass reveal" style="--d: 80ms">
+      <div class="tm-card__photo tm-card__photo--ghost" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="16" r="7"/><path d="M8 40c2-7 9-12 16-12s14 5 16 12"/></svg>
+      </div>
+      <div>
+        <h2 class="tm-card__name muted">Regulatory &amp; Clinical Lead</h2>
+        <span class="tm-card__role tm-card__role--open">Hiring · Contract or full-time</span>
+        <p class="tm-card__bio">Drives the 510(k) submission end-to-end: predicate selection, performance testing protocol, and the Q-Sub meeting with FDA.</p>
+        <div class="tm-card__now">
+          <span class="tm-card__now-k">Open role</span>
+          <span class="tm-card__now-v">Prior 510(k) submission experience for a Class II combination product strongly preferred.</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="tm-card tm-card--ghost glass reveal" style="--d: 160ms">
+      <div class="tm-card__photo tm-card__photo--ghost" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="16" r="7"/><path d="M8 40c2-7 9-12 16-12s14 5 16 12"/></svg>
+      </div>
+      <div>
+        <h2 class="tm-card__name muted">iOS / Firmware Engineer</h2>
+        <span class="tm-card__role tm-card__role--open">Hiring · Full-time</span>
+        <p class="tm-card__bio">Ships the companion app and the firmware that talks to it. Owns Bluetooth LE, device state, and the moments first responders will rely on.</p>
+        <div class="tm-card__now">
+          <span class="tm-card__now-k">Open role</span>
+          <span class="tm-card__now-v">Swift + embedded C / Rust, healthcare or medical-device app experience a plus.</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="tm-card tm-card--ghost glass reveal" style="--d: 240ms">
+      <div class="tm-card__photo tm-card__photo--ghost" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="16" r="7"/><path d="M8 40c2-7 9-12 16-12s14 5 16 12"/></svg>
+      </div>
+      <div>
+        <h2 class="tm-card__name muted">Operations &amp; Supply Lead</h2>
+        <span class="tm-card__role tm-card__role--open">Hiring · Full-time</span>
+        <p class="tm-card__bio">Stands up the manufacturing partner relationship, the BOM, and the path from pilot tooling to volume production.</p>
+        <div class="tm-card__now">
+          <span class="tm-card__now-k">Open role</span>
+          <span class="tm-card__now-v">Hardware ops at a regulated startup, ideally Class II medical or wearables.</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- APPLY TO JOIN -->
+<section class="section section--tight wrap" data-screen-label="04 Apply">
+  <div class="apply glass-strong reveal">
+    <div class="apply__copy">
+      <span class="eyebrow"><span class="eyebrow__dot"></span> Apply to join</span>
+      <h2 class="apply__title">Build the device<br><span class="italic-serif">people will trust with their lives.</span></h2>
+      <p class="apply__body">We're early. The work is unglamorous before it's important. If you've shipped hardware or software inside a regulated company, or you've lived with the carrying problem yourself, we want to hear from you.</p>
+      <ul class="apply__list">
+        <li>Send a short note about what you've shipped.</li>
+        <li>Tell us which open role you're aiming at, or pitch your own.</li>
+        <li>Mention anyone we should also talk to.</li>
+      </ul>
+      <div class="cluster" style="margin-top: 22px">
+        <a href="mailto:hello@episafe.co?subject=Joining%20EpiSafe" class="btn btn--primary">hello@episafe.co <span class="btn__arrow">→</span></a>
+        <a href="https://www.linkedin.com/company/107233218" target="_blank" rel="noopener" class="btn btn--ghost">Follow us on LinkedIn</a>
+      </div>
+    </div>
   </div>
 </section>
 
