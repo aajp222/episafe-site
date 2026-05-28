@@ -251,7 +251,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .nav__brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
 }
 .nav__brand .wordmark {
   font-size: 19px;
@@ -689,4 +689,36 @@ body.is-menu-open { overflow: hidden; }
     border-radius: 18px;
   }
   .tweaks__opt { padding: 10px 6px; font-size: 13px; }
+}
+
+/* ============================================
+   Socials row (footer + standalone)
+   ============================================ */
+.socials {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.socials__link {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-edge);
+  color: var(--fg-soft);
+  transition: background .2s, color .2s, transform .2s, border-color .2s;
+}
+.socials__link:hover {
+  background: oklch(0.65 0.18 50 / 0.15);
+  border-color: oklch(0.65 0.18 50 / 0.4);
+  color: var(--o);
+  transform: translateY(-1px);
+}
+.socials__link svg { width: 16px; height: 16px; }
+.footer__col .socials { margin-top: 4px; }
+@media (max-width: 520px) {
+  .socials__link { width: 36px; height: 36px; }
 }
