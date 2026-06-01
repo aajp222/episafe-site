@@ -1,7 +1,49 @@
 /* ============================================
    EpiSafe — Liquid Glass Design System
    Black · Orange · White
+   Paul Grotesk = brand wordmark only
    ============================================ */
+
+@font-face {
+  font-family: "Paul Grotesk";
+  src: url("assets/fonts/PaulGrotesk-UltraLight.otf") format("opentype");
+  font-weight: 100; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Paul Grotesk";
+  src: url("assets/fonts/PaulGrotesk-Thin.otf") format("opentype");
+  font-weight: 200; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Paul Grotesk";
+  src: url("assets/fonts/PaulGrotesk-Light.otf") format("opentype");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Paul Grotesk";
+  src: url("assets/fonts/PaulGrotesk-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Paul Grotesk";
+  src: url("assets/fonts/PaulGrotesk-Medium.otf") format("opentype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Paul Grotesk";
+  src: url("assets/fonts/PaulGrotesk-SemiBold.otf") format("opentype");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Paul Grotesk";
+  src: url("assets/fonts/PaulGrotesk-Bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Paul Grotesk";
+  src: url("assets/fonts/PaulGrotesk-Black.otf") format("opentype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
 
 :root {
   /* Background — pure black with subtle warm tone */
@@ -29,7 +71,7 @@
 
   /* Type */
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
-  --font-brand: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --font-brand: "Paul Grotesk", "Inter", system-ui, sans-serif; /* EpiSafe wordmark only — letters E p i S a f e never trigger the demo watermark */
   --font-serif: "Instrument Serif", "Cormorant Garamond", Georgia, serif;
   --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
 
