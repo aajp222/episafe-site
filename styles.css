@@ -71,7 +71,7 @@
 
   /* Type */
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
-  --font-brand: "Paul Grotesk", "Inter", system-ui, sans-serif; /* ONLY for the EpiSafe wordmark */
+  --font-brand: "Paul Grotesk", "Inter", system-ui, sans-serif; /* EpiSafe wordmark only — letters E p i S a f e never trigger the demo watermark */
   --font-serif: "Instrument Serif", "Cormorant Garamond", Georgia, serif;
   --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
 
