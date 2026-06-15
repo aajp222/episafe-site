@@ -147,6 +147,52 @@
     margin-bottom: 14px;
   }
 
+  /* Advisors */
+  .adv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .adv-card {
+    padding: 28px 26px;
+    border-radius: var(--r);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 180px;
+  }
+  .adv-card__name {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+    color: var(--fg);
+    transition: color .2s;
+  }
+  a.adv-card__name:hover { color: var(--o); }
+  .adv-card__role {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--o);
+  }
+  .adv-card__bio {
+    color: var(--fg-soft);
+    font-size: 14px;
+    line-height: 1.55;
+    margin-top: auto;
+  }
+  .adv-card__link {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    color: var(--fg-mute);
+    margin-top: 14px;
+    transition: color .2s;
+  }
+  .adv-card__link:hover { color: var(--o); }
+  @media (max-width: 900px) { .adv-grid { grid-template-columns: 1fr; } }
+
   /* Apply to join */
   .apply {
     padding: clamp(48px, 7vw, 84px);
@@ -299,8 +345,40 @@
   </div>
 </section>
 
+<!-- ADVISORS -->
+<section class="section section--tight wrap" data-screen-label="03 Advisors">
+  <div class="section-head reveal" style="margin-bottom: 40px">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> Advisors</span>
+    <h2 class="h-section" style="font-size: clamp(32px, 4vw, 52px)">
+      Guided by people who've<br><span class="italic-serif">built and shipped before.</span>
+    </h2>
+    <p class="lede">Business, regulatory, and venture advisors who keep us honest on the path from prototype to FDA submission.</p>
+  </div>
+
+  <div class="adv-grid">
+    <article class="adv-card glass reveal">
+      <a class="adv-card__name" href="https://www.linkedin.com/in/evanlcox/" target="_blank" rel="noopener">Evan Cox</a>
+      <span class="adv-card__role">Business &amp; strategy</span>
+      <p class="adv-card__bio">Advises on company strategy, fundraising, and go-to-market as EpiSafe moves from concept to a fundable medical-device company.</p>
+      <a class="adv-card__link" href="https://www.linkedin.com/in/evanlcox/" target="_blank" rel="noopener">LinkedIn →</a>
+    </article>
+    <article class="adv-card glass reveal" style="--d: 80ms">
+      <a class="adv-card__name" href="https://www.linkedin.com/in/gumbrell/" target="_blank" rel="noopener">George Gumbrell</a>
+      <span class="adv-card__role">Regulatory · FDA</span>
+      <p class="adv-card__bio">Brings FDA and regulatory experience to the combination-product strategy , predicate selection and the road to a 510(k) pre-submission.</p>
+      <a class="adv-card__link" href="https://www.linkedin.com/in/gumbrell/" target="_blank" rel="noopener">LinkedIn →</a>
+    </article>
+    <article class="adv-card glass reveal" style="--d: 160ms">
+      <a class="adv-card__name" href="https://www.linkedin.com/in/ardianpreci/" target="_blank" rel="noopener">Ardian Preci</a>
+      <span class="adv-card__role">WPI i3 Lab</span>
+      <p class="adv-card__bio">Our WPI i3 Lab advisor , mentoring the team through the accelerator and opening doors across the medical-device and investor network.</p>
+      <a class="adv-card__link" href="https://www.linkedin.com/in/ardianpreci/" target="_blank" rel="noopener">LinkedIn →</a>
+    </article>
+  </div>
+</section>
+
 <!-- COMING SOON ROLES -->
-<section class="section section--tight wrap" data-screen-label="03 Coming Soon">
+<section class="section section--tight wrap" data-screen-label="04 Coming Soon">
   <div class="section-head reveal" style="margin-bottom: 40px">
     <span class="eyebrow"><span class="eyebrow__dot"></span> Coming soon</span>
     <h2 class="h-section" style="font-size: clamp(32px, 4vw, 52px)">
