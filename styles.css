@@ -483,6 +483,8 @@ section { position: relative; z-index: 1; }
   font-size: 13px;
   color: var(--fg-mute);
 }
+.footer__legal a { color: var(--fg-mute); transition: color .2s; }
+.footer__legal a:hover { color: var(--o); }
 
 @media (max-width: 880px) {
   .footer__inner { grid-template-columns: 1fr 1fr; padding: 32px; }
