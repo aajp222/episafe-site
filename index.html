@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="no-fouc">
+<html lang="en" class="no-fouc" data-tweak-vibe="cinematic" data-tweak-orange="statement" data-tweak-density="editorial">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -977,101 +977,6 @@
     <span class="mono"><span class="wordmark">EpiSafe</span>&trade;</span>
   </div>
 </footer>
-
-<!-- ============ TWEAKS PANEL ============ -->
-<aside class="tweaks" id="tweaks" aria-label="Tweaks">
-  <div class="tweaks__head">
-    <span class="tweaks__title">Tweaks</span>
-    <button type="button" class="tweaks__close" id="tweaks-close" aria-label="Close tweaks">
-      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-    </button>
-  </div>
-
-  <div class="tweaks__group">
-    <span class="tweaks__label">Vibe</span>
-    <div class="tweaks__seg" data-tweak-key="vibe">
-      <div class="tweaks__opt" data-key="vibe" data-value="quiet">Quiet</div>
-      <div class="tweaks__opt" data-key="vibe" data-value="cinematic">Cinematic</div>
-    </div>
-  </div>
-
-  <div class="tweaks__group">
-    <span class="tweaks__label">Orange</span>
-    <div class="tweaks__seg" data-tweak-key="orange">
-      <div class="tweaks__opt" data-key="orange" data-value="whisper">Whisper</div>
-      <div class="tweaks__opt" data-key="orange" data-value="statement">Statement</div>
-      <div class="tweaks__opt" data-key="orange" data-value="loud">Loud</div>
-    </div>
-  </div>
-
-  <div class="tweaks__group">
-    <span class="tweaks__label">Density</span>
-    <div class="tweaks__seg" data-tweak-key="density">
-      <div class="tweaks__opt" data-key="density" data-value="editorial">Editorial</div>
-      <div class="tweaks__opt" data-key="density" data-value="spacious">Spacious</div>
-    </div>
-  </div>
-</aside>
-
-<script>
-(function () {
-  'use strict';
-
-  // Defaults — the host can rewrite the JSON block on disk
-  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-    "vibe": "cinematic",
-    "orange": "statement",
-    "density": "editorial"
-  }/*EDITMODE-END*/;
-
-  const state = Object.assign({}, TWEAK_DEFAULTS);
-  const root = document.documentElement;
-  const panel = document.getElementById('tweaks');
-  const closeBtn = document.getElementById('tweaks-close');
-
-  function apply() {
-    root.setAttribute('data-tweak-vibe', state.vibe);
-    root.setAttribute('data-tweak-orange', state.orange);
-    root.setAttribute('data-tweak-density', state.density);
-    document.querySelectorAll('.tweaks__opt').forEach(el => {
-      const k = el.dataset.key, v = el.dataset.value;
-      el.setAttribute('aria-selected', state[k] === v ? 'true' : 'false');
-    });
-  }
-  apply();
-
-  // Wire segmented controls
-  document.querySelectorAll('.tweaks__opt').forEach(el => {
-    el.addEventListener('click', () => {
-      const k = el.dataset.key, v = el.dataset.value;
-      if (state[k] === v) return;
-      state[k] = v;
-      apply();
-      try {
-        window.parent.postMessage({type: '__edit_mode_set_keys', edits: { [k]: v }}, '*');
-      } catch (e) {}
-    });
-  });
-
-  // Edit mode protocol
-  function open()  { panel.classList.add('is-open'); }
-  function close() {
-    panel.classList.remove('is-open');
-    try { window.parent.postMessage({type: '__edit_mode_dismissed'}, '*'); } catch (e) {}
-  }
-  closeBtn.addEventListener('click', close);
-
-  window.addEventListener('message', (ev) => {
-    const d = ev.data;
-    if (!d || typeof d !== 'object') return;
-    if (d.type === '__activate_edit_mode')   open();
-    if (d.type === '__deactivate_edit_mode') panel.classList.remove('is-open');
-  });
-
-  // Announce availability
-  try { window.parent.postMessage({type: '__edit_mode_available'}, '*'); } catch (e) {}
-})();
-</script>
 
 <script src="site.js"></script>
 </body>

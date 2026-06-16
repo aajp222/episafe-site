@@ -5,6 +5,10 @@
   // Mark ready
   document.documentElement.classList.add('ready');
 
+  const reduceMotion = window.matchMedia
+    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    : false;
+
   // Intersection observer for .reveal elements
   const io = new IntersectionObserver(
     (entries) => {
@@ -32,7 +36,7 @@
 
   // Parallax/scroll-bound elements (data-parallax="speed")
   const parallaxEls = document.querySelectorAll('[data-parallax]');
-  if (parallaxEls.length) {
+  if (parallaxEls.length && !reduceMotion) {
     let ticking = false;
     const apply = () => {
       const y = window.scrollY;
@@ -67,6 +71,11 @@
         const el = e.target;
         const target = parseFloat(el.dataset.count);
         const decimals = parseInt(el.dataset.decimals || '0', 10);
+        if (reduceMotion) {
+          el.textContent = decimals ? target.toFixed(decimals) : Math.round(target).toLocaleString();
+          sio.unobserve(el);
+          return;
+        }
         const dur = 1400;
         const start = performance.now();
         const tick = (t) => {
@@ -84,7 +93,7 @@
   }
 
   // Hero pointer-driven tilt (subtle)
-  const tiltEls = document.querySelectorAll('[data-tilt]');
+  const tiltEls = reduceMotion ? [] : document.querySelectorAll('[data-tilt]');
   tiltEls.forEach((el) => {
     let raf;
     const max = parseFloat(el.dataset.tilt) || 6;

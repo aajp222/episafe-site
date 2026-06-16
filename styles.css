@@ -122,6 +122,23 @@ h1, h2, h3, h4, p { margin: 0; }
 
 ::selection { background: var(--o); color: #000; }
 
+/* Keyboard focus visibility */
+:focus-visible {
+  outline: 2px solid var(--o-soft);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ============================================
    Ambient background — single warm orange glow + grain
    ============================================ */
