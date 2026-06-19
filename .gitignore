@@ -2,3 +2,10 @@ __pycache__/
 .pytest_cache/
 *.pyc
 .DS_Store
+
+# Worker / Cloudflare
+node_modules/
+worker/node_modules/
+worker/.wrangler/
+worker/.dev.vars
+.dev.vars
