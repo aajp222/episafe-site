@@ -6,11 +6,11 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "db:create": "wrangler d1 create episafe-cms",
-    "db:migrate": "wrangler d1 migrations apply episafe-cms --remote",
-    "db:migrate:local": "wrangler d1 migrations apply episafe-cms --local",
-    "db:seed": "wrangler d1 execute episafe-cms --remote --file=./migrations/0002_seed.sql",
-    "db:seed:local": "wrangler d1 execute episafe-cms --local --file=./migrations/0002_seed.sql"
+    "db:create": "wrangler d1 create episafewebsite",
+    "db:migrate": "wrangler d1 migrations apply episafewebsite --remote",
+    "db:migrate:local": "wrangler d1 migrations apply episafewebsite --local",
+    "db:seed": "wrangler d1 execute episafewebsite --remote --file=./migrations/0002_seed.sql",
+    "db:seed:local": "wrangler d1 execute episafewebsite --local --file=./migrations/0002_seed.sql"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"

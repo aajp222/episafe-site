@@ -18,8 +18,8 @@ binding = "ASSETS"
 # ---------------------------------------------------------------------------
 [[d1_databases]]
 binding = "DB"
-database_name = "episafe-cms"
-database_id = "REPLACE_WITH_DATABASE_ID"
+database_name = "episafewebsite"
+database_id = "c39d5962-2aaa-428c-b9f7-b2aee56f6963"
 
 # ---------------------------------------------------------------------------
 # Routes — put the Worker in front of /api and /admin on your live domain so
