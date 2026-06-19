@@ -9,3 +9,10 @@ worker/node_modules/
 worker/.wrangler/
 worker/.dev.vars
 .dev.vars
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
