@@ -144,6 +144,22 @@ select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg x
 .toggle input:focus-visible + .toggle__track { outline: 2px solid var(--o-glow); outline-offset: 2px; }
 .toggle__label { font-size: 14px; color: var(--fg-soft); }
 
+/* image upload field */
+.photo-field { display: flex; flex-direction: column; gap: 8px; }
+.photo-field__row { display: flex; gap: 14px; align-items: stretch; }
+.photo-field__preview {
+  position: relative; width: 76px; height: 76px; flex-shrink: 0; border-radius: var(--r-sm);
+  overflow: hidden; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-edge);
+  display: flex; align-items: center; justify-content: center;
+}
+.photo-field__preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo-field__preview img[hidden] { display: none; }
+.photo-field__ph { display: none; font-size: 11px; color: var(--fg-faint); text-align: center; padding: 0 6px; }
+.photo-field__preview img[hidden] + .photo-field__ph { display: block; }
+.photo-field__controls { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+.photo-field__btn { align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+.photo-field__btn.is-loading { opacity: 0.65; pointer-events: none; }
+
 .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 @media (max-width: 640px) { .row2 { grid-template-columns: 1fr; } }
 
