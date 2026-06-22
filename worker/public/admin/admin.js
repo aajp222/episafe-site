@@ -303,6 +303,7 @@
       field('Bio', '<textarea name="bio">' + esc(p.bio) + '</textarea>') +
       field('Working on', '<textarea name="working_on">' + esc(p.working_on) + '</textarea>') +
       photoField('Photo', 'photo_url', p.photo_url, 'Upload an image, or paste a path on the site / a full https:// URL.') +
+      field('LinkedIn URL', '<input type="url" name="linkedin_url" value="' + attr(p.linkedin_url) + '" placeholder="https://www.linkedin.com/in/username/">', 'Clicking the photo on the live site opens this profile.') +
       '<div class="row2">' +
         field('Sort order', '<input type="number" name="sort_order" value="' + attr(p.sort_order || 0) + '">') +
         field('Linked login', '<select name="user_id">' + userOpts + '</select>') +
@@ -312,7 +313,7 @@
     bindEditor('profileForm', ed, async (data) => {
       const payload = {
         name: data.name, role: data.role, bio: data.bio, working_on: data.working_on,
-        photo_url: data.photo_url, sort_order: Number(data.sort_order) || 0,
+        photo_url: data.photo_url, linkedin_url: data.linkedin_url, sort_order: Number(data.sort_order) || 0,
         published: !!data.published, user_id: data.user_id ? Number(data.user_id) : null,
       };
       if (p.id) await api('PUT', '/profiles/' + p.id, payload);
@@ -341,12 +342,14 @@
         field('Bio', '<textarea name="bio">' + esc(p.bio) + '</textarea>') +
         field('Working on', '<textarea name="working_on">' + esc(p.working_on) + '</textarea>') +
         photoField('Photo', 'photo_url', p.photo_url, 'Upload an image, or paste a path / https:// URL.') +
+        field('LinkedIn URL', '<input type="url" name="linkedin_url" value="' + attr(p.linkedin_url) + '" placeholder="https://www.linkedin.com/in/username/">', 'Clicking your photo on the live site opens this.') +
         '<div class="editor__foot"><button class="btn btn--primary" type="submit">Save changes</button>' +
         (p.published ? '<span class="pill pub">Live</span>' : '<span class="pill draft">Hidden — ask an admin to publish</span>') + '</div>' +
       '</form>';
     bindEditor('myProfileForm', null, async (data) => {
       await api('PUT', '/profiles/' + p.id, {
-        name: data.name, role: data.role, bio: data.bio, working_on: data.working_on, photo_url: data.photo_url,
+        name: data.name, role: data.role, bio: data.bio, working_on: data.working_on,
+        photo_url: data.photo_url, linkedin_url: data.linkedin_url,
       });
       toast('Profile saved', 'ok');
     });

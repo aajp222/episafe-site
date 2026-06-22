@@ -231,6 +231,7 @@ async function handleApi(request, env, url) {
               bio: clean(b.bio, 4000),
               working_on: clean(b.working_on, 2000),
               photo_url: clean(b.photo_url, 1000),
+              linkedin_url: clean(b.linkedin_url, 500),
             };
         await db.updateProfile(env.DB, id, merged);
         if (user.role === 'admin' && 'user_id' in b) await db.assignProfileUser(env.DB, id, b.user_id || null);
@@ -383,6 +384,7 @@ function profileFromBody(b, { admin } = {}) {
     bio: clean(b.bio, 4000),
     working_on: clean(b.working_on, 2000),
     photo_url: clean(b.photo_url, 1000),
+    linkedin_url: clean(b.linkedin_url, 500),
     sort_order: Number(b.sort_order) || 0,
     published: b.published ? 1 : 0,
   };
@@ -415,6 +417,7 @@ function shapeTeam(rows) {
   return rows.map((r) => ({
     id: r.id, name: r.name, role: r.role, bio: r.bio,
     working_on: r.working_on, photo_url: r.photo_url,
+    linkedin_url: r.linkedin_url || '',
   }));
 }
 
