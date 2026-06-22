@@ -20,6 +20,16 @@ compatibility_date = "2024-11-01"
 workers_dev = true
 
 # ---------------------------------------------------------------------------
+# Custom domain. The episafe.co zone is on Cloudflare, so this provisions
+# admin.episafe.co as a proxied DNS record + TLS cert pointing at this Worker
+# automatically on deploy. The admin panel then lives at
+# https://admin.episafe.co/admin and the API at https://admin.episafe.co/api.
+# ---------------------------------------------------------------------------
+routes = [
+  { pattern = "admin.episafe.co", custom_domain = true }
+]
+
+# ---------------------------------------------------------------------------
 # Static assets — serves ONLY the admin panel (worker/public/admin/...),
 # reachable at /admin. The marketing site keeps serving from its own host.
 # ---------------------------------------------------------------------------

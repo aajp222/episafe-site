@@ -22,15 +22,15 @@ database_name = "episafewebsite"
 database_id = "c39d5962-2aaa-428c-b9f7-b2aee56f6963"
 
 # ---------------------------------------------------------------------------
-# Routes — put the Worker in front of /api and /admin on your live domain so
-# the rest of the static site keeps serving from wherever it lives today.
-# Uncomment and set your zone after the database is created.
+# Custom domain. The episafe.co zone is on Cloudflare, so this provisions
+# admin.episafe.co (proxied DNS record + TLS cert) pointing at this Worker on
+# deploy. Admin panel: https://admin.episafe.co/admin · API: /api.
+# NOTE: deploys use the root ./wrangler.toml; this mirror keeps `npm run deploy`
+# from inside worker/ consistent.
 # ---------------------------------------------------------------------------
-# routes = [
-#   { pattern = "episafe.co/api/*", zone_name = "episafe.co" },
-#   { pattern = "episafe.co/admin", zone_name = "episafe.co" },
-#   { pattern = "episafe.co/admin/*", zone_name = "episafe.co" }
-# ]
+routes = [
+  { pattern = "admin.episafe.co", custom_domain = true }
+]
 
 # Optional: image uploads for profile photos. Create with:
 #   npx wrangler r2 bucket create episafe-uploads
