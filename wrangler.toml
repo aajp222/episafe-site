@@ -1,0 +1,42 @@
+# ===========================================================================
+# Root Wrangler config for Cloudflare Workers Builds.
+#
+# Cloudflare's git integration runs `npx wrangler deploy` from the REPOSITORY
+# ROOT. Without a config here, it auto-detects the repo as a static site and
+# deploys every file (no backend, no database) — which is what happened on the
+# first deploy. This file makes that same command deploy the real admin
+# backend: the Worker in worker/src, the D1 binding, and only the admin panel
+# as static assets.
+#
+# It intentionally mirrors worker/wrangler.toml (used for local `npm run dev`
+# from inside worker/). Keep the two in sync. Paths below are relative to this
+# file, so they point into the worker/ subfolder.
+# ===========================================================================
+name = "episafe-admin"
+main = "worker/src/index.js"
+compatibility_date = "2024-11-01"
+
+# Keep the stable https://episafe-admin.<account>.workers.dev URL.
+workers_dev = true
+
+# ---------------------------------------------------------------------------
+# Static assets — serves ONLY the admin panel (worker/public/admin/...),
+# reachable at /admin. The marketing site keeps serving from its own host.
+# ---------------------------------------------------------------------------
+[assets]
+directory = "worker/public"
+binding = "ASSETS"
+
+# ---------------------------------------------------------------------------
+# D1 database binding (already created).
+# ---------------------------------------------------------------------------
+[[d1_databases]]
+binding = "DB"
+database_name = "episafewebsite"
+database_id = "c39d5962-2aaa-428c-b9f7-b2aee56f6963"
+
+[vars]
+# Allowed browser origins for cross-site reads/writes (CORS + Origin checks).
+# The admin panel runs same-origin on workers.dev, so it doesn't need listing
+# here; these are the public marketing pages that fetch /api/public/*.
+ALLOWED_ORIGINS = "https://episafe.co,https://www.episafe.co"
