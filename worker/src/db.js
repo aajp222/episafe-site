@@ -193,3 +193,27 @@ export function updateRole(db, id, r) {
 export function deleteRole(db, id) {
   return db.prepare('DELETE FROM open_roles WHERE id = ?').bind(id).run();
 }
+
+// ---- waitlist ----------------------------------------------------------
+export function addWaitlist(db, { email, source, referrer }) {
+  return db
+    .prepare('INSERT OR IGNORE INTO waitlist (email, source, referrer) VALUES (?,?,?)')
+    .bind(email, source || '', referrer || '')
+    .run();
+}
+
+export async function countWaitlist(db) {
+  const row = await db.prepare('SELECT COUNT(*) AS n FROM waitlist').first();
+  return row ? row.n : 0;
+}
+
+export async function listWaitlist(db) {
+  const { results } = await db
+    .prepare('SELECT id, email, source, referrer, created_at FROM waitlist ORDER BY created_at DESC, id DESC')
+    .all();
+  return results || [];
+}
+
+export function deleteWaitlist(db, id) {
+  return db.prepare('DELETE FROM waitlist WHERE id = ?').bind(id).run();
+}

@@ -102,6 +102,23 @@ async function handleApi(request, env, url) {
   const seg = path.replace(/^\/api\/?/, '').split('/').filter(Boolean);
   // seg = [] for /api, ['public','team'] for /api/public/team, etc.
 
+  // ---- waitlist (public: join + live count) -----------------------------
+  if (seg[0] === 'public' && seg[1] === 'waitlist') {
+    if (method === 'GET') return json({ count: await db.countWaitlist(env.DB) });
+    if (method === 'POST') {
+      if (!originAllowed(request, env)) return error(403, 'Bad origin');
+      const body = await readJson(request);
+      if (!body || !isEmail(body.email)) return error(400, 'A valid email is required');
+      await db.addWaitlist(env.DB, {
+        email: String(body.email).trim().toLowerCase().slice(0, 200),
+        source: clean(body.source, 60),
+        referrer: clean(body.referrer, 300),
+      });
+      return json({ ok: true, count: await db.countWaitlist(env.DB) });
+    }
+    return error(405, 'Method not allowed');
+  }
+
   // ---- public (no auth) -------------------------------------------------
   if (seg[0] === 'public' && method === 'GET') {
     if (seg[1] === 'team') return json({ team: shapeTeam(await db.listTeam(env.DB, { publishedOnly: true })) });
@@ -340,6 +357,21 @@ async function handleApi(request, env, url) {
       }
     }
     return error(404, 'Unknown users route');
+  }
+
+  // ---- waitlist (admin only) -------------------------------------------
+  if (seg[0] === 'waitlist') {
+    requireAdmin(user);
+    if (method === 'GET' && !seg[1]) {
+      const rows = await db.listWaitlist(env.DB);
+      return json({ waitlist: rows, count: rows.length });
+    }
+    const id = Number(seg[1]);
+    if (id && method === 'DELETE') {
+      await db.deleteWaitlist(env.DB, id);
+      return json({ ok: true });
+    }
+    return error(404, 'Unknown waitlist route');
   }
 
   return error(404, 'Unknown API route');

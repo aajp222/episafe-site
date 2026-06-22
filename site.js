@@ -5,6 +5,9 @@
   // Mark ready
   document.documentElement.classList.add('ready');
 
+  const prefersReduced = window.matchMedia
+    && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // Intersection observer for .reveal elements
   const io = new IntersectionObserver(
     (entries) => {
@@ -32,7 +35,7 @@
 
   // Parallax/scroll-bound elements (data-parallax="speed")
   const parallaxEls = document.querySelectorAll('[data-parallax]');
-  if (parallaxEls.length) {
+  if (parallaxEls.length && !prefersReduced) {
     let ticking = false;
     const apply = () => {
       const y = window.scrollY;
@@ -67,6 +70,11 @@
         const el = e.target;
         const target = parseFloat(el.dataset.count);
         const decimals = parseInt(el.dataset.decimals || '0', 10);
+        if (prefersReduced) {
+          el.textContent = decimals ? target.toFixed(decimals) : Math.round(target).toLocaleString();
+          sio.unobserve(el);
+          return;
+        }
         const dur = 1400;
         const start = performance.now();
         const tick = (t) => {
@@ -84,7 +92,7 @@
   }
 
   // Hero pointer-driven tilt (subtle)
-  const tiltEls = document.querySelectorAll('[data-tilt]');
+  const tiltEls = prefersReduced ? [] : document.querySelectorAll('[data-tilt]');
   tiltEls.forEach((el) => {
     let raf;
     const max = parseFloat(el.dataset.tilt) || 6;
@@ -165,6 +173,47 @@
     // Close on escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && sheet.classList.contains('is-open')) close();
+    });
+  })();
+
+  // ---------- Waitlist: own-backend capture + analytics + social proof ----------
+  (function waitlist() {
+    const form = document.getElementById('waitlist-form');
+    const proof = document.getElementById('waitlist-proof');
+    const API = (window.EPISAFE_API || 'https://episafe-admin.aaryanpanchal.workers.dev') + '/api/public/waitlist';
+
+    function showCount(n) {
+      // Only show social proof once it's a number worth showing.
+      if (!proof || !n || n < 25) return;
+      proof.innerHTML = 'Join <strong>' + n.toLocaleString() + '+</strong> people already on the waitlist.';
+      proof.classList.add('is-on');
+    }
+
+    if (proof) {
+      fetch(API, { method: 'GET' })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => { if (d) showCount(d.count); })
+        .catch(() => {});
+    }
+
+    if (!form) return;
+    form.addEventListener('submit', () => {
+      const input = form.querySelector('input[type=email]');
+      const email = input && input.value && input.value.trim();
+      if (!email) return;
+      // Save the lead to our own backend (fire-and-forget; Formspree still runs).
+      try {
+        fetch(API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, source: 'index', referrer: document.referrer || '' }),
+        })
+          .then((r) => (r.ok ? r.json() : null))
+          .then((d) => { if (d && d.count) showCount(d.count); })
+          .catch(() => {});
+      } catch (e) { /* ignore */ }
+      // Conversion goal in Plausible (no-op if analytics not loaded).
+      try { if (typeof window.plausible === 'function') window.plausible('Waitlist Signup'); } catch (e) { /* ignore */ }
     });
   })();
 })();
