@@ -45,6 +45,14 @@ binding = "DB"
 database_name = "episafewebsite"
 database_id = "c39d5962-2aaa-428c-b9f7-b2aee56f6963"
 
+# ---------------------------------------------------------------------------
+# KV namespace for uploaded images (profile photos, news images). The admin
+# panel POSTs to /api/uploads; files are served back from /uploads/<key>.
+# ---------------------------------------------------------------------------
+[[kv_namespaces]]
+binding = "UPLOADS"
+id = "ff86f41cf77544eb8f7841475d5f667c"
+
 [vars]
 # Allowed browser origins for cross-site reads/writes (CORS + Origin checks).
 # The admin panel runs same-origin on workers.dev, so it doesn't need listing

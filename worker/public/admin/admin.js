@@ -199,6 +199,30 @@
     return '<label class="toggle field"><input type="checkbox" name="' + name + '"' + (checked ? ' checked' : '') + '>' +
       '<span class="toggle__track"></span><span class="toggle__label">' + esc(label) + '</span></label>';
   }
+  // A text field for an image, with a live preview + "Upload image" picker.
+  // The hidden file input has no name, so it never lands in the saved payload;
+  // a successful upload just fills the visible URL field.
+  function photoField(label, name, value, hint) {
+    var v = value || '';
+    return '<div class="field photo-field">' +
+      '<span class="field__label">' + esc(label) + '</span>' +
+      '<div class="photo-field__row">' +
+        '<div class="photo-field__preview">' +
+          '<img alt=""' + (v ? ' src="' + attr(thumb(v)) + '"' : ' hidden') + ' onerror="this.hidden=true">' +
+          '<span class="photo-field__ph">No image</span>' +
+        '</div>' +
+        '<div class="photo-field__controls">' +
+          '<input type="text" name="' + name + '" value="' + attr(v) + '" placeholder="Upload an image, or paste a path / https:// URL">' +
+          '<label class="btn btn--ghost btn--sm photo-field__btn">' +
+            '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 16v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3"/></svg>' +
+            '<span class="photo-field__btn-text">Upload image</span>' +
+            '<input type="file" accept="image/png,image/jpeg,image/gif,image/webp,image/avif" data-upload hidden>' +
+          '</label>' +
+        '</div>' +
+      '</div>' +
+      (hint ? '<span class="field__hint">' + esc(hint) + '</span>' : '') +
+    '</div>';
+  }
   function pubPill(p) { return p ? '<span class="pill pub">Live</span>' : '<span class="pill draft">Draft</span>'; }
 
   // ============================================================
@@ -278,7 +302,7 @@
       field('Role', '<input type="text" name="role" value="' + attr(p.role) + '" placeholder="CEO · Founder">') +
       field('Bio', '<textarea name="bio">' + esc(p.bio) + '</textarea>') +
       field('Working on', '<textarea name="working_on">' + esc(p.working_on) + '</textarea>') +
-      field('Photo URL', '<input type="text" name="photo_url" value="' + attr(p.photo_url) + '" placeholder="assets/team-name.png">', 'Path on the site or a full https:// image URL.') +
+      photoField('Photo', 'photo_url', p.photo_url, 'Upload an image, or paste a path on the site / a full https:// URL.') +
       '<div class="row2">' +
         field('Sort order', '<input type="number" name="sort_order" value="' + attr(p.sort_order || 0) + '">') +
         field('Linked login', '<select name="user_id">' + userOpts + '</select>') +
@@ -295,6 +319,7 @@
       else await api('POST', '/profiles', payload);
       toast('Profile saved', 'ok'); loadTeam();
     });
+    bindUploads(ed);
   }
 
   // ---- My profile (employee) ----
@@ -315,7 +340,7 @@
         field('Role', '<input type="text" name="role" value="' + attr(p.role) + '" placeholder="Title · Founder">') +
         field('Bio', '<textarea name="bio">' + esc(p.bio) + '</textarea>') +
         field('Working on', '<textarea name="working_on">' + esc(p.working_on) + '</textarea>') +
-        field('Photo URL', '<input type="text" name="photo_url" value="' + attr(p.photo_url) + '">', 'Path on the site or a full https:// image URL.') +
+        photoField('Photo', 'photo_url', p.photo_url, 'Upload an image, or paste a path / https:// URL.') +
         '<div class="editor__foot"><button class="btn btn--primary" type="submit">Save changes</button>' +
         (p.published ? '<span class="pill pub">Live</span>' : '<span class="pill draft">Hidden — ask an admin to publish</span>') + '</div>' +
       '</form>';
@@ -325,6 +350,7 @@
       });
       toast('Profile saved', 'ok');
     });
+    bindUploads(main());
   };
 
   // ---- News (admin) ----
@@ -363,8 +389,9 @@
       field('Title', '<input type="text" name="title" value="' + attr(p.title) + '" required>') +
       '<div class="row2">' +
         field('Date', '<input type="date" name="date" value="' + attr(p.date) + '">') +
-        field('Image URL', '<input type="text" name="image_url" value="' + attr(p.image_url) + '" placeholder="assets/story-lab.jpg">') +
+        '<div></div>' +
       '</div>' +
+      photoField('Image', 'image_url', p.image_url, 'Optional. Upload an image, or paste a path / https:// URL.') +
       field('Excerpt', '<textarea name="excerpt" style="min-height:60px">' + esc(p.excerpt) + '</textarea>', 'Short summary shown in the list.') +
       field('Body', '<textarea name="body" style="min-height:220px">' + esc(p.body) + '</textarea>', 'Plain text or simple HTML.') +
       toggle('published', 'Publish to the live site', !!p.published) +
@@ -378,6 +405,7 @@
       else await api('POST', '/news', payload);
       toast('Post saved', 'ok'); loadNews();
     });
+    bindUploads(ed);
   }
 
   // ---- Open roles (admin) ----
@@ -550,6 +578,40 @@
     if (!url) return '';
     if (/^https?:\/\//.test(url) || url.startsWith('/')) return url;
     return 'https://episafe.co/' + url.replace(/^\.?\//, '');
+  }
+  // Wire every photoField file picker inside `scope` to the upload endpoint.
+  function bindUploads(scope) {
+    (scope || document).querySelectorAll('input[type=file][data-upload]').forEach(function (input) {
+      input.addEventListener('change', function () {
+        var file = input.files && input.files[0];
+        if (!file) return;
+        var wrap = input.closest('.photo-field');
+        var textInput = wrap.querySelector('input[type=text]');
+        var img = wrap.querySelector('.photo-field__preview img');
+        var btn = input.closest('.photo-field__btn');
+        var labelEl = btn && btn.querySelector('.photo-field__btn-text');
+        var prev = labelEl ? labelEl.textContent : '';
+        if (file.size > 5 * 1024 * 1024) { toast('Image too large — max 5 MB', 'err'); input.value = ''; return; }
+        if (btn) btn.classList.add('is-loading');
+        if (labelEl) labelEl.textContent = 'Uploading…';
+        var fd = new FormData();
+        fd.append('file', file);
+        fetch('/api/uploads', { method: 'POST', credentials: 'same-origin', body: fd })
+          .then(function (res) { return res.json().catch(function () { return {}; }).then(function (d) { return { ok: res.ok, d: d }; }); })
+          .then(function (r) {
+            if (!r.ok) throw new Error((r.d && r.d.error) || 'Upload failed');
+            if (textInput) textInput.value = r.d.url;
+            if (img) { img.src = r.d.url; img.hidden = false; }
+            toast('Image uploaded', 'ok');
+          })
+          .catch(function (err) { toast(err.message, 'err'); })
+          .finally(function () {
+            if (btn) btn.classList.remove('is-loading');
+            if (labelEl) labelEl.textContent = prev || 'Upload image';
+            input.value = '';
+          });
+      });
+    });
   }
 
   boot();

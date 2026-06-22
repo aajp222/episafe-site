@@ -74,12 +74,13 @@ Finally, open `https://episafe.co/admin` and create your owner account.
 > Claude can run all of these steps for you against your connected Cloudflare
 > account when you're ready — just say the word.
 
-### Optional: profile photo uploads
+### Profile photo uploads
 
-The panel uses image **URLs** today (paste a path like `assets/team-you.png`
-or a hosted `https://…` image). To allow direct uploads, create an R2 bucket
-and uncomment the `[[r2_buckets]]` block in `wrangler.toml` — wired support can
-be added on request.
+Built in. Every image field in the panel has an **Upload image** button with a
+live preview — pick a file (PNG/JPG/GIF/WebP/AVIF, up to 5 MB) and it's stored
+in a Cloudflare **KV** namespace (`UPLOADS` binding) and served back from
+`/uploads/<key>` with a long, immutable cache. You can still paste a path or a
+full `https://…` URL instead if you prefer.
 
 ---
 

@@ -32,12 +32,13 @@ routes = [
   { pattern = "admin.episafe.co", custom_domain = true }
 ]
 
-# Optional: image uploads for profile photos. Create with:
-#   npx wrangler r2 bucket create episafe-uploads
-# then uncomment. Without it, the panel uses pasted image URLs.
-# [[r2_buckets]]
-# binding = "UPLOADS"
-# bucket_name = "episafe-uploads"
+# ---------------------------------------------------------------------------
+# KV namespace for uploaded images (profile photos, news images). The admin
+# panel POSTs to /api/uploads; files are served back from /uploads/<key>.
+# ---------------------------------------------------------------------------
+[[kv_namespaces]]
+binding = "UPLOADS"
+id = "ff86f41cf77544eb8f7841475d5f667c"
 
 [vars]
 # Comma-separated list of allowed browser origins for the API (CORS + Origin

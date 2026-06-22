@@ -34,6 +34,11 @@ export default {
       if (path === '/admin' || path.startsWith('/admin/') || path.startsWith('/assets/')) {
         return serveAdmin(request, env, url);
       }
+
+      // Uploaded images live in KV; serve them publicly with a long cache.
+      if (path.startsWith('/uploads/')) {
+        return serveUpload(request, env, url, ctx);
+      }
     } catch (err) {
       if (err && err.response) {
         const res = err.response;
@@ -56,6 +61,34 @@ async function serveAdmin(request, env, url) {
     const shellUrl = new URL('/admin/index.html', url.origin);
     return env.ASSETS.fetch(new Request(shellUrl, request));
   }
+  return res;
+}
+
+// Serve an uploaded image from KV. Public + immutable, with edge caching so
+// repeat views don't re-read KV.
+async function serveUpload(request, env, url, ctx) {
+  if (!env.UPLOADS) return new Response('Not found', { status: 404 });
+  if (request.method !== 'GET' && request.method !== 'HEAD') {
+    return new Response('Method not allowed', { status: 405 });
+  }
+  const cache = caches.default;
+  const hit = await cache.match(request);
+  if (hit) return hit;
+
+  const key = decodeURIComponent(url.pathname.slice('/uploads/'.length));
+  if (!key) return new Response('Not found', { status: 404 });
+  const obj = await env.UPLOADS.getWithMetadata(key, { type: 'arrayBuffer' });
+  if (!obj || !obj.value) return new Response('Not found', { status: 404 });
+
+  const type = (obj.metadata && obj.metadata.contentType) || 'application/octet-stream';
+  const res = new Response(obj.value, {
+    headers: {
+      'content-type': type,
+      'cache-control': 'public, max-age=31536000, immutable',
+      'x-content-type-options': 'nosniff',
+    },
+  });
+  if (ctx && ctx.waitUntil) ctx.waitUntil(cache.put(request, res.clone()));
   return res;
 }
 
@@ -130,6 +163,27 @@ async function handleApi(request, env, url) {
   // Writes must pass an origin check.
   const isWrite = method !== 'GET';
   if (isWrite && !originAllowed(request, env)) return error(403, 'Bad origin');
+
+  // ---- image uploads (any signed-in user) -------------------------------
+  // Stored in KV and served back from /uploads/<key>. Employees need this for
+  // their own profile photo, so it's allowed for every authenticated user.
+  if (seg[0] === 'uploads' && method === 'POST') {
+    if (!env.UPLOADS) return error(501, 'Image uploads are not configured');
+    const form = await request.formData().catch(() => null);
+    const file = form && form.get('file');
+    if (!file || typeof file.arrayBuffer !== 'function') return error(400, 'No image file received');
+    const ext = {
+      'image/png': 'png', 'image/jpeg': 'jpg', 'image/gif': 'gif',
+      'image/webp': 'webp', 'image/avif': 'avif',
+    }[file.type || ''];
+    if (!ext) return error(415, 'Unsupported image type — use PNG, JPG, GIF, WebP, or AVIF');
+    const buf = await file.arrayBuffer();
+    if (buf.byteLength === 0) return error(400, 'The image is empty');
+    if (buf.byteLength > 5 * 1024 * 1024) return error(413, 'Image too large — max 5 MB');
+    const key = 'u/' + Date.now().toString(36) + '-' + crypto.randomUUID().slice(0, 8) + '.' + ext;
+    await env.UPLOADS.put(key, buf, { metadata: { contentType: file.type } });
+    return json({ url: url.origin + '/uploads/' + key, key });
+  }
 
   // ---- account (self) ---------------------------------------------------
   if (seg[0] === 'account' && seg[1] === 'password' && method === 'POST') {
