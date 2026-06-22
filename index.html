@@ -1,11 +1,6 @@
 <!doctype html>
 <html lang="en" class="no-fouc">
-<head><!-- Privacy-friendly analytics by Plausible -->
-<script async src="https://plausible.io/js/pa-6qvXESSrFJ_sVgYtq0-cv.js"></script>
-<script>
-  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-  plausible.init()
-</script>
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>EpiSafe, Epinephrine that lives in your phone case.</title>
@@ -13,7 +8,16 @@
 <meta property="og:title" content="EpiSafe, Epinephrine that lives in your phone case.">
 <meta property="og:description" content="The first epinephrine auto-injector built into the device you already carry.">
 <meta property="og:url" content="https://episafe.co">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EpiSafe">
+<meta property="og:image" content="https://episafe.co/images/social-thumbnail.png">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="1000">
+<meta property="og:image:alt" content="EpiSafe — epinephrine that lives in your phone case">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EpiSafe, Epinephrine that lives in your phone case.">
+<meta name="twitter:description" content="The first epinephrine auto-injector built into the device you already carry.">
+<meta name="twitter:image" content="https://episafe.co/images/social-thumbnail.png">
 <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -719,7 +723,7 @@
 <!-- ============ NAV ============ -->
 <nav class="nav glass-quiet" data-screen-label="Nav">
   <a href="index.html" class="nav__brand">
-    <span class="nav__logo" aria-hidden="true"><img src="images/episafelogoog.webp" alt=""></span>
+    <span class="nav__logo" aria-hidden="true"><img decoding="async" src="images/episafelogoog.webp" alt=""></span>
     <span class="wordmark">EpiSafe</span>
   </a>
   <div class="nav__links">
@@ -756,9 +760,19 @@
 
   <div class="hero__stage" data-tilt="3">
     <div class="hero__stage-glow" aria-hidden="true"></div>
-    <img class="hero__product" src="assets/product-hero-web.png" alt="EpiSafe phone case with built-in epinephrine auto-injector">
+    <img fetchpriority="high" decoding="async" class="hero__product" src="assets/product-hero-web.png" alt="EpiSafe phone case with built-in epinephrine auto-injector">
   </div>
 </header>
+
+<!-- ============ RECOGNITION STRIP ============ -->
+<section class="wrap proof-strip reveal" aria-label="Recognition">
+  <span class="proof-strip__item">WPI-Backed</span>
+  <span class="proof-strip__item">Demo Day 2025</span>
+  <span class="proof-strip__item">Patent Pending</span>
+  <span class="proof-strip__item proof-strip__item--award">
+    <img src="images/episafeawardetr2025.webp" alt="ETR 2025 Award" loading="lazy" decoding="async">
+  </span>
+</section>
 
 <!-- ============ THE FACT IS ============ -->
 <section class="fact wrap" data-screen-label="02 The Fact">
@@ -811,7 +825,7 @@
   <div class="sticky-block">
     <div class="sticky-block__media glass reveal">
       <div class="sticky-block__media-bg"></div>
-      <img src="assets/product-hero-web.png" alt="EpiSafe product detail">
+      <img loading="lazy" decoding="async" src="assets/product-hero-web.png" alt="EpiSafe product detail">
     </div>
     <div class="sticky-block__copy">
       <article class="feature glass reveal">
@@ -839,13 +853,13 @@
     <div class="app-screens reveal">
       <div class="app-screens__glow" aria-hidden="true"></div>
       <div class="app-screen app-screen--a">
-        <img src="assets/app-medical.png" alt="Health info screen">
+        <img loading="lazy" decoding="async" src="assets/app-medical.png" alt="Health info screen">
       </div>
       <div class="app-screen app-screen--b">
-        <img src="assets/app-home.png" alt="Home screen">
+        <img loading="lazy" decoding="async" src="assets/app-home.png" alt="Home screen">
       </div>
       <div class="app-screen app-screen--c">
-        <img src="assets/app-device.png" alt="Device status screen">
+        <img loading="lazy" decoding="async" src="assets/app-device.png" alt="Device status screen">
       </div>
     </div>
 
@@ -932,22 +946,22 @@
 
   <div class="team-grid">
     <article class="team-card glass reveal" style="--d: 0ms">
-      <div class="team-card__photo"><a class="li-link" href="https://www.linkedin.com/in/aaryanpanchal/" target="_blank" rel="noopener noreferrer" aria-label="Aaryan Panchal on LinkedIn"><img src="assets/team-aaryan.png" alt="Aaryan Panchal"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
+      <div class="team-card__photo"><a class="li-link" href="https://www.linkedin.com/in/aaryanpanchal/" target="_blank" rel="noopener noreferrer" aria-label="Aaryan Panchal on LinkedIn"><img loading="lazy" decoding="async" src="assets/team-aaryan.png" alt="Aaryan Panchal"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
       <h3 class="team-card__name">Aaryan Panchal</h3>
       <span class="team-card__role">CEO · Founder</span>
     </article>
     <article class="team-card glass reveal" style="--d: 60ms">
-      <div class="team-card__photo"><a class="li-link" href="https://www.linkedin.com/in/joshua-kashambala-23b423347/" target="_blank" rel="noopener noreferrer" aria-label="Joshua Kashambala on LinkedIn"><img src="assets/team-joshua.png" alt="Joshua Kashambala"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
+      <div class="team-card__photo"><a class="li-link" href="https://www.linkedin.com/in/joshua-kashambala-23b423347/" target="_blank" rel="noopener noreferrer" aria-label="Joshua Kashambala on LinkedIn"><img loading="lazy" decoding="async" src="assets/team-joshua.png" alt="Joshua Kashambala"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
       <h3 class="team-card__name">Joshua Kashambala</h3>
       <span class="team-card__role">COO· FOUNDER</span>
     </article>
     <article class="team-card glass reveal" style="--d: 120ms">
-      <div class="team-card__photo"><a class="li-link" href="https://www.linkedin.com/in/ethan-takvorian-016611364/" target="_blank" rel="noopener noreferrer" aria-label="Ethan Takvorian on LinkedIn"><img src="assets/team-ethan.png" alt="Ethan Takvorian"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
+      <div class="team-card__photo"><a class="li-link" href="https://www.linkedin.com/in/ethan-takvorian-016611364/" target="_blank" rel="noopener noreferrer" aria-label="Ethan Takvorian on LinkedIn"><img loading="lazy" decoding="async" src="assets/team-ethan.png" alt="Ethan Takvorian"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
       <h3 class="team-card__name">Ethan Takvorian</h3>
       <span class="team-card__role">CTO· FOUNDER</span>
     </article>
     <article class="team-card glass reveal" style="--d: 180ms">
-      <div class="team-card__photo"><a class="li-link" href="https://www.linkedin.com/in/khushal-sharma-6a2981229/" target="_blank" rel="noopener noreferrer" aria-label="Khushal Sharma on LinkedIn"><img src="assets/team-khushal.png" alt="Khushal Sharma"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
+      <div class="team-card__photo"><a class="li-link" href="https://www.linkedin.com/in/khushal-sharma-6a2981229/" target="_blank" rel="noopener noreferrer" aria-label="Khushal Sharma on LinkedIn"><img loading="lazy" decoding="async" src="assets/team-khushal.png" alt="Khushal Sharma"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
       <h3 class="team-card__name">Khushal Sharma</h3>
       <span class="team-card__role">CRO· FOUNDER</span>
     </article>
@@ -957,6 +971,36 @@
     <a href="story.html" class="btn btn--ghost" style="font-family: &quot;Paul Grotesk&quot;">Read our story <span class="btn__arrow">→</span></a>
   </div>
 </section>
+
+<!-- ============ FAQ ============ -->
+<section class="section section--tight wrap" data-screen-label="07.4 FAQ">
+  <div style="text-align:center; margin-bottom: 28px;">
+    <span class="eyebrow"><span class="eyebrow__dot"></span> FAQ</span>
+    <h2 class="h-section" style="font-size: clamp(34px, 4.4vw, 60px)">Questions, answered.</h2>
+  </div>
+  <div class="faq reveal">
+    <details class="faq__item"><summary class="faq__q">Is it real epinephrine?</summary><div class="faq__a">Yes. <span class="wordmark">EpiSafe</span> is designed to deliver a standard 0.3 mg dose of epinephrine — the same medication used in conventional auto-injectors — from a compact cartridge that fits your phone case.</div></details>
+    <details class="faq__item"><summary class="faq__q">Is EpiSafe FDA-approved or available to buy yet?</summary><div class="faq__a">Not yet. <span class="wordmark">EpiSafe</span> is in active development and pre-FDA submission — it is not yet for sale or clinical use. We're on a staged, roughly two-year path to FDA submission. <a href="#waitlist">Join the waitlist</a> and we'll tell you the moment that changes.</div></details>
+    <details class="faq__item"><summary class="faq__q">How does it fit my phone?</summary><div class="faq__a">It's built into a MagSafe-compatible phone case and is just 11.4 mm thin, so it carries like a normal case — there's nothing extra to remember or pack.</div></details>
+    <details class="faq__item"><summary class="faq__q">What does the companion app do?</summary><div class="faq__a">It pairs over Bluetooth LE to show live device status — battery, cartridge state, and expiration — stores a health profile for first responders, and lets you try everything in Demo Mode before your device ships.</div></details>
+    <details class="faq__item"><summary class="faq__q">How much will it cost?</summary><div class="faq__a">Pricing isn't finalized yet. Waitlist members will be the first to hear, and we're committed to making lifesaving epinephrine as accessible as possible.</div></details>
+    <details class="faq__item"><summary class="faq__q">When can I get one?</summary><div class="faq__a">We're pre-launch. The fastest way to be first in line — and to help us prioritize your phone — is to <a href="#waitlist">join the waitlist</a>.</div></details>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is it real epinephrine?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. EpiSafe is designed to deliver a standard 0.3 mg dose of epinephrine — the same medication used in conventional auto-injectors — from a compact cartridge that fits your phone case." } },
+    { "@type": "Question", "name": "Is EpiSafe FDA-approved or available to buy yet?", "acceptedAnswer": { "@type": "Answer", "text": "Not yet. EpiSafe is in active development and pre-FDA submission — it is not yet for sale or clinical use. We are on a staged, roughly two-year path to FDA submission. Join the waitlist and we will tell you the moment that changes." } },
+    { "@type": "Question", "name": "How does it fit my phone?", "acceptedAnswer": { "@type": "Answer", "text": "It is built into a MagSafe-compatible phone case and is just 11.4 mm thin, so it carries like a normal case — there is nothing extra to remember or pack." } },
+    { "@type": "Question", "name": "What does the companion app do?", "acceptedAnswer": { "@type": "Answer", "text": "It pairs over Bluetooth LE to show live device status — battery, cartridge state, and expiration — stores a health profile for first responders, and lets you try everything in Demo Mode before your device ships." } },
+    { "@type": "Question", "name": "How much will it cost?", "acceptedAnswer": { "@type": "Answer", "text": "Pricing is not finalized yet. Waitlist members will be the first to hear, and we are committed to making lifesaving epinephrine as accessible as possible." } },
+    { "@type": "Question", "name": "When can I get one?", "acceptedAnswer": { "@type": "Answer", "text": "EpiSafe is pre-launch. The fastest way to be first in line is to join the waitlist." } }
+  ]
+}
+</script>
 
 <!-- ============ FINAL CTA ============ -->
 <!-- ============ WAITLIST ============ -->
@@ -988,12 +1032,13 @@
   .waitlist-status:empty { display: none; }
   .waitlist-status--err { color: #ff8a8a; }
 </style>
-<section class="section section--tight wrap" data-screen-label="07.5 Waitlist">
+<section class="section section--tight wrap" id="waitlist" data-screen-label="07.5 Waitlist">
   <div class="waitlist-block glass reveal">
     <div>
       <span class="eyebrow"><span class="eyebrow__dot"></span> Join the waitlist</span>
       <h2>Be first to carry it.</h2>
       <p class="lede">Leave your email and we'll tell you the moment <span class="wordmark">EpiSafe</span> is available , plus the occasional build update.</p>
+      <p class="waitlist-proof" id="waitlist-proof"></p>
     </div>
     <form id="waitlist-form" class="waitlist" action="https://formspree.io/f/xdavjdgr" method="POST">
       <input class="waitlist__input" type="email" id="waitlist-email" name="email" required placeholder="you@email.com" aria-label="Email address" data-fs-field>
@@ -1025,7 +1070,7 @@
   <div class="footer__inner glass">
     <div class="footer__col">
       <div class="footer__brand-row">
-        <span class="nav__logo" aria-hidden="true" style="width:36px;height:36px"><img src="assets/logo-glyph.png" alt=""></span>
+        <span class="nav__logo" aria-hidden="true" style="width:36px;height:36px"><img decoding="async" src="assets/logo-glyph.png" alt=""></span>
         <span class="wordmark" style="font-size:22px">EpiSafe</span>
       </div>
       <p class="footer__tag">Epinephrine that lives in your phone case. Because a treatment you don't carry is no treatment at all.</p>
@@ -1061,6 +1106,8 @@
     <span class="mono"><span class="wordmark">EpiSafe</span>&trade;</span>
   </div>
 </footer>
+
+<a class="sticky-cta" href="#waitlist">Join the waitlist <span aria-hidden="true">→</span></a>
 
 <!-- ============ TWEAKS PANEL ============ -->
 <aside class="tweaks" id="tweaks" aria-label="Tweaks">

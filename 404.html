@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page not found, EpiSafe</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .nf { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 24px; }
+  .nf__card { max-width: 520px; padding: clamp(32px, 5vw, 56px); }
+  .nf__logo { width: 46px; height: 46px; margin: 0 auto 22px; display: block; }
+  .nf__code { font-size: clamp(64px, 12vw, 124px); line-height: 1; font-weight: 600; letter-spacing: -0.04em; color: var(--o); }
+  .nf__title { font-size: clamp(24px, 3vw, 32px); font-weight: 500; margin: 14px 0 8px; }
+  .nf__text { color: var(--fg-mute); line-height: 1.6; margin-bottom: 28px; }
+</style>
+</head>
+<body>
+  <main class="nf">
+    <div class="nf__card glass">
+      <img decoding="async" class="nf__logo" src="assets/logo-glyph.png" alt="EpiSafe" onerror="this.style.display='none'">
+      <div class="nf__code">404</div>
+      <h1 class="nf__title">This page slipped out of reach.</h1>
+      <p class="nf__text">The page you're looking for doesn't exist or has moved. Let's get you back to safety.</p>
+      <a class="btn btn--primary" href="/">Back to home <span class="btn__arrow">→</span></a>
+    </div>
+  </main>
+</body>
+</html>

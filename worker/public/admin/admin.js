@@ -121,6 +121,7 @@
     news: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h7M7 16h5"/></svg>',
     roles: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="7" width="16" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/></svg>',
     people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.2"/><path d="M5 19c.7-3.4 3.3-5 7-5s6.3 1.6 7 5"/></svg>',
+    waitlist: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
     account: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.6-2-3.4-2.3 1a7 7 0 0 0-1.7-1l-.4-2.5h-4l-.4 2.5a7 7 0 0 0-1.7 1l-2.3-1-2 3.4 2 1.6a7 7 0 0 0 0 2l-2 1.6 2 3.4 2.3-1a7 7 0 0 0 1.7 1l.4 2.5h4l.4-2.5a7 7 0 0 0 1.7-1l2.3 1 2-3.4-2-1.6c.1-.3.1-.7.1-1z"/></svg>',
     signout: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l-5-5 5-5M5 12h11"/></svg>',
   };
@@ -129,7 +130,7 @@
     if (state.user.role === 'admin') {
       return [
         ['dashboard', 'Dashboard'], ['team', 'Team'], ['news', 'News'],
-        ['roles', 'Open roles'], ['people', 'People'], ['account', 'Account'],
+        ['roles', 'Open roles'], ['waitlist', 'Waitlist'], ['people', 'People'], ['account', 'Account'],
       ];
     }
     return [['profile', 'My profile'], ['account', 'Account']];
@@ -242,14 +243,16 @@
       '</div>';
     main().querySelectorAll('[data-go]').forEach((r) => r.addEventListener('click', () => navigate(r.dataset.go)));
     try {
-      const [team, news, roles, users] = await Promise.all([
+      const [team, news, roles, users, wait] = await Promise.all([
         api('GET', '/profiles'), api('GET', '/news'), api('GET', '/roles'), api('GET', '/users'),
+        api('GET', '/waitlist').catch(() => ({ count: 0 })),
       ]);
       const stat = (n, k) => '<div class="stat glass"><div class="n">' + n + '</div><div class="k">' + k + '</div></div>';
       document.getElementById('stats').innerHTML =
         stat(team.profiles.length, 'Team profiles') +
         stat(news.news.filter((p) => p.published).length, 'Live posts') +
         stat(roles.roles.filter((r) => r.published).length, 'Open roles') +
+        stat(wait.count, 'Waitlist') +
         stat(users.users.length, 'People');
     } catch (e) { document.getElementById('stats').innerHTML = ''; }
   };
@@ -465,6 +468,48 @@
       toast('Role saved', 'ok'); loadRoles();
     });
   }
+
+  // ---- Waitlist (admin) ----
+  VIEWS.waitlist = async function () {
+    main().innerHTML = pageHead('Waitlist', 'People who signed up on the site, newest first.',
+      '<button class="btn btn--ghost" id="exportWaitlist">Export CSV</button>') +
+      '<div id="waitlistWrap" class="list"><div class="spinner"></div></div>';
+    let rows = [];
+    try {
+      rows = (await api('GET', '/waitlist')).waitlist || [];
+    } catch (e) {
+      document.getElementById('waitlistWrap').innerHTML = '<div class="empty">' + esc(e.message) + '</div>';
+      return;
+    }
+    const wrap = document.getElementById('waitlistWrap');
+    if (!rows.length) {
+      wrap.innerHTML = '<div class="empty">No signups yet. Share the site to start collecting emails.</div>';
+    } else {
+      wrap.innerHTML = rows.map((w) =>
+        '<div class="list-row glass"><div class="list-row__main">' +
+          '<div class="list-row__title">' + esc(w.email) + '</div>' +
+          '<div class="list-row__sub">' + esc(fmtDate((w.created_at || '').slice(0, 10))) +
+            (w.source ? ' · ' + esc(w.source) : '') + '</div></div>' +
+          '<div class="list-row__actions"><button class="btn btn--danger btn--sm" data-del="' + w.id + '">Remove</button></div></div>'
+      ).join('');
+      wrap.querySelectorAll('[data-del]').forEach((b) => b.addEventListener('click', async () => {
+        if (!confirm('Remove this signup?')) return;
+        await api('DELETE', '/waitlist/' + b.dataset.del); toast('Removed', 'ok'); VIEWS.waitlist();
+      }));
+    }
+    document.getElementById('exportWaitlist').addEventListener('click', () => {
+      if (!rows.length) { toast('Nothing to export', 'err'); return; }
+      const csv = 'email,signed_up,source\n' + rows.map((w) =>
+        '"' + String(w.email || '').replace(/"/g, '""') + '","' + (w.created_at || '') +
+        '","' + String(w.source || '').replace(/"/g, '""') + '"'
+      ).join('\n');
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+      a.download = 'episafe-waitlist.csv';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+  };
 
   // ---- People (admin) ----
   VIEWS.people = async function () {
