@@ -3,9 +3,9 @@ main = "src/index.js"
 compatibility_date = "2024-11-01"
 
 # ---------------------------------------------------------------------------
-# Static assets — serves the admin panel (the /admin single-page app).
-# The folder below is uploaded alongside the Worker. Files in worker/public/admin
-# are reachable at episafe.co/admin/...
+# Static assets — serves the dashboard (the /dashboard single-page app).
+# The folder below is uploaded alongside the Worker. Files in worker/public/dashboard
+# are reachable at admin.episafe.co/dashboard/...
 # ---------------------------------------------------------------------------
 [assets]
 directory = "public"
@@ -24,7 +24,7 @@ database_id = "c39d5962-2aaa-428c-b9f7-b2aee56f6963"
 # ---------------------------------------------------------------------------
 # Custom domain. The episafe.co zone is on Cloudflare, so this provisions
 # admin.episafe.co (proxied DNS record + TLS cert) pointing at this Worker on
-# deploy. Admin panel: https://admin.episafe.co/admin · API: /api.
+# deploy. Dashboard: https://admin.episafe.co/dashboard · API: /api.
 # NOTE: deploys use the root ./wrangler.toml; this mirror keeps `npm run deploy`
 # from inside worker/ consistent.
 # ---------------------------------------------------------------------------

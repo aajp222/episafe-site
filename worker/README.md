@@ -11,10 +11,13 @@ turned on — see **Going live** below.
 
 ## What you get
 
-- **Login** at `episafe.co/admin` (email + password).
-- **Two roles**
-  - **Admin (you):** edit everything — team profiles, news, open roles — plus
-    add/remove people and reset their passwords.
+- **Login** at `admin.episafe.co/dashboard` (email + password). `/admin` and the
+  bare domain redirect there.
+- **Three roles**
+  - **Super Admin (you, the owner):** everything an admin can do, plus manage
+    other admins — create/promote/demote/delete admin accounts and set roles.
+  - **Admin:** edit everything — team profiles, news, open roles, waitlist — plus
+    add/remove **employees** and reset their passwords. Can't manage other admins.
   - **Employee:** edit only their own team profile.
 - **Live content** — `team.html` and `news.html` pull published content from the
   API. If the backend is ever down, the existing static content still shows.
@@ -22,14 +25,14 @@ turned on — see **Going live** below.
 ## How it fits together
 
 ```
-episafe.co/admin   → Worker serves the admin panel (worker/public/admin)
-episafe.co/api/*   → Worker serves the JSON API (worker/src)
-episafe.co/*       → your existing static site, unchanged
-                     team.html / news.html fetch /api/public/* to show live content
+admin.episafe.co/dashboard → Worker serves the control panel (worker/public/dashboard)
+admin.episafe.co/api/*      → Worker serves the JSON API (worker/src)
+episafe.co/*                → your existing static site, unchanged
+                              team.html / news.html fetch /api/public/* for live content
 ```
 
-The database has five tables: `users`, `sessions`, `team_profiles`,
-`news_posts`, `open_roles` (see `migrations/0001_init.sql`).
+The database tables: `users`, `sessions`, `team_profiles`, `news_posts`,
+`open_roles`, `waitlist` (see `migrations/`).
 
 ---
 
@@ -39,10 +42,10 @@ The database has five tables: `users`, `sessions`, `team_profiles`,
 cd worker
 npm install
 npm run db:migrate:local   # creates a local DB + seeds current site content
-npm run dev                # http://localhost:8787/admin
+npm run dev                # http://localhost:8787/dashboard
 ```
 
-First visit to `/admin` walks you through creating the owner (admin) account.
+First visit to `/dashboard` walks you through creating the owner (Super Admin) account.
 
 ---
 
@@ -65,11 +68,10 @@ npm run db:seed
 npm run deploy
 ```
 
-Then in `wrangler.toml` **uncomment the `routes` block** and run `npm run deploy`
-once more. That puts the Worker in front of `/admin` and `/api` on the live
-domain. Everything else keeps serving from your current host.
+The `routes` block in `wrangler.toml` puts the Worker on `admin.episafe.co`.
+Everything else keeps serving from your current host.
 
-Finally, open `https://episafe.co/admin` and create your owner account.
+Finally, open `https://admin.episafe.co/dashboard` and create your owner account.
 
 > Claude can run all of these steps for you against your connected Cloudflare
 > account when you're ready — just say the word.

@@ -204,6 +204,7 @@ select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg x
 .sidebar__user .meta { font-size: 12px; color: var(--fg-mute); margin-top: 2px; word-break: break-all; }
 .role-badge { display: inline-block; font-family: var(--font-mono); font-size: 9px; letter-spacing: var(--tracking-wide); text-transform: uppercase; padding: 2px 7px; border-radius: var(--r-pill); margin-top: 8px; }
 .role-badge.admin { color: var(--o); background: oklch(0.74 0.18 52 / 0.14); border: 1px solid oklch(0.74 0.18 52 / 0.34); }
+.role-badge.superadmin { color: #110700; background: var(--o); border: 1px solid transparent; font-weight: 600; }
 .role-badge.employee { color: var(--fg-soft); background: rgba(255,255,255,0.06); border: 1px solid var(--glass-edge); }
 
 .main { padding: 32px clamp(20px, 4vw, 48px) 80px; max-width: 1080px; }

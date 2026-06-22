@@ -1,5 +1,5 @@
 // EpiSafe CMS — Cloudflare Worker
-// Serves the /api backend and the /admin single-page app.
+// Serves the /api backend and the /dashboard single-page app.
 
 import {
   hashPassword, verifyPassword, newSessionToken, sessionExpiry,
@@ -29,9 +29,14 @@ export default {
         return res;
       }
 
-      // Admin SPA — serve static assets, falling back to the app shell so
-      // client-side routes (e.g. /admin/news) still load.
-      if (path === '/admin' || path.startsWith('/admin/') || path.startsWith('/assets/')) {
+      // Legacy /admin and the bare root → the dashboard.
+      if (path === '/' || path === '/admin' || path === '/admin/' || path.startsWith('/admin/')) {
+        return Response.redirect(new URL('/dashboard/', url.origin).toString(), 301);
+      }
+
+      // Dashboard SPA — serve static assets, falling back to the app shell so
+      // client-side routes (e.g. /dashboard/news) still load.
+      if (path === '/dashboard' || path.startsWith('/dashboard/')) {
         return serveAdmin(request, env, url);
       }
 
@@ -56,9 +61,9 @@ export default {
 async function serveAdmin(request, env, url) {
   if (!env.ASSETS) return new Response('Admin assets not configured', { status: 404 });
   const res = await env.ASSETS.fetch(request);
-  if (res.status === 404 && (url.pathname === '/admin' || url.pathname.startsWith('/admin/'))) {
+  if (res.status === 404 && (url.pathname === '/dashboard' || url.pathname.startsWith('/dashboard/'))) {
     // SPA fallback to the app shell.
-    const shellUrl = new URL('/admin/index.html', url.origin);
+    const shellUrl = new URL('/dashboard/index.html', url.origin);
     return env.ASSETS.fetch(new Request(shellUrl, request));
   }
   return res;
@@ -142,7 +147,7 @@ async function handleApi(request, env, url) {
       if (!body.password || body.password.length < 8) return error(400, 'Password must be at least 8 characters');
       const { hash, salt } = await hashPassword(body.password);
       const user = await db.createUser(env.DB, {
-        email: body.email, name: clean(body.name, 120), role: 'admin', hash, salt,
+        email: body.email, name: clean(body.name, 120), role: 'superadmin', hash, salt,
       });
       return startSession(env, request, user);
     }
@@ -219,7 +224,7 @@ async function handleApi(request, env, url) {
   if (seg[0] === 'profiles') {
     if (method === 'GET' && !seg[1]) {
       const all = await db.listTeam(env.DB);
-      const visible = user.role === 'admin' ? all : all.filter((p) => p.user_id === user.id);
+      const visible = isAdmin(user) ? all : all.filter((p) => p.user_id === user.id);
       return json({ profiles: visible });
     }
     if (method === 'POST' && !seg[1]) {
@@ -233,13 +238,13 @@ async function handleApi(request, env, url) {
       const existing = await db.getProfile(env.DB, id);
       if (!existing) return error(404, 'Profile not found');
       const owns = existing.user_id === user.id;
-      if (user.role !== 'admin' && !owns) return error(403, 'You can only edit your own profile');
+      if (!isAdmin(user) && !owns) return error(403, 'You can only edit your own profile');
 
       if (method === 'GET') return json({ profile: existing });
       if (method === 'PUT') {
         const b = await readJson(request) || {};
         // Employees may edit content but not publish state / order / ownership.
-        const merged = user.role === 'admin'
+        const merged = isAdmin(user)
           ? profileFromBody(b, { admin: true })
           : {
               ...existing,
@@ -251,7 +256,7 @@ async function handleApi(request, env, url) {
               linkedin_url: clean(b.linkedin_url, 500),
             };
         await db.updateProfile(env.DB, id, merged);
-        if (user.role === 'admin' && 'user_id' in b) await db.assignProfileUser(env.DB, id, b.user_id || null);
+        if (isAdmin(user) && 'user_id' in b) await db.assignProfileUser(env.DB, id, b.user_id || null);
         return json({ profile: await db.getProfile(env.DB, id) });
       }
       if (method === 'DELETE') {
@@ -317,7 +322,7 @@ async function handleApi(request, env, url) {
     return error(404, 'Unknown roles route');
   }
 
-  // ---- users (admin only) ----------------------------------------------
+  // ---- users (admins manage employees; super admins manage everyone) ----
   if (seg[0] === 'users') {
     requireAdmin(user);
     if (method === 'GET' && !seg[1]) return json({ users: await db.listUsers(env.DB) });
@@ -325,21 +330,27 @@ async function handleApi(request, env, url) {
       const b = await readJson(request) || {};
       if (!isEmail(b.email)) return error(400, 'Valid email required');
       if (!b.password || b.password.length < 8) return error(400, 'Password must be at least 8 characters');
+      const role = resolveRole(user, b.role); // throws if a plain admin asks for admin/super
       const exists = await db.getUserByEmail(env.DB, b.email);
       if (exists) return error(409, 'A user with that email already exists');
       const { hash, salt } = await hashPassword(b.password);
       const created = await db.createUser(env.DB, {
-        email: b.email, name: clean(b.name, 120),
-        role: b.role === 'admin' ? 'admin' : 'employee', hash, salt,
+        email: b.email, name: clean(b.name, 120), role, hash, salt,
       });
       return json({ user: created }, { status: 201 });
     }
     const id = Number(seg[1]);
     if (id) {
+      const target = await db.getUserById(env.DB, id);
+      if (!target) return error(404, 'User not found');
+      // Only a super admin may modify another admin or super admin.
+      if (isAdmin(target) && !isSuper(user)) return error(403, 'Only a super admin can manage admins');
+
       if (method === 'PUT') {
         const b = await readJson(request) || {};
-        if (id === user.id && b.role && b.role !== 'admin') return error(400, "You can't remove your own admin access");
-        await db.setUserFields(env.DB, id, { name: clean(b.name, 120), role: b.role === 'admin' ? 'admin' : 'employee' });
+        const role = resolveRole(user, b.role);
+        if (id === user.id && role !== 'superadmin') return error(400, "You can't remove your own super admin access");
+        await db.setUserFields(env.DB, id, { name: clean(b.name, 120), role });
         return json({ user: await db.getUserById(env.DB, id) });
       }
       if (seg[2] === 'password' && method === 'POST') {
@@ -398,10 +409,30 @@ async function startSession(env, request, user) {
   );
 }
 
+function isAdmin(user) {
+  return user.role === 'admin' || user.role === 'superadmin';
+}
+function isSuper(user) {
+  return user.role === 'superadmin';
+}
 function requireAdmin(user) {
-  if (user.role !== 'admin') {
+  if (!isAdmin(user)) {
     throw Object.assign(new Error('forbidden'), { response: error(403, 'Admin access required') });
   }
+}
+function requireSuperadmin(user) {
+  if (!isSuper(user)) {
+    throw Object.assign(new Error('forbidden'), { response: error(403, 'Super admin access required') });
+  }
+}
+// Validate a requested role against who's asking. Regular admins can only ever
+// create/keep employees; only a super admin can grant admin / super-admin.
+function resolveRole(requester, requested) {
+  const r = ['employee', 'admin', 'superadmin'].includes(requested) ? requested : 'employee';
+  if (r !== 'employee' && !isSuper(requester)) {
+    throw Object.assign(new Error('forbidden'), { response: error(403, 'Only a super admin can grant admin access') });
+  }
+  return r;
 }
 
 function publicUser(u) {
