@@ -23,14 +23,19 @@
 
   function delay(i) { return 'style="--d:' + (i * 80) + 'ms"'; }
 
+  var LI_BADGE = '<span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span>';
+
   // ---- team founders ----
   function renderTeam(items) {
     var grid = document.getElementById('cms-team');
     if (!grid || !items || !items.length) return;
     grid.innerHTML = items.map(function (p, i) {
-      var photo = p.photo_url
+      var img = p.photo_url
         ? '<img src="' + esc(p.photo_url) + '" alt="' + esc(p.name) + '">'
         : '';
+      var photo = p.linkedin_url
+        ? '<a class="li-link" href="' + esc(p.linkedin_url) + '" target="_blank" rel="noopener noreferrer" aria-label="' + esc(p.name) + ' on LinkedIn">' + img + LI_BADGE + '</a>'
+        : img;
       var now = p.working_on
         ? '<div class="tm-card__now"><span class="tm-card__now-k">Working on</span>' +
           '<span class="tm-card__now-v">' + esc(p.working_on) + '</span></div>'

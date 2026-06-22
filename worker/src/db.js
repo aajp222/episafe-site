@@ -91,20 +91,20 @@ export function getProfileByUser(db, userId) {
 export function createProfile(db, p) {
   return db
     .prepare(
-      `INSERT INTO team_profiles (user_id, name, role, bio, working_on, photo_url, sort_order, published)
-       VALUES (?,?,?,?,?,?,?,?) RETURNING *`
+      `INSERT INTO team_profiles (user_id, name, role, bio, working_on, photo_url, linkedin_url, sort_order, published)
+       VALUES (?,?,?,?,?,?,?,?,?) RETURNING *`
     )
-    .bind(p.user_id || null, p.name, p.role, p.bio, p.working_on, p.photo_url, p.sort_order || 0, p.published ? 1 : 0)
+    .bind(p.user_id || null, p.name, p.role, p.bio, p.working_on, p.photo_url, p.linkedin_url || '', p.sort_order || 0, p.published ? 1 : 0)
     .first();
 }
 
 export function updateProfile(db, id, p) {
   return db
     .prepare(
-      `UPDATE team_profiles SET name=?, role=?, bio=?, working_on=?, photo_url=?,
+      `UPDATE team_profiles SET name=?, role=?, bio=?, working_on=?, photo_url=?, linkedin_url=?,
        sort_order=?, published=?, updated_at=datetime('now') WHERE id=?`
     )
-    .bind(p.name, p.role, p.bio, p.working_on, p.photo_url, p.sort_order || 0, p.published ? 1 : 0, id)
+    .bind(p.name, p.role, p.bio, p.working_on, p.photo_url, p.linkedin_url || '', p.sort_order || 0, p.published ? 1 : 0, id)
     .run();
 }
 
