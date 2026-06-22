@@ -22,9 +22,10 @@ Static HTML for the EpiSafe website, a liquid-glass design system in black, oran
 
 ## Admin / backend
 
-`worker/` contains a serverless backend + control panel at `episafe.co/admin`
-where the team can log in and edit content. Admins edit everything; employees
-edit their own team profile. It does not affect the public site until deployed.
+`worker/` contains a serverless backend + control panel at `admin.episafe.co/dashboard`
+where the team can log in and edit content. The owner is a super admin (manages
+admins); admins edit everything; employees edit their own team profile. It does
+not affect the public site until deployed.
 See **`worker/README.md`** for local preview and go-live steps.
 
 ## Running Tests

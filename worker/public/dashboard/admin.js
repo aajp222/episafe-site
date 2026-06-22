@@ -53,7 +53,7 @@
       state.user = me.user;
       state.profile = me.profile;
       renderShell();
-      navigate(me.user.role === 'admin' ? 'dashboard' : 'profile');
+      navigate(isAdmin() ? 'dashboard' : 'profile');
     } catch (e) {
       const setup = await api('GET', '/setup').catch(() => ({ needsSetup: false }));
       if (setup.needsSetup) renderSetup();
@@ -126,8 +126,12 @@
     signout: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l-5-5 5-5M5 12h11"/></svg>',
   };
 
+  function isAdmin() { return !!state.user && (state.user.role === 'admin' || state.user.role === 'superadmin'); }
+  function isSuper() { return !!state.user && state.user.role === 'superadmin'; }
+  function roleLabel(role) { return role === 'superadmin' ? 'super admin' : role; }
+
   function navItems() {
-    if (state.user.role === 'admin') {
+    if (isAdmin()) {
       return [
         ['dashboard', 'Dashboard'], ['team', 'Team'], ['news', 'News'],
         ['roles', 'Open roles'], ['waitlist', 'Waitlist'], ['people', 'People'], ['account', 'Account'],
@@ -152,7 +156,7 @@
           '<div class="sidebar__user">' +
             '<div class="name">' + esc(u.name || u.email) + '</div>' +
             '<div class="meta">' + esc(u.email) + '</div>' +
-            '<span class="role-badge ' + u.role + '">' + u.role + '</span>' +
+            '<span class="role-badge ' + u.role + '">' + roleLabel(u.role) + '</span>' +
             '<div style="margin-top:14px"><button class="btn btn--ghost btn--sm btn--block" id="signoutBtn">' + ICONS.signout + ' Sign out</button></div>' +
           '</div>' +
         '</aside>' +
@@ -524,12 +528,14 @@
     const list = document.getElementById('peopleList');
     list.innerHTML = users.map((u) =>
       '<div class="list-row glass"><div class="list-row__main">' +
-        '<div class="list-row__title">' + esc(u.name || u.email) + ' <span class="role-badge ' + u.role + '">' + u.role + '</span>' +
+        '<div class="list-row__title">' + esc(u.name || u.email) + ' <span class="role-badge ' + u.role + '">' + roleLabel(u.role) + '</span>' +
           (u.id == state.user.id ? '<span class="pill draft">you</span>' : '') + '</div>' +
         '<div class="list-row__sub">' + esc(u.email) + '</div></div>' +
         '<div class="list-row__actions">' +
-          '<button class="btn btn--ghost btn--sm" data-edit="' + u.id + '">Edit</button>' +
-          (u.id == state.user.id ? '' : '<button class="btn btn--danger btn--sm" data-del="' + u.id + '">Delete</button>') +
+          ((isSuper() || (u.role !== 'admin' && u.role !== 'superadmin'))
+            ? '<button class="btn btn--ghost btn--sm" data-edit="' + u.id + '">Edit</button>' +
+              (u.id == state.user.id ? '' : '<button class="btn btn--danger btn--sm" data-del="' + u.id + '">Delete</button>')
+            : '<span class="list-row__sub" style="opacity:.55">Super admin only</span>') +
         '</div></div>'
     ).join('');
     list.querySelectorAll('[data-edit]').forEach((b) => b.addEventListener('click', () => openUserEditor(users.find((u) => u.id == b.dataset.edit))));
@@ -541,9 +547,12 @@
   function openUserEditor(u) {
     const isNew = !u; u = u || { role: 'employee' };
     const ed = document.getElementById('peopleEditor');
-    const roleSel = '<select name="role">' +
-      '<option value="employee"' + (u.role === 'employee' ? ' selected' : '') + '>Employee — edits own profile</option>' +
-      '<option value="admin"' + (u.role === 'admin' ? ' selected' : '') + '>Admin — edits everything</option></select>';
+    const roleChoices = isSuper()
+      ? [['employee', 'Employee — edits own profile'], ['admin', 'Admin — edits everything'], ['superadmin', 'Super Admin — manages admins']]
+      : [['employee', 'Employee — edits own profile']];
+    const roleSel = '<select name="role">' + roleChoices.map((r) =>
+      '<option value="' + r[0] + '"' + (u.role === r[0] ? ' selected' : '') + '>' + r[1] + '</option>'
+    ).join('') + '</select>';
     ed.innerHTML = '<form class="editor glass" id="userForm">' +
       '<h2>' + (isNew ? 'Add person' : 'Edit ' + esc(u.name || u.email)) + '</h2>' +
       field('Name', '<input type="text" name="name" value="' + attr(u.name) + '">') +

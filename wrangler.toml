@@ -30,8 +30,8 @@ routes = [
 ]
 
 # ---------------------------------------------------------------------------
-# Static assets — serves ONLY the admin panel (worker/public/admin/...),
-# reachable at /admin. The marketing site keeps serving from its own host.
+# Static assets — serves ONLY the dashboard (worker/public/dashboard/...),
+# reachable at /dashboard. The marketing site keeps serving from its own host.
 # ---------------------------------------------------------------------------
 [assets]
 directory = "worker/public"
