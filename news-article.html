@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en" class="no-fouc">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Story, EpiSafe</title>
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EpiSafe">
+<meta property="og:title" content="Story, EpiSafe">
+<meta property="og:description" content="A story from the EpiSafe team.">
+<meta property="og:image" content="https://episafe.co/images/social-thumbnail.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="A story from the EpiSafe team.">
+<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .ar-shell {
+    padding-top: 116px;
+    padding-bottom: 40px;
+  }
+  .ar-wrap { max-width: 760px; margin: 0 auto; }
+
+  .ar-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--fg-mute);
+    transition: color .25s ease;
+  }
+  .ar-back:hover { color: var(--o); }
+
+  /* Article header */
+  .ar-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 30px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--fg-mute);
+  }
+  .ar-meta__date { color: var(--o); }
+  .ar-title {
+    margin-top: 16px;
+    font-size: clamp(34px, 5vw, 60px);
+    line-height: 1.04;
+    letter-spacing: var(--tracking-tighter);
+    font-weight: 500;
+    text-wrap: balance;
+  }
+  .ar-lede {
+    margin-top: 20px;
+    color: var(--fg-soft);
+    font-size: clamp(17px, 2vw, 20px);
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  /* Cover image */
+  .ar-cover {
+    margin-top: 34px;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background: #0a0a0a;
+    aspect-ratio: 16/9;
+  }
+  .ar-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Prose body */
+  .ar-body {
+    margin-top: 38px;
+    color: var(--fg-soft);
+    font-size: 17px;
+    line-height: 1.72;
+  }
+  .ar-body > *:first-child { margin-top: 0; }
+  .ar-body p { margin: 0 0 20px; }
+  .ar-body h2 {
+    margin: 40px 0 14px;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: var(--tracking-tight);
+    color: var(--fg);
+  }
+  .ar-body h3 {
+    margin: 32px 0 12px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--fg);
+  }
+  .ar-body a { color: var(--o); text-decoration: underline; text-underline-offset: 3px; }
+  .ar-body ul, .ar-body ol { margin: 0 0 20px; padding-left: 22px; }
+  .ar-body li { margin-bottom: 8px; }
+  .ar-body img { max-width: 100%; border-radius: var(--r); margin: 8px 0; }
+  .ar-body blockquote {
+    margin: 24px 0;
+    padding: 4px 0 4px 22px;
+    border-left: 2px solid var(--o);
+    color: var(--fg);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+  .ar-body strong { color: var(--fg); font-weight: 600; }
+
+  /* State + divider */
+  .ar-state {
+    margin-top: 60px;
+    text-align: center;
+    color: var(--fg-mute);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: var(--tracking-wide);
+  }
+  .ar-foot {
+    margin-top: 56px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  @media (max-width: 900px) {
+    .ar-shell { padding-top: 100px; }
+    .ar-cover { aspect-ratio: 16/10; }
+    .ar-body { font-size: 16px; }
+  }
+</style>
+<script defer data-domain="episafe.co" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+<div class="bg-stage" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="nav glass-quiet">
+  <a href="index.html" class="nav__brand">
+    <span class="nav__logo" aria-hidden="true"><img decoding="async" src="images/episafelogoog.webp" alt=""></span>
+    <span class="wordmark">EpiSafe</span>
+  </a>
+  <div class="nav__links">
+    <a href="product.html" class="nav__link">Product</a>
+    <a href="index.html#app" class="nav__link">App</a>
+    <a href="story.html" class="nav__link">Story</a>
+    <a href="team.html" class="nav__link">Team</a>
+    <a href="news.html" class="nav__link is-active">News</a>
+    <a href="traction.html" class="nav__link">Traction</a>
+  </div>
+  <a href="mailto:hello@episafe.co" class="nav__cta">Get in touch →</a>
+</nav>
+
+<!-- ARTICLE -->
+<main class="ar-shell wrap">
+  <div class="ar-wrap">
+    <a class="ar-back" href="news.html"><span aria-hidden="true">←</span> All news</a>
+
+    <article id="cms-article" class="reveal is-in">
+      <p class="ar-state">Loading story…</p>
+    </article>
+
+    <div class="ar-foot">
+      <a class="ar-back" href="news.html"><span aria-hidden="true">←</span> Back to all news</a>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner glass">
+    <div class="footer__col">
+      <div class="footer__brand-row">
+        <span class="nav__logo" aria-hidden="true" style="width:36px;height:36px"><img decoding="async" src="assets/logo-glyph.png" alt=""></span>
+        <span class="wordmark" style="font-size:22px">EpiSafe</span>
+      </div>
+      <p class="footer__tag">Epinephrine that lives in your phone case.</p>
+      <div class="socials" style="margin-top: 18px">
+        <a class="socials__link" href="https://www.instagram.com/episafe.co" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a>
+        <a class="socials__link" href="https://www.linkedin.com/company/107233218" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1-.001 5.001A2.5 2.5 0 0 1 4.98 3.5zM3 9h4v12H3V9zm7 0h3.8v1.7h.1c.5-1 1.9-2 3.9-2 4.2 0 5 2.8 5 6.4V21h-4v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4V9z"/></svg></a>
+        <a class="socials__link" href="https://x.com/episafe_" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25h6.83l4.713 6.231 5.447-6.231zm-1.16 17.52h1.833L7.084 4.126H5.117l11.967 15.644z"/></svg></a>
+        <a class="socials__link" href="https://www.facebook.com/share/1B1E8RLRg4" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.563 9.875v-6.987H7.898V12h2.539V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.888h-2.33v6.987A10.002 10.002 0 0 0 22 12z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <h4>Product</h4>
+      <a href="product.html">How it works</a>
+      <a href="product.html#specs">Specs</a>
+      <a href="index.html#app">Companion app</a>
+    </div>
+    <div class="footer__col">
+      <h4>Company</h4>
+      <a href="story.html">Story</a>
+      <a href="team.html">Team</a>
+      <a href="news.html">News</a>
+      <a href="traction.html">Traction</a>
+    </div>
+    <div class="footer__col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@episafe.co">hello@episafe.co</a>
+      <a href="traction.html">For investors</a>
+      <a href="#">Press</a>
+    </div>
+  </div>
+  <div class="footer__base" style="padding-inline: 0">
+    <span>© 2026 <span class="wordmark">EpiSafe</span> LLC · WPI-backed · Patent Pending · Pre-FDA submission.</span>
+    <span class="mono"><span class="wordmark">EpiSafe</span>&trade;</span>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>window.EPISAFE_API = 'https://episafe-admin.aaryanpanchal.workers.dev';</script>
+<script src="cms.js"></script>
+</body>
+</html>

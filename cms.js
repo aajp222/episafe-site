@@ -85,19 +85,88 @@
       var meta = p.date
         ? '<div class="nw-meta"><span class="nw-meta__date">' + esc(fmtDate(p.date)) + '</span></div>'
         : '';
-      var text = p.excerpt || p.body || '';
-      return '<article class="nw-post glass reveal is-in" ' + delay(i) + '>' +
+      var text = p.excerpt || stripTags(p.body) || '';
+      var href = 'news-article.html?slug=' + encodeURIComponent(p.slug || p.id);
+      return '<a class="nw-post glass reveal is-in" href="' + href + '" ' + delay(i) + '>' +
         media + meta +
         '<h3 class="nw-post__title">' + esc(p.title) + '</h3>' +
         '<p class="nw-post__body">' + esc(text) + '</p>' +
-        '</article>';
+        '<span class="nw-post__cta">Read the story <span aria-hidden="true">&rarr;</span></span>' +
+        '</a>';
     }).join('');
+  }
+
+  // ---- single story (news-article.html) ----
+  function stripTags(s) {
+    return String(s == null ? '' : s).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  // Render a post body. Authors enter "plain text or simple HTML": if it
+  // already contains tags we trust it as-is (admin-only content); otherwise
+  // we turn blank-line-separated plain text into paragraphs.
+  function renderBody(text) {
+    var raw = String(text == null ? '' : text).trim();
+    if (!raw) return '';
+    if (/<[a-z][\s\S]*>/i.test(raw)) return raw;
+    return raw.split(/\n\s*\n/).map(function (para) {
+      return '<p>' + esc(para.trim()).replace(/\n/g, '<br>') + '</p>';
+    }).join('');
+  }
+
+  function getParam(name) {
+    var m = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : '';
+  }
+
+  function renderArticle(items) {
+    var host = document.getElementById('cms-article');
+    if (!host) return;
+    var slug = getParam('slug');
+    var post = null;
+    if (items && items.length) {
+      post = items.filter(function (p) {
+        return String(p.slug) === slug || String(p.id) === slug;
+      })[0] || null;
+    }
+    if (!post) {
+      host.innerHTML = '<p class="ar-state">That story could not be found. ' +
+        'It may have been unpublished &mdash; head back to <a href="news.html" style="color:var(--o)">all news</a>.</p>';
+      return;
+    }
+
+    document.title = post.title + ', EpiSafe';
+    setMeta('og:title', post.title);
+    if (post.excerpt) { setMeta('og:description', post.excerpt); setMetaName('description', post.excerpt); }
+    if (post.image_url) setMeta('og:image', post.image_url);
+
+    var meta = post.date
+      ? '<div class="ar-meta"><span class="ar-meta__date">' + esc(fmtDate(post.date)) + '</span></div>'
+      : '';
+    var lede = post.excerpt ? '<p class="ar-lede">' + esc(post.excerpt) + '</p>' : '';
+    var cover = post.image_url
+      ? '<div class="ar-cover"><img src="' + esc(post.image_url) + '" alt="' + esc(post.title) + '"></div>'
+      : '';
+    host.innerHTML =
+      meta +
+      '<h1 class="ar-title">' + esc(post.title) + '</h1>' +
+      lede + cover +
+      '<div class="ar-body">' + renderBody(post.body) + '</div>';
+  }
+
+  function setMeta(prop, val) {
+    var el = document.querySelector('meta[property="' + prop + '"]');
+    if (el) el.setAttribute('content', val);
+  }
+  function setMetaName(name, val) {
+    var el = document.querySelector('meta[name="' + name + '"]');
+    if (el) el.setAttribute('content', val);
   }
 
   function run() {
     if (document.getElementById('cms-team')) get('/team').then(function (d) { if (d) renderTeam(d.team); });
     if (document.getElementById('cms-roles')) get('/roles').then(function (d) { if (d) renderRoles(d.roles); });
     if (document.getElementById('cms-news')) get('/news').then(function (d) { if (d) renderNews(d.news); });
+    if (document.getElementById('cms-article')) get('/news').then(function (d) { renderArticle(d && d.news); });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
