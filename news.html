@@ -172,6 +172,9 @@
 
 <div class="bg-stage" aria-hidden="true"></div>
 
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+
 <!-- NAV -->
 <nav class="nav glass-quiet">
   <a href="index.html" class="nav__brand">
@@ -183,17 +186,17 @@
     <a href="index.html#app" class="nav__link">App</a>
     <a href="story.html" class="nav__link">Story</a>
     <a href="team.html" class="nav__link">Team</a>
-    <a href="news.html" class="nav__link is-active">News</a>
+    <a href="news.html" class="nav__link is-active" aria-current="page">News</a>
     <a href="traction.html" class="nav__link">Traction</a>
   </div>
   <a href="mailto:hello@episafe.co" class="nav__cta">Get in touch →</a>
 </nav>
 
 <!-- HERO -->
-<header class="nw-hero wrap" data-screen-label="01 News Hero">
+<header id="main" class="nw-hero wrap" data-screen-label="01 News Hero">
   <div class="reveal">
     <div class="nw-hero__eye"><span class="eyebrow"><span class="eyebrow__dot"></span> News &amp; updates</span></div>
-    <h1 class="h-display nw-hero__title">
+    <h1 class="h-display nw-hero__title split-words">
       What we've<br>
       <span class="italic-serif">been up to.</span>
     </h1>
@@ -205,7 +208,7 @@
 
 <!-- FEATURED -->
 <section class="section section--tight wrap" data-screen-label="02 Featured">
-  <article class="nw-featured glass-strong reveal">
+  <article class="nw-featured glass-strong reveal lift">
     <div class="nw-featured__media">
       <img fetchpriority="high" decoding="async" src="assets/story-demoday.jpg" alt="EpiSafe team at WPI Demo Day 2025">
     </div>
@@ -231,7 +234,7 @@
 <!-- POSTS -->
 <section class="section section--tight wrap" data-screen-label="03 Posts">
   <div class="nw-grid" id="cms-news">
-    <article class="nw-post glass reveal">
+    <article class="nw-post glass reveal lift">
       <div class="nw-post__media">
         <img loading="lazy" decoding="async" src="assets/story-mechanism.jpg" alt="Internal mechanism prototype, EpiSafe rev 3">
       </div>
@@ -245,7 +248,7 @@
       <span class="nw-post__cta">Read on the story page <span aria-hidden="true">→</span></span>
     </article>
 
-    <article class="nw-post glass reveal" style="--d: 100ms">
+    <article class="nw-post glass reveal lift" style="--d: 100ms">
       <div class="nw-post__media">
         <img loading="lazy" decoding="async" src="assets/app-home.png" alt="EpiSafe companion app home screen">
       </div>
@@ -259,7 +262,7 @@
       <span class="nw-post__cta">See the app <span aria-hidden="true">→</span></span>
     </article>
 
-    <article class="nw-post glass reveal" style="--d: 200ms">
+    <article class="nw-post glass reveal lift" style="--d: 200ms">
       <div class="nw-post__media">
         <img loading="lazy" decoding="async" src="assets/story-lab.jpg" alt="Founder iterating on a prototype in the lab">
       </div>
@@ -273,7 +276,7 @@
       <span class="nw-post__cta">Follow along on Instagram <span aria-hidden="true">→</span></span>
     </article>
 
-    <article class="nw-post glass reveal" style="--d: 300ms">
+    <article class="nw-post glass reveal lift" style="--d: 300ms">
       <div class="nw-post__media">
         <img loading="lazy" decoding="async" src="assets/story-product.jpg" alt="EpiSafe phone case held in hand">
       </div>
@@ -307,6 +310,8 @@
 </section>
 
 <!-- FOOTER -->
+<div class="bigfoot" aria-hidden="true"><span class="bigfoot-word">EpiSafe</span></div>
+
 <footer class="footer">
   <div class="footer__inner glass">
     <div class="footer__col">

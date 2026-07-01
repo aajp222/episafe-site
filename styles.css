@@ -80,6 +80,9 @@
   --tracking-tighter: -0.045em;
   --tracking-wide: 0.12em;
 
+  /* One easing curve, sitewide */
+  --ease: cubic-bezier(.22, 1, .36, 1);
+
   /* Radii */
   --r-sm: 10px;
   --r: 18px;
@@ -247,6 +250,55 @@ h1, h2, h3, h4, p { margin: 0; }
   justify-content: space-between;
   gap: 24px;
   border-radius: var(--r-pill);
+  transition: background .45s var(--ease), border-color .45s var(--ease), box-shadow .45s var(--ease);
+}
+.nav.is-scrolled {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%),
+    rgba(12, 12, 12, 0.55);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    0 14px 44px -18px rgba(0, 0, 0, 0.85);
+}
+
+/* Scroll progress hairline (painted by site.js) */
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  z-index: 200;
+  pointer-events: none;
+}
+.progress span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--o-deep), var(--o) 60%, var(--o-soft));
+}
+
+/* Skip link — hidden until keyboard focus */
+.skip-link {
+  position: fixed;
+  top: 14px; left: 14px;
+  z-index: 300;
+  padding: 10px 18px;
+  border-radius: var(--r-pill);
+  background: var(--o);
+  color: #110700;
+  font-weight: 600;
+  font-size: 14px;
+  transform: translateY(-200%);
+  transition: transform .3s var(--ease);
+}
+.skip-link:focus-visible { transform: translateY(0); }
+
+/* Visible keyboard focus, sitewide (low specificity so local styles win) */
+:where(a, button, summary, input, textarea, select):focus-visible {
+  outline: 2px solid var(--o);
+  outline-offset: 3px;
 }
 .nav__brand {
   display: flex;
@@ -386,6 +438,7 @@ h1, h2, h3, h4, p { margin: 0; }
   font-weight: 400;
   letter-spacing: -0.015em;
 }
+.font-brand { font-family: var(--font-brand); }
 .lede {
   font-size: clamp(17px, 1.35vw, 19px);
   line-height: 1.55;
@@ -402,13 +455,46 @@ h1, h2, h3, h4, p { margin: 0; }
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
   transition-delay: var(--d, 0ms);
 }
 .reveal.is-in {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Card hover lift — uses the standalone `translate` property so it
+   composes with the transform-based reveal instead of fighting it */
+.lift {
+  transition:
+    opacity .9s var(--ease),
+    transform .9s var(--ease),
+    translate .45s var(--ease),
+    border-color .45s var(--ease);
+  transition-delay: var(--d, 0ms), var(--d, 0ms), 0ms, 0ms;
+}
+@media (hover: hover) and (pointer: fine) {
+  .lift:hover {
+    translate: 0 -5px;
+    border-color: rgba(255, 255, 255, 0.17);
+  }
+}
+
+/* ============================================
+   Headline assembly — words drift in on reveal
+   (site.js splits .split-words into .w-out/.w-in)
+   ============================================ */
+.js .split-words .w-out { display: inline-block; }
+.js .split-words .w-in {
+  display: inline-block;
+  opacity: 0;
+  transform: translate(var(--dx, 0), .6em) rotate(var(--dr, 0deg));
+  filter: blur(6px);
+  transition: opacity .7s var(--ease), transform .95s var(--ease), filter .7s var(--ease);
+  transition-delay: var(--d, 0s);
+  will-change: transform, opacity, filter;
+}
+.js .split-words.in .w-in { opacity: 1; transform: none; filter: blur(0); }
 
 /* ============================================
    Sections shared
@@ -845,6 +931,8 @@ body.is-menu-open { overflow: hidden; }
     scroll-behavior: auto !important;
   }
   .reveal { opacity: 1 !important; transform: none !important; }
+  .js .split-words .w-in { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .lift:hover { translate: none; }
 }
 
 /* ============================================
@@ -880,6 +968,129 @@ body.is-menu-open { overflow: hidden; }
 .faq__item[open] .faq__q::after { transform: rotate(45deg); }
 .faq__a { padding: 0 24px 22px; color: var(--fg-mute); line-height: 1.62; font-size: 15px; }
 .faq__a a { color: var(--o-soft); }
+.faq__item[open] .faq__a { animation: faq-open .5s var(--ease); }
+@keyframes faq-open {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ============================================
+   Hero scroll cue — a quiet falling line
+   ============================================ */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  pointer-events: none;
+}
+.scroll-cue__line {
+  width: 1px;
+  height: 48px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+.scroll-cue__line::after {
+  content: "";
+  position: absolute;
+  left: 0; top: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(180deg, transparent, var(--o));
+  animation: cue-drop 2.6s var(--ease) infinite;
+}
+@keyframes cue-drop {
+  0%        { top: -100%; }
+  60%, 100% { top: 100%; }
+}
+@media (max-width: 900px) {
+  .scroll-cue { display: none; }
+}
+
+/* ============================================
+   Bigfoot — giant wordmark above the footer,
+   cursor-lit, scrolls back to the top
+   ============================================ */
+.bigfoot {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(36px, 6vw, 80px) var(--gutter) 0;
+  text-align: center;
+  user-select: none;
+}
+.bigfoot-word {
+  display: block;
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: clamp(64px, 15.5vw, 220px);
+  line-height: 0.84;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  background: linear-gradient(180deg, #242424, #0d0d0d);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bigfoot.bf-live { cursor: pointer; }
+@media (hover: hover) and (pointer: fine) {
+  .bf-live:hover .bigfoot-word {
+    background: radial-gradient(36% 180% at var(--mx, 50%) 60%, oklch(0.74 0.18 52 / 0.9) 0%, #2a2a2a 55%, #0d0d0d 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+  }
+}
+.bf-hint {
+  position: absolute;
+  left: 50%;
+  top: clamp(8px, 1.6vw, 18px);
+  transform: translateX(-50%) translateY(6px);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  opacity: 0;
+  transition: opacity .35s var(--ease), transform .35s var(--ease);
+  pointer-events: none;
+}
+.bf-live:hover .bf-hint { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ============================================
+   Copy-to-clipboard toast (mailto links)
+   ============================================ */
+.copy-toast {
+  position: fixed;
+  z-index: 400;
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  background: rgba(20, 20, 20, 0.92);
+  border: 1px solid var(--glass-edge-strong);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--fg);
+  pointer-events: none;
+  animation: toast-float 1.7s var(--ease) forwards;
+}
+@keyframes toast-float {
+  0%       { opacity: 0; transform: translate(-50%, -90%); }
+  12%, 78% { opacity: 1; transform: translate(-50%, -150%); }
+  100%     { opacity: 0; transform: translate(-50%, -190%); }
+}
 
 /* ============================================
    Waitlist social proof + sticky mobile CTA

@@ -271,6 +271,9 @@
 
 <div class="bg-stage" aria-hidden="true"></div>
 
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+
 <!-- NAV -->
 <nav class="nav glass-quiet">
   <a href="index.html" class="nav__brand">
@@ -281,7 +284,7 @@
     <a href="product.html" class="nav__link">Product</a>
     <a href="index.html#app" class="nav__link">App</a>
     <a href="story.html" class="nav__link">Story</a>
-    <a href="team.html" class="nav__link is-active">Team</a>
+    <a href="team.html" class="nav__link is-active" aria-current="page">Team</a>
     <a href="news.html" class="nav__link">News</a>
     <a href="traction.html" class="nav__link">Traction</a>
   </div>
@@ -289,10 +292,10 @@
 </nav>
 
 <!-- HERO -->
-<header class="tm-hero wrap" data-screen-label="01 Team Hero">
+<header id="main" class="tm-hero wrap" data-screen-label="01 Team Hero">
   <div class="reveal">
     <div class="tm-hero__eye"><span class="eyebrow"><span class="eyebrow__dot"></span> The team</span></div>
-    <h1 class="h-display tm-hero__title">
+    <h1 class="h-display tm-hero__title split-words">
       Four founders.<br>
       <span class="italic-serif">One mission.</span>
     </h1>
@@ -305,7 +308,7 @@
 <!-- TEAM GRID -->
 <section class="section section--tight wrap" data-screen-label="02 Founders">
   <div class="tm-grid" id="cms-team">
-    <article class="tm-card glass reveal">
+    <article class="tm-card glass reveal lift">
       <div class="tm-card__photo"><a class="li-link" href="https://www.linkedin.com/in/aaryanpanchal/" target="_blank" rel="noopener noreferrer" aria-label="Aaryan Panchal on LinkedIn"><img fetchpriority="high" decoding="async" src="assets/team-aaryan.png" alt="Aaryan Panchal"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
       <div>
         <h2 class="tm-card__name">Aaryan Panchal</h2>
@@ -318,7 +321,7 @@
       </div>
     </article>
 
-    <article class="tm-card glass reveal" style="--d: 80ms">
+    <article class="tm-card glass reveal lift" style="--d: 80ms">
       <div class="tm-card__photo"><a class="li-link" href="https://www.linkedin.com/in/joshua-kashambala-23b423347/" target="_blank" rel="noopener noreferrer" aria-label="Joshua Kashambala on LinkedIn"><img loading="lazy" decoding="async" src="assets/team-joshua.png" alt="Joshua Kashambala"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
       <div>
         <h2 class="tm-card__name">Joshua Kashambala</h2>
@@ -331,7 +334,7 @@
       </div>
     </article>
 
-    <article class="tm-card glass reveal" style="--d: 160ms">
+    <article class="tm-card glass reveal lift" style="--d: 160ms">
       <div class="tm-card__photo"><a class="li-link" href="https://www.linkedin.com/in/ethan-takvorian-016611364/" target="_blank" rel="noopener noreferrer" aria-label="Ethan Takvorian on LinkedIn"><img loading="lazy" decoding="async" src="assets/team-ethan.png" alt="Ethan Takvorian"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
       <div>
         <h2 class="tm-card__name">Ethan Takvorian</h2>
@@ -344,7 +347,7 @@
       </div>
     </article>
 
-    <article class="tm-card glass reveal" style="--d: 240ms">
+    <article class="tm-card glass reveal lift" style="--d: 240ms">
       <div class="tm-card__photo"><a class="li-link" href="https://www.linkedin.com/in/khushal-sharma-6a2981229/" target="_blank" rel="noopener noreferrer" aria-label="Khushal Sharma on LinkedIn"><img loading="lazy" decoding="async" src="assets/team-khushal.png" alt="Khushal Sharma"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
       <div>
         <h2 class="tm-card__name">Khushal Sharma</h2>
@@ -370,22 +373,22 @@
   </div>
 
   <div class="adv-grid">
-    <article class="adv-card glass reveal">
+    <article class="adv-card glass reveal lift">
       <a class="adv-card__name" href="https://www.linkedin.com/in/evanlcox/" target="_blank" rel="noopener">Evan Cox</a>
       <span class="adv-card__role">Business &amp; strategy</span>
       <p class="adv-card__bio">Advises on company strategy, fundraising, and go-to-market as EpiSafe moves from concept to a fundable medical-device company.</p>
       <a class="adv-card__link" href="https://www.linkedin.com/in/evanlcox/" target="_blank" rel="noopener">LinkedIn →</a>
     </article>
-    <article class="adv-card glass reveal" style="--d: 80ms">
+    <article class="adv-card glass reveal lift" style="--d: 80ms">
       <a class="adv-card__name" href="https://www.linkedin.com/in/gumbrell/" target="_blank" rel="noopener">George Gumbrell</a>
       <span class="adv-card__role">Regulatory · FDA</span>
-      <p class="adv-card__bio">Brings FDA and regulatory experience to the combination-product strategy , predicate selection and the road to a 510(k) pre-submission.</p>
+      <p class="adv-card__bio">Brings FDA and regulatory experience to the combination-product strategy — predicate selection and the road to a 510(k) pre-submission.</p>
       <a class="adv-card__link" href="https://www.linkedin.com/in/gumbrell/" target="_blank" rel="noopener">LinkedIn →</a>
     </article>
-    <article class="adv-card glass reveal" style="--d: 160ms">
+    <article class="adv-card glass reveal lift" style="--d: 160ms">
       <a class="adv-card__name" href="https://www.linkedin.com/in/ardianpreci/" target="_blank" rel="noopener">Ardian Preci</a>
       <span class="adv-card__role">WPI i3 Lab</span>
-      <p class="adv-card__bio">Our WPI i3 Lab advisor , mentoring the team through the accelerator and opening doors across the medical-device and investor network.</p>
+      <p class="adv-card__bio">Our WPI i3 Lab advisor — mentoring the team through the accelerator and opening doors across the medical-device and investor network.</p>
       <a class="adv-card__link" href="https://www.linkedin.com/in/ardianpreci/" target="_blank" rel="noopener">LinkedIn →</a>
     </article>
   </div>
@@ -402,7 +405,7 @@
   </div>
 
   <div class="tm-grid" id="cms-roles">
-    <article class="tm-card tm-card--ghost glass reveal">
+    <article class="tm-card tm-card--ghost glass reveal lift">
       <div class="tm-card__photo tm-card__photo--ghost" aria-hidden="true">
         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="16" r="7"/><path d="M8 40c2-7 9-12 16-12s14 5 16 12"/></svg>
       </div>
@@ -417,7 +420,7 @@
       </div>
     </article>
 
-    <article class="tm-card tm-card--ghost glass reveal" style="--d: 80ms">
+    <article class="tm-card tm-card--ghost glass reveal lift" style="--d: 80ms">
       <div class="tm-card__photo tm-card__photo--ghost" aria-hidden="true">
         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="16" r="7"/><path d="M8 40c2-7 9-12 16-12s14 5 16 12"/></svg>
       </div>
@@ -432,7 +435,7 @@
       </div>
     </article>
 
-    <article class="tm-card tm-card--ghost glass reveal" style="--d: 160ms">
+    <article class="tm-card tm-card--ghost glass reveal lift" style="--d: 160ms">
       <div class="tm-card__photo tm-card__photo--ghost" aria-hidden="true">
         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="16" r="7"/><path d="M8 40c2-7 9-12 16-12s14 5 16 12"/></svg>
       </div>
@@ -447,7 +450,7 @@
       </div>
     </article>
 
-    <article class="tm-card tm-card--ghost glass reveal" style="--d: 240ms">
+    <article class="tm-card tm-card--ghost glass reveal lift" style="--d: 240ms">
       <div class="tm-card__photo tm-card__photo--ghost" aria-hidden="true">
         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="16" r="7"/><path d="M8 40c2-7 9-12 16-12s14 5 16 12"/></svg>
       </div>
@@ -500,6 +503,8 @@
 </section>
 
 <!-- FOOTER -->
+<div class="bigfoot" aria-hidden="true"><span class="bigfoot-word">EpiSafe</span></div>
+
 <footer class="footer">
   <div class="footer__inner glass">
     <div class="footer__col">

@@ -4,9 +4,12 @@
 
   // Mark ready
   document.documentElement.classList.add('ready');
+  document.documentElement.classList.add('js');
 
   const prefersReduced = window.matchMedia
     && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia
+    && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   // Intersection observer for .reveal elements
   const io = new IntersectionObserver(
@@ -32,6 +35,68 @@
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
   }
+
+  // Scroll progress hairline
+  const progressBar = document.querySelector('.progress span');
+  if (progressBar) {
+    let progressQueued = false;
+    const paint = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.transform = 'scaleX(' + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ')';
+      progressQueued = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!progressQueued) { progressQueued = true; requestAnimationFrame(paint); }
+    }, { passive: true });
+    window.addEventListener('resize', paint);
+    paint();
+  }
+
+  // Headline assembly — split .split-words into word spans that drift in
+  (function splitWords() {
+    const els = document.querySelectorAll('.split-words');
+    if (!els.length || prefersReduced) return;
+    els.forEach((el) => {
+      const frag = document.createDocumentFragment();
+      let i = 0;
+      const mk = (content) => {
+        const out = document.createElement('span');
+        out.className = 'w-out';
+        const inn = document.createElement('span');
+        inn.className = 'w-in';
+        if (typeof content === 'string') inn.textContent = content;
+        else inn.appendChild(content);
+        const sign = i % 2 ? 1 : -1;
+        inn.style.setProperty('--dx', sign * (10 + (i % 3) * 9) + 'px');
+        inn.style.setProperty('--dr', sign * (1.5 + (i % 2) * 1.5) + 'deg');
+        inn.style.setProperty('--d', Math.min(i * 0.045, 0.7) + 's');
+        out.appendChild(inn);
+        i += 1;
+        return out;
+      };
+      Array.from(el.childNodes).forEach((node) => {
+        if (node.nodeType === 3) {
+          node.textContent.split(/(\s+)/).forEach((tok) => {
+            if (tok === '') return;
+            if (/^\s+$/.test(tok)) { frag.appendChild(document.createTextNode(' ')); return; }
+            frag.appendChild(mk(tok));
+          });
+        } else if (node.nodeName === 'BR') {
+          frag.appendChild(document.createElement('br'));
+        } else {
+          frag.appendChild(mk(node.cloneNode(true)));
+        }
+      });
+      el.innerHTML = '';
+      el.appendChild(frag);
+    });
+    const wio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); wio.unobserve(e.target); }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el) => wio.observe(el));
+  })();
 
   // Parallax/scroll-bound elements (data-parallax="speed")
   const parallaxEls = document.querySelectorAll('[data-parallax]');
@@ -90,6 +155,59 @@
     }, { threshold: 0.4 });
     stats.forEach((s) => sio.observe(s));
   }
+
+  // Magnetic pull on primary CTAs (fine pointers only)
+  if (!prefersReduced && finePointer) {
+    document.querySelectorAll('.btn--primary, .nav__cta').forEach((el) => {
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) * 0.22;
+        const dy = (e.clientY - (r.top + r.height / 2)) * 0.22;
+        el.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px)';
+      });
+      el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+    });
+  }
+
+  // Big footer wordmark — cursor-lit, scrolls back to the top
+  (function bigfoot() {
+    const bf = document.querySelector('.bigfoot');
+    if (!bf) return;
+    const word = bf.querySelector('.bigfoot-word');
+    bf.classList.add('bf-live');
+    bf.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+    });
+    if (word && finePointer) {
+      const hint = document.createElement('div');
+      hint.className = 'bf-hint';
+      hint.textContent = '↑ Back to top';
+      bf.appendChild(hint);
+      bf.addEventListener('mousemove', (e) => {
+        const r = word.getBoundingClientRect();
+        word.style.setProperty('--mx', (((e.clientX - r.left) / r.width) * 100).toFixed(2) + '%');
+      });
+    }
+  })();
+
+  // mailto links also copy the address, with a small confirmation toast
+  document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const email = a.getAttribute('href').replace(/^mailto:/, '').split('?')[0];
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).catch(() => {});
+      }
+      const t = document.createElement('div');
+      t.className = 'copy-toast';
+      t.textContent = 'Email copied ✓';
+      const x = e.clientX || window.innerWidth / 2;
+      const y = e.clientY || window.innerHeight / 2;
+      t.style.left = x + 'px';
+      t.style.top = y + 'px';
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 1700);
+    });
+  });
 
   // Hero pointer-driven tilt (subtle)
   const tiltEls = prefersReduced ? [] : document.querySelectorAll('[data-tilt]');
