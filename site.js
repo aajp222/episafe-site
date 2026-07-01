@@ -98,18 +98,22 @@
     els.forEach((el) => wio.observe(el));
   })();
 
-  // Parallax/scroll-bound elements (data-parallax="speed")
+  // Parallax/scroll-bound elements (data-parallax="speed").
+  // Uses the standalone `translate` property so it composes with
+  // transform-based effects (reveal, hover) on the same element.
   const parallaxEls = document.querySelectorAll('[data-parallax]');
   if (parallaxEls.length && !prefersReduced) {
+    const appliedShift = new WeakMap();
     let ticking = false;
     const apply = () => {
-      const y = window.scrollY;
       parallaxEls.forEach((el) => {
         const speed = parseFloat(el.dataset.parallax) || 0.2;
         const rect = el.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
+        // the rect already includes our own translate; subtract it back out
+        const center = rect.top + rect.height / 2 - (appliedShift.get(el) || 0);
         const delta = (window.innerHeight / 2 - center) * speed;
-        el.style.transform = `translate3d(0, ${delta.toFixed(1)}px, 0)`;
+        appliedShift.set(el, delta);
+        el.style.translate = '0 ' + delta.toFixed(1) + 'px';
       });
       ticking = false;
     };
@@ -208,6 +212,121 @@
       setTimeout(() => t.remove(), 1700);
     });
   });
+
+  // Hero product flies down the page and docks into the "How it works"
+  // media slot as you scroll (desktop, fine to skip everywhere else —
+  // the CSS float animation remains the fallback)
+  (function heroDock() {
+    const product = document.getElementById('heroProduct');
+    const stage = document.querySelector('.hero__stage');
+    const hero = document.querySelector('.hero');
+    const slot = document.getElementById('dockSlot');
+    const science = document.getElementById('science');
+    if (!product || !stage || !hero || !slot || !science || prefersReduced) return;
+
+    const desktop = window.matchMedia('(min-width: 901px)');
+    const ghost = slot.querySelector('img');
+    let enabled = false;
+    let w = 0;
+    let h = 0;
+
+    const activate = () => {
+      const r = stage.getBoundingClientRect();
+      if (r.width < 1) return;
+      w = r.width;
+      h = r.height;
+      // the stage's perspective would become the fixed-position containing
+      // block and break viewport coordinates; the docking product doesn't
+      // use the 3D tilt, so drop it while the dock is active
+      stage.style.perspective = 'none';
+      product.style.animation = 'none';
+      product.style.transition = 'none';
+      product.style.position = 'fixed';
+      product.style.left = '0';
+      product.style.top = '0';
+      product.style.margin = '0';
+      product.style.width = w + 'px';
+      product.style.height = h + 'px';
+      product.style.maxWidth = 'none';
+      product.style.transformOrigin = 'center center';
+      product.style.pointerEvents = 'none';
+      product.style.willChange = 'transform';
+      if (ghost) ghost.style.visibility = 'hidden';
+      enabled = true;
+    };
+    const deactivate = () => {
+      ['animation', 'transition', 'position', 'left', 'top', 'margin', 'width', 'height',
+        'maxWidth', 'transformOrigin', 'pointerEvents', 'willChange', 'transform']
+        .forEach((k) => { product.style[k] = ''; });
+      stage.style.perspective = '';
+      hero.style.zIndex = '';
+      slot.classList.remove('is-docked');
+      if (ghost) ghost.style.visibility = '';
+      enabled = false;
+    };
+    // re-measure after any resize
+    window.addEventListener('resize', () => { if (enabled) deactivate(); });
+
+    const clamp = (v, a, b) => (v < a ? a : (v > b ? b : v));
+    const easeIO = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+    const frame = () => {
+      if (desktop.matches && !enabled) activate();
+      else if (!desktop.matches && enabled) deactivate();
+      if (enabled && w > 0) {
+        const start = window.innerHeight * 0.08;
+        const end = Math.max(science.offsetTop - window.innerHeight * 0.35, start + 1);
+        const p = clamp((window.scrollY - start) / (end - start), 0, 1);
+        const e = easeIO(p);
+        const sr = stage.getBoundingClientRect();
+        const dr = slot.getBoundingClientRect();
+        const scx = sr.left + sr.width / 2;
+        const scy = sr.top + sr.height / 2;
+        const dcx = dr.left + dr.width / 2;
+        const dcy = dr.top + dr.height / 2;
+        const fit = Math.min((dr.width * 0.72) / w, (dr.height * 0.82) / h);
+        const bob = (1 - p) * Math.sin(Date.now() / 900) * 6;
+        const cx = scx + (dcx - scx) * e;
+        const cy = scy + (dcy - scy) * e + bob;
+        const sc = 1 + (fit - 1) * e;
+        product.style.transform =
+          'translate(' + (cx - w / 2).toFixed(2) + 'px,' + (cy - h / 2).toFixed(2) + 'px) scale(' + sc.toFixed(4) + ')';
+        // lift the hero layer so the travelling product paints above later sections
+        hero.style.zIndex = p > 0.001 ? '40' : '';
+        slot.classList.toggle('is-docked', p > 0.92);
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  })();
+
+  // Marquee skews with scroll velocity
+  (function marqueeSkew() {
+    const marquee = document.querySelector('[data-marquee]');
+    if (!marquee || prefersReduced) return;
+    let last = window.scrollY;
+    let vel = 0;
+    let cur = 0;
+    let raf = null;
+    const tick = () => {
+      cur += (vel - cur) * 0.12;
+      vel *= 0.86;
+      const s = Math.max(-6, Math.min(6, cur * 0.4));
+      if (Math.abs(cur) > 0.05 || Math.abs(vel) > 0.05) {
+        marquee.style.transform = 'skewX(' + s.toFixed(3) + 'deg)';
+        raf = requestAnimationFrame(tick);
+      } else {
+        marquee.style.transform = '';
+        raf = null;
+      }
+    };
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      vel += (y - last) * 0.3;
+      last = y;
+      if (!raf) raf = requestAnimationFrame(tick);
+    }, { passive: true });
+  })();
 
   // Hero pointer-driven tilt (subtle)
   const tiltEls = prefersReduced ? [] : document.querySelectorAll('[data-tilt]');

@@ -13,7 +13,7 @@
 <meta property="og:image" content="https://episafe.co/images/social-thumbnail.png">
 <meta property="og:image:width" content="1000">
 <meta property="og:image:height" content="1000">
-<meta property="og:image:alt" content="EpiSafe — epinephrine that lives in your phone case">
+<meta property="og:image:alt" content="EpiSafe, epinephrine that lives in your phone case">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="EpiSafe, Epinephrine that lives in your phone case.">
 <meta name="twitter:description" content="The first epinephrine auto-injector built into the device you already carry.">
@@ -205,6 +205,8 @@
     background: radial-gradient(ellipse, oklch(0.55 0.18 50 / 0.3), transparent 70%);
     filter: blur(60px);
   }
+  .sticky-block__media { transition: border-color .6s var(--ease); }
+  .sticky-block__media.is-docked { border-color: rgba(255, 255, 255, 0.18); }
   .sticky-block__copy {
     display: flex;
     flex-direction: column;
@@ -749,7 +751,7 @@
       <span class="italic-serif font-brand">Always</span> on you.
     </h1>
     <p class="lede hero__lede">
-      The first epinephrine auto-injector built into the device you already carry. Because anaphylaxis can be fatal in minutes — and most people don't carry their injector.
+      The first epinephrine auto-injector built into the device you already carry. Because anaphylaxis can be fatal in minutes, and most people don't carry their injector.
     </p>
     <div class="hero__ctas">
       <a href="traction.html" class="btn btn--primary">
@@ -763,7 +765,7 @@
 
   <div class="hero__stage" data-tilt="3">
     <div class="hero__stage-glow" aria-hidden="true"></div>
-    <img fetchpriority="high" decoding="async" class="hero__product" src="assets/product-hero-web.png" alt="EpiSafe phone case with built-in epinephrine auto-injector">
+    <img fetchpriority="high" decoding="async" id="heroProduct" class="hero__product" src="assets/product-hero-web.png" alt="EpiSafe phone case with built-in epinephrine auto-injector">
   </div>
 
   <div class="scroll-cue" aria-hidden="true">
@@ -786,7 +788,7 @@
 <section class="fact wrap" data-screen-label="02 The Fact">
   <div class="reveal">
     <span class="eyebrow"><span class="eyebrow__dot"></span> The Fact Is</span>
-    <p class="fact__text split-words">
+    <p class="fact__text split-words" data-parallax="0.05">
       Epinephrine is the <span class="strike">first</span> <span class="accent">only</span> treatment for anaphylaxis.
     </p>
   </div>
@@ -797,7 +799,7 @@
   <div class="section-head reveal">
     <span class="eyebrow"><span class="eyebrow__dot"></span> The Problem</span>
     <h2 class="h-section" data-comment-anchor="3132e3f686-h2">A treatment<br>nobody&nbsp;carries.</h2>
-    <p class="lede">3.6&thinsp;M Americans are prescribed an auto-injector every year. It's bulky. It's easy to forget — until the moment it matters.</p>
+    <p class="lede">3.6&thinsp;M Americans are prescribed an auto-injector every year. It's bulky. It's easy to forget, until the moment it matters.</p>
   </div>
 
   <div class="stats">
@@ -827,11 +829,11 @@
   <div class="section-head reveal">
     <span class="eyebrow"><span class="eyebrow__dot"></span> How it works</span>
     <h2 class="h-section">Not a smaller EpiPen.<br><span class="italic-serif font-brand">A rebuilt one.</span></h2>
-    <p class="lede">Every part inside was redesigned to fit a phone case — new geometry, simulated fluid dynamics, equivalent intramuscular dose.</p>
+    <p class="lede">Every part inside was redesigned to fit a phone case: new geometry, simulated fluid dynamics, equivalent intramuscular dose.</p>
   </div>
 
   <div class="sticky-block">
-    <div class="sticky-block__media glass reveal">
+    <div class="sticky-block__media glass reveal" id="dockSlot">
       <div class="sticky-block__media-bg"></div>
       <img loading="lazy" decoding="async" src="assets/product-hero-web.png" alt="EpiSafe product detail">
     </div>
@@ -844,12 +846,12 @@
       <article class="feature glass reveal lift" style="--d: 120ms">
         <span class="feature__num">02 / Mechanism</span>
         <h3 class="feature__title">Pull. Press. Done.</h3>
-        <p class="feature__body">A single orange tab releases the injector. Press against the outer thigh to deliver 0.3&thinsp;mg of epinephrine — the same therapeutic dose as a standard auto-injector.</p>
+        <p class="feature__body">A single orange tab releases the injector. Press against the outer thigh to deliver 0.3&thinsp;mg of epinephrine, the same therapeutic dose as a standard auto-injector.</p>
       </article>
       <article class="feature glass reveal lift" style="--d: 240ms">
         <span class="feature__num">03 / Safety</span>
         <h3 class="feature__title">Deliberate, never accidental.</h3>
-        <p class="feature__body">A two-step release keeps it locked while it rides in your pocket or bag — it only fires when you mean it to. And the companion app flags — then locks out — a cartridge the moment it expires.</p>
+        <p class="feature__body">A two-step release keeps it locked while it rides in your pocket or bag, so it only fires when you mean it to. And the companion app flags, then locks out, a cartridge the moment it expires.</p>
       </article>
     </div>
   </div>
@@ -858,7 +860,7 @@
 <!-- ============ THE APP ============ -->
 <section class="section wrap" id="app" data-screen-label="05 The App">
   <div class="app-block">
-    <div class="app-screens reveal">
+    <div class="app-screens reveal" data-parallax="0.07">
       <div class="app-screens__glow" aria-hidden="true"></div>
       <div class="app-screen app-screen--a">
         <img loading="lazy" decoding="async" src="assets/app-medical.png" alt="Health info screen">
@@ -882,7 +884,7 @@
           <span class="app-bullet__dot">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="2" fill="currentColor"/></svg>
           </span>
-          <span class="app-bullet__body"><strong>Live device status.</strong> Battery, cartridge state, and expiration — always in reach.</span>
+          <span class="app-bullet__body"><strong>Live device status.</strong> Battery, cartridge state, and expiration, always in reach.</span>
         </div>
         <div class="app-bullet">
           <span class="app-bullet__dot">
@@ -914,13 +916,13 @@
       <span class="market-card__k">SAM</span>
       <h3 class="market-card__v">$4.7<span class="sm">B</span></h3>
       <span class="market-card__label">U.S. serviceable market</span>
-      <p class="market-card__body">33&thinsp;M Americans live with potentially life-threatening food allergies — our serviceable U.S. market.</p>
+      <p class="market-card__body">33&thinsp;M Americans live with potentially life-threatening food allergies, our serviceable U.S. market.</p>
     </article>
     <article class="market-card market-card--target glass-strong reveal lift" style="--d: 200ms">
       <span class="market-card__k">SOM &middot; 3-yr</span>
       <h3 class="market-card__v">$100<span class="sm">M</span></h3>
       <span class="market-card__label">Active-lifestyle segment</span>
-      <p class="market-card__body">The 56% who already forget — the people we're built for.</p>
+      <p class="market-card__body">The 56% who already forget, the people we're built for.</p>
     </article>
   </div>
 </section>
@@ -930,19 +932,33 @@
   <div class="section-head reveal" style="margin-bottom: 40px">
     <span class="eyebrow"><span class="eyebrow__dot"></span> Validated by industry</span>
     <h2 class="h-section">Pressure-tested with the people<br><span class="italic-serif font-brand">who build medical devices.</span></h2>
-    <p class="lede">Twenty-plus discovery interviews with R&amp;D, regulatory, and quality leaders — and their feedback reshaped the product. <a href="traction.html#validation" style="color: var(--o)">See what changed →</a></p>
+    <p class="lede">Twenty-plus discovery interviews with R&amp;D, regulatory, and quality leaders, and their feedback reshaped the product. <a href="traction.html#validation" style="color: var(--o)">See what changed →</a></p>
   </div>
-  <div class="logo-wall reveal">
-    <span class="logo-wall__item">Johnson &amp; Johnson</span>
-    <span class="logo-wall__item">BD</span>
-    <span class="logo-wall__item">Philips</span>
-    <span class="logo-wall__item">Olympus</span>
-    <span class="logo-wall__item">ZOLL</span>
-    <span class="logo-wall__item">Haemonetics</span>
-    <span class="logo-wall__item">Confluent Medical</span>
-    <span class="logo-wall__item">Spryte Medical</span>
+  <div class="marquee" data-marquee>
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <span class="logo-wall__item">Johnson &amp; Johnson</span>
+        <span class="logo-wall__item">BD</span>
+        <span class="logo-wall__item">Philips</span>
+        <span class="logo-wall__item">Olympus</span>
+        <span class="logo-wall__item">ZOLL</span>
+        <span class="logo-wall__item">Haemonetics</span>
+        <span class="logo-wall__item">Confluent Medical</span>
+        <span class="logo-wall__item">Spryte Medical</span>
+      </div>
+      <div class="marquee__group" aria-hidden="true">
+        <span class="logo-wall__item">Johnson &amp; Johnson</span>
+        <span class="logo-wall__item">BD</span>
+        <span class="logo-wall__item">Philips</span>
+        <span class="logo-wall__item">Olympus</span>
+        <span class="logo-wall__item">ZOLL</span>
+        <span class="logo-wall__item">Haemonetics</span>
+        <span class="logo-wall__item">Confluent Medical</span>
+        <span class="logo-wall__item">Spryte Medical</span>
+      </div>
+    </div>
   </div>
-  <p class="logo-wall__note reveal">Individuals from these companies shared their expertise during customer discovery — personal insight, not company endorsements.</p>
+  <p class="logo-wall__note reveal">Individuals from these companies shared their expertise during customer discovery: personal insight, not company endorsements.</p>
 </section>
 
 <!-- ============ TEAM ============ -->
@@ -987,12 +1003,12 @@
     <h2 class="h-section" style="font-size: clamp(34px, 4.4vw, 60px)">Questions, answered.</h2>
   </div>
   <div class="faq reveal">
-    <details class="faq__item"><summary class="faq__q">Is it real epinephrine?</summary><div class="faq__a">Yes. <span class="wordmark">EpiSafe</span> is designed to deliver a standard 0.3 mg dose of epinephrine — the same medication used in conventional auto-injectors — from a compact cartridge that fits your phone case.</div></details>
-    <details class="faq__item"><summary class="faq__q">Is EpiSafe FDA-approved or available to buy yet?</summary><div class="faq__a">Not yet. <span class="wordmark">EpiSafe</span> is in active development and pre-FDA submission — it is not yet for sale or clinical use. We're on a staged, roughly two-year path to FDA submission. <a href="#waitlist">Join the waitlist</a> and we'll tell you the moment that changes.</div></details>
-    <details class="faq__item"><summary class="faq__q">How does it fit my phone?</summary><div class="faq__a">It's built into a MagSafe-compatible phone case and is just 11.4 mm thin, so it carries like a normal case — there's nothing extra to remember or pack.</div></details>
-    <details class="faq__item"><summary class="faq__q">What does the companion app do?</summary><div class="faq__a">It pairs over Bluetooth LE to show live device status — battery, cartridge state, and expiration — stores a health profile for first responders, and lets you try everything in Demo Mode before your device ships.</div></details>
+    <details class="faq__item"><summary class="faq__q">Is it real epinephrine?</summary><div class="faq__a">Yes. <span class="wordmark">EpiSafe</span> is designed to deliver a standard 0.3 mg dose of epinephrine, the same medication used in conventional auto-injectors, from a compact cartridge that fits your phone case.</div></details>
+    <details class="faq__item"><summary class="faq__q">Is EpiSafe FDA-approved or available to buy yet?</summary><div class="faq__a">Not yet. <span class="wordmark">EpiSafe</span> is in active development and pre-FDA submission, and it is not yet for sale or clinical use. We're on a staged, roughly two-year path to FDA submission. <a href="#waitlist">Join the waitlist</a> and we'll tell you the moment that changes.</div></details>
+    <details class="faq__item"><summary class="faq__q">How does it fit my phone?</summary><div class="faq__a">It's built into a MagSafe-compatible phone case and is just 11.4 mm thin, so it carries like a normal case, with nothing extra to remember or pack.</div></details>
+    <details class="faq__item"><summary class="faq__q">What does the companion app do?</summary><div class="faq__a">It pairs over Bluetooth LE to show live device status (battery, cartridge state, and expiration), stores a health profile for first responders, and lets you try everything in Demo Mode before your device ships.</div></details>
     <details class="faq__item"><summary class="faq__q">How much will it cost?</summary><div class="faq__a">Pricing isn't finalized yet. Waitlist members will be the first to hear, and we're committed to making lifesaving epinephrine as accessible as possible.</div></details>
-    <details class="faq__item"><summary class="faq__q">When can I get one?</summary><div class="faq__a">We're pre-launch. The fastest way to be first in line — and to help us prioritize your phone — is to <a href="#waitlist">join the waitlist</a>.</div></details>
+    <details class="faq__item"><summary class="faq__q">When can I get one?</summary><div class="faq__a">We're pre-launch. The fastest way to be first in line, and to help us prioritize your phone, is to <a href="#waitlist">join the waitlist</a>.</div></details>
   </div>
 </section>
 <script type="application/ld+json">
@@ -1000,10 +1016,10 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Is it real epinephrine?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. EpiSafe is designed to deliver a standard 0.3 mg dose of epinephrine — the same medication used in conventional auto-injectors — from a compact cartridge that fits your phone case." } },
-    { "@type": "Question", "name": "Is EpiSafe FDA-approved or available to buy yet?", "acceptedAnswer": { "@type": "Answer", "text": "Not yet. EpiSafe is in active development and pre-FDA submission — it is not yet for sale or clinical use. We are on a staged, roughly two-year path to FDA submission. Join the waitlist and we will tell you the moment that changes." } },
-    { "@type": "Question", "name": "How does it fit my phone?", "acceptedAnswer": { "@type": "Answer", "text": "It is built into a MagSafe-compatible phone case and is just 11.4 mm thin, so it carries like a normal case — there is nothing extra to remember or pack." } },
-    { "@type": "Question", "name": "What does the companion app do?", "acceptedAnswer": { "@type": "Answer", "text": "It pairs over Bluetooth LE to show live device status — battery, cartridge state, and expiration — stores a health profile for first responders, and lets you try everything in Demo Mode before your device ships." } },
+    { "@type": "Question", "name": "Is it real epinephrine?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. EpiSafe is designed to deliver a standard 0.3 mg dose of epinephrine, the same medication used in conventional auto-injectors, from a compact cartridge that fits your phone case." } },
+    { "@type": "Question", "name": "Is EpiSafe FDA-approved or available to buy yet?", "acceptedAnswer": { "@type": "Answer", "text": "Not yet. EpiSafe is in active development and pre-FDA submission, and it is not yet for sale or clinical use. We are on a staged, roughly two-year path to FDA submission. Join the waitlist and we will tell you the moment that changes." } },
+    { "@type": "Question", "name": "How does it fit my phone?", "acceptedAnswer": { "@type": "Answer", "text": "It is built into a MagSafe-compatible phone case and is just 11.4 mm thin, so it carries like a normal case, with nothing extra to remember or pack." } },
+    { "@type": "Question", "name": "What does the companion app do?", "acceptedAnswer": { "@type": "Answer", "text": "It pairs over Bluetooth LE to show live device status (battery, cartridge state, and expiration), stores a health profile for first responders, and lets you try everything in Demo Mode before your device ships." } },
     { "@type": "Question", "name": "How much will it cost?", "acceptedAnswer": { "@type": "Answer", "text": "Pricing is not finalized yet. Waitlist members will be the first to hear, and we are committed to making lifesaving epinephrine as accessible as possible." } },
     { "@type": "Question", "name": "When can I get one?", "acceptedAnswer": { "@type": "Answer", "text": "EpiSafe is pre-launch. The fastest way to be first in line is to join the waitlist." } }
   ]
@@ -1045,7 +1061,7 @@
     <div>
       <span class="eyebrow"><span class="eyebrow__dot"></span> Join the waitlist</span>
       <h2>Be first to carry it.</h2>
-      <p class="lede">Leave your email and we'll tell you the moment <span class="wordmark">EpiSafe</span> is available — plus the occasional build update.</p>
+      <p class="lede">Leave your email and we'll tell you the moment <span class="wordmark">EpiSafe</span> is available, plus the occasional build update.</p>
       <p class="waitlist-proof" id="waitlist-proof"></p>
     </div>
     <form id="waitlist-form" class="waitlist" action="https://formspree.io/f/xdavjdgr" method="POST">
