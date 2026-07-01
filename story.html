@@ -337,6 +337,9 @@
 
 <div class="bg-stage" aria-hidden="true"></div>
 
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+
 <!-- NAV -->
 <nav class="nav glass-quiet">
   <a href="index.html" class="nav__brand">
@@ -346,7 +349,7 @@
   <div class="nav__links">
     <a href="product.html" class="nav__link">Product</a>
     <a href="index.html#app" class="nav__link">App</a>
-    <a href="story.html" class="nav__link is-active">Story</a>
+    <a href="story.html" class="nav__link is-active" aria-current="page">Story</a>
     <a href="team.html" class="nav__link">Team</a>
     <a href="news.html" class="nav__link">News</a>
     <a href="traction.html" class="nav__link">Traction</a>
@@ -355,10 +358,10 @@
 </nav>
 
 <!-- HERO -->
-<header class="s-hero wrap" data-screen-label="01 Story Hero">
+<header id="main" class="s-hero wrap" data-screen-label="01 Story Hero">
   <div class="reveal">
     <div class="s-hero__eye"><span class="eyebrow"><span class="eyebrow__dot"></span> Our story</span></div>
-    <h1 class="h-display s-hero__title">
+    <h1 class="h-display s-hero__title split-words">
       A question<br>
       <span class="italic-serif">became</span> a company.
     </h1>
@@ -384,10 +387,10 @@
   <div class="chapter__inner">
     <div class="reveal">
       <span class="chapter__num">Chapter 01 &middot; The realization</span>
-      <h2 class="chapter__title">The treatment exists.<br>The <span class="italic-serif" style="font-family: &quot;Paul Grotesk&quot;">device fails it.</span></h2>
+      <h2 class="chapter__title">The treatment exists.<br>The <span class="italic-serif font-brand">device fails it.</span></h2>
       <div class="chapter__body">
         <p>The EpiPen has barely changed since 1987. Six inches long. Awkward to pocket. Designed to live in a backpack that you don't always grab.</p>
-        <p>So the data ends up where you'd expect: 56% of people prescribed an EpiPen don't carry one. 225 deaths a year from anaphylaxis in the U.S. $33 billion a year in direct medical costs from severe allergic reactions. And too often, the difference between a scare and a tragedy is simply whether the device was on you , or left on a kitchen counter.</p>
+        <p>So the data ends up where you'd expect: 56% of people prescribed an EpiPen don't carry one. 225 deaths a year from anaphylaxis in the U.S. $33 billion a year in direct medical costs from severe allergic reactions. And too often, the difference between a scare and a tragedy is simply whether the device was on you, or left on a kitchen counter.</p>
         <p>Anaphylaxis can kill in minutes. The device meant to stop it shouldn't have a "but I left it at home" failure mode.</p>
         <p style="font-size:12px; color: var(--fg-mute); margin-top: 6px;">Sources: <a href="https://allergyasthmanetwork.org/anaphylaxis/anaphylaxis-statistics/" target="_blank" rel="noopener" style="color: var(--fg-soft)">Allergy &amp; Asthma Network</a> (2026); ACAAI.</p>
       </div>
@@ -406,7 +409,7 @@
       <span class="chapter__num">Chapter 02 &middot; The approach</span>
       <h2 class="chapter__title">Not a smaller EpiPen.<br><span class="italic-serif">A rebuilt one.</span></h2>
       <div class="chapter__body">
-        <p>Every part inside an auto-injector was designed around a six-inch tube. We didn't try to shrink it , we redrew the geometry, simulated the fluid dynamics, and engineered for a dose equivalent to a standard intramuscular injection , now being validated in bench testing.</p>
+        <p>Every part inside an auto-injector was designed around a six-inch tube. We didn't try to shrink it. We redrew the geometry, simulated the fluid dynamics, and engineered for a dose equivalent to a standard intramuscular injection, now being validated in bench testing.</p>
         <p>Then we did the harder part: we put it in a phone case. The device people carry 100 times a day now carries the device that saves their life.</p>
       </div>
     </div>
@@ -475,7 +478,7 @@
   </div>
 
   <div class="team-detail">
-    <article class="td-card glass reveal">
+    <article class="td-card glass reveal lift">
       <div class="td-card__photo"><a class="li-link" href="https://www.linkedin.com/in/aaryanpanchal/" target="_blank" rel="noopener noreferrer" aria-label="Aaryan Panchal on LinkedIn"><img loading="lazy" decoding="async" src="assets/team-aaryan.png" alt="Aaryan Panchal"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
       <div>
         <h3 class="td-card__name">Aaryan Panchal</h3>
@@ -483,7 +486,7 @@
         <p class="td-card__bio">Leads strategy and operations. Owns the path from prototype to FDA submission and brings the team together around a single, uncompromising mission: get epinephrine into pockets.</p>
       </div>
     </article>
-    <article class="td-card glass reveal" style="--d: 80ms">
+    <article class="td-card glass reveal lift" style="--d: 80ms">
       <div class="td-card__photo"><a class="li-link" href="https://www.linkedin.com/in/joshua-kashambala-23b423347/" target="_blank" rel="noopener noreferrer" aria-label="Joshua Kashambala on LinkedIn"><img loading="lazy" decoding="async" src="assets/team-joshua.png" alt="Joshua Kashambala"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
       <div>
         <h3 class="td-card__name">Joshua Kashambala</h3>
@@ -491,7 +494,7 @@
         <p class="td-card__bio">Runs day-to-day operations and partnerships. Has spent the last nine months turning the engineering pipeline, regulatory roadmap, and supply chain from spreadsheets into a working plan.</p>
       </div>
     </article>
-    <article class="td-card glass reveal" style="--d: 160ms">
+    <article class="td-card glass reveal lift" style="--d: 160ms">
       <div class="td-card__photo"><a class="li-link" href="https://www.linkedin.com/in/ethan-takvorian-016611364/" target="_blank" rel="noopener noreferrer" aria-label="Ethan Takvorian on LinkedIn"><img loading="lazy" decoding="async" src="assets/team-ethan.png" alt="Ethan Takvorian"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
       <div>
         <h3 class="td-card__name">Ethan Takvorian</h3>
@@ -499,7 +502,7 @@
         <p class="td-card__bio">Owns industrial design and the digital product. Responsible for every line, curve, and pixel that makes <span class="wordmark">EpiSafe</span> feel less like a medical device and more like something you actually want to carry.</p>
       </div>
     </article>
-    <article class="td-card glass reveal" style="--d: 240ms">
+    <article class="td-card glass reveal lift" style="--d: 240ms">
       <div class="td-card__photo"><a class="li-link" href="https://www.linkedin.com/in/khushal-sharma-6a2981229/" target="_blank" rel="noopener noreferrer" aria-label="Khushal Sharma on LinkedIn"><img loading="lazy" decoding="async" src="assets/team-khushal.png" alt="Khushal Sharma"><span class="li-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.97 0 1.78-.78 1.78-1.73V1.73C24 .77 23.19 0 22.22 0z"/></svg></span></a></div>
       <div>
         <h3 class="td-card__name">Khushal Sharma</h3>
@@ -525,6 +528,8 @@
 </section>
 
 <!-- FOOTER -->
+<div class="bigfoot" aria-hidden="true"><span class="bigfoot-word">EpiSafe</span></div>
+
 <footer class="footer">
   <div class="footer__inner glass">
     <div class="footer__col">

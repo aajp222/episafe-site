@@ -290,6 +290,9 @@
 
 <div class="bg-stage" aria-hidden="true"></div>
 
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+
 <!-- NAV (shared) -->
 <nav class="nav glass-quiet">
   <a href="index.html" class="nav__brand">
@@ -297,7 +300,7 @@
     <span class="wordmark">EpiSafe</span>
   </a>
   <div class="nav__links">
-    <a href="product.html" class="nav__link is-active">Product</a>
+    <a href="product.html" class="nav__link is-active" aria-current="page">Product</a>
     <a href="index.html#app" class="nav__link">App</a>
     <a href="story.html" class="nav__link">Story</a>
     <a href="team.html" class="nav__link">Team</a>
@@ -308,15 +311,15 @@
 </nav>
 
 <!-- HERO -->
-<header class="p-hero wrap" data-screen-label="01 Product Hero">
+<header id="main" class="p-hero wrap" data-screen-label="01 Product Hero">
   <div class="reveal">
     <span class="eyebrow"><span class="eyebrow__dot"></span> The Product</span>
-    <h1 class="h-display p-hero__title">
+    <h1 class="h-display p-hero__title split-words">
       An EpiPen,<br>
       <span class="italic-serif">redrawn.</span>
     </h1>
     <p class="lede p-hero__lede" style="max-width: 56ch; margin: 0 auto;">
-      We didn't shrink an EpiPen. We rebuilt every part inside , a new mechanism, new geometry, equivalent intramuscular dose , and integrated it into a phone case you'll actually carry.
+      We didn't shrink an EpiPen. We rebuilt every part inside: a new mechanism, new geometry, equivalent intramuscular dose. Then we integrated it into a phone case you'll actually carry.
     </p>
   </div>
 
@@ -338,7 +341,7 @@
       <div class="p-callout glass p-callout--bottom">
         <span class="p-callout__k">Release</span>
         <span class="p-callout__v">Two-step release</span>
-        <span class="p-callout__body">Deliberate by design , secure in a pocket, fast in an emergency.</span>
+        <span class="p-callout__body">Deliberate by design: secure in a pocket, fast in an emergency.</span>
       </div>
     </div>
   </div>
@@ -351,20 +354,20 @@
     <h2 class="h-section">Three steps.<br><span class="italic-serif">Under ten seconds.</span></h2>
   </div>
   <div class="steps">
-    <article class="step glass reveal">
+    <article class="step glass reveal lift">
       <span class="step__num">01</span>
       <h3 class="step__title">Pull the orange tab.</h3>
-      <p class="step__body">A deliberate two-step pull releases the auto-injector from the back of your case , secure enough that it won't deploy in a pocket or bag, quick enough to use in seconds.</p>
+      <p class="step__body">A deliberate two-step pull releases the auto-injector from the back of your case: secure enough that it won't deploy in a pocket or bag, quick enough to use in seconds.</p>
     </article>
-    <article class="step glass reveal" style="--d: 100ms">
+    <article class="step glass reveal lift" style="--d: 100ms">
       <span class="step__num">02</span>
       <h3 class="step__title">Press firmly into the outer thigh.</h3>
       <p class="step__body">A spring-loaded mechanism deploys the needle and delivers the intramuscular dose. You'll hear a click.</p>
     </article>
-    <article class="step glass reveal" style="--d: 200ms">
+    <article class="step glass reveal lift" style="--d: 200ms">
       <span class="step__num">03</span>
       <h3 class="step__title">Hold for three seconds. Call 911.</h3>
-      <p class="step__body">Massage the injection area for ten seconds and seek emergency medical care , even if symptoms improve.</p>
+      <p class="step__body">Massage the injection area for ten seconds and seek emergency medical care, even if symptoms improve.</p>
     </article>
   </div>
 </section>
@@ -403,7 +406,7 @@
   </div>
 
   <div class="compare-row">
-    <article class="compare-card glass reveal">
+    <article class="compare-card glass reveal lift">
       <span class="compare-card__label compare-card__label--old">The Status Quo &middot; est. 1987</span>
       <h3 class="compare-card__title muted">The EpiPen</h3>
       <div class="compare-card__media"><img loading="lazy" decoding="async" src="assets/epipen-reference.png" alt="EpiPen reference"></div>
@@ -414,12 +417,12 @@
       </div>
     </article>
 
-    <article class="compare-card glass-strong reveal compare-card__media--new" style="--d: 120ms">
+    <article class="compare-card glass-strong reveal compare-card__media--new lift" style="--d: 120ms">
       <span class="compare-card__label compare-card__label--new">EpiSafe &middot; patent pending</span>
       <h3 class="compare-card__title">In your phone case</h3>
       <div class="compare-card__media compare-card__media--new"><img loading="lazy" decoding="async" src="assets/product-hero-web.png" alt="EpiSafe product"></div>
       <div class="stack" style="--g: 8px; color: var(--fg-soft); font-size: 14px;">
-        <div><span style="color:var(--o)">✓</span>&nbsp;&nbsp;11.4 mm thin , integrated into a phone case</div>
+        <div><span style="color:var(--o)">✓</span>&nbsp;&nbsp;11.4 mm thin, integrated into a phone case</div>
         <div><span style="color:var(--o)">✓</span>&nbsp;&nbsp;Lives where your phone lives</div>
         <div><span style="color:var(--o)">✓</span>&nbsp;&nbsp;One pull-tab. Immediate intramuscular dose.</div>
       </div>
@@ -442,6 +445,8 @@
 </section>
 
 <!-- FOOTER -->
+<div class="bigfoot" aria-hidden="true"><span class="bigfoot-word">EpiSafe</span></div>
+
 <footer class="footer">
   <div class="footer__inner glass">
     <div class="footer__col">
